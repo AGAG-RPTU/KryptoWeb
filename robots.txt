@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://crypto.github.io[:14300]/sitemap.xml
