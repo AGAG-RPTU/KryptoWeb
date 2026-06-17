@@ -78,7 +78,7 @@ al_folio:
 
 navbar_fixed: true
 footer_fixed: true
-search_enabled: true
+search_enabled: false
 
 # Dimensions
 max_width: 930px
