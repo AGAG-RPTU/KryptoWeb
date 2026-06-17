@@ -2,7 +2,7 @@
 layout: page
 title: Kopiervorlagen
 permalink: /Kopiervorlagen/
-description: A growing collection of your cool projects.
+description: Diese Vorlagen laden zum Basteln und Experimentieren rund um die Kryptographie ein
 nav: true
 nav_order: 2
 display_categories: [Kryptographie]

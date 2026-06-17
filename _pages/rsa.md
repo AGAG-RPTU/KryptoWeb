@@ -2,7 +2,7 @@
 layout: page
 title: Visual
 permalink: /Visual/
-description: A growing collection of your cool projects.
+description: Programmcode zu visueller Kryptographie
 nav: true
 nav_order: 4
 display_categories: [Visual]

@@ -2,7 +2,7 @@
 layout: page
 title: Masterarbeiten
 permalink: /Masterarbeiten/
-description: A growing collection of your cool projects.
+description: Einige Masterarbeiten über Themen der Kryptographie
 nav: true
 nav_order: 3
 display_categories: [Arbeiten]
