@@ -1,0 +1,28 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"></head><body><h1>Anleitung</h1>
+
+<p>
+Sie brauchen ein schwarz-weisses Bild im pbm Format. Z.B.
+kann <a href="https://imagemagick.org/index.php">ImageMagick</a> soziemlich jedes Format nach pbm konvertieren:
+</p><p>
+<tt>convert MeinBild MeinBild.pbm</tt>
+</p>
+<p>Leider gibt es verschiedene pbm Formate, so dass mit 
+</p><p>
+<tt>pbmb_to_pbma</tt>
+</p><p> konvertiert werden kann.
+Der Quellcode ist <a href="https://agag-fieker.math.rptu.de/TagDerMathematik/Visual/Python/pbmb_to_pbma.cpp">hier</a> kopiert von <a href="https://people.math.sc.edu/Burkardt/cpp_src/pbmb_to_pbma/pbmb_to_pbma.html">hier</a>.
+Wenn die nötigen Comiler da sind, so sollte 
+</p><p>
+<tt>make pbmb_to_pbma</tt>
+</p><p>
+alles Notwendige leisten. Nach dem Konvertieren muss dan leider noch
+die Kommentarzeile entfernt werden.
+
+Dann kann mit
+</p><p>
+<tt>python visuelle_krypto.py</tt>
+</p><p>
+von <a href="https://agag-fieker.math.rptu.de/TagDerMathematik/Visual/Python/visuelle_krypto.py">hier</a> die Magie erstellt werden.
+</p>
+</body></html>
