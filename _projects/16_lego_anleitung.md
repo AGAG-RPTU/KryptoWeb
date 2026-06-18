@@ -2,7 +2,7 @@
 layout: page
 title: Bauanleitung
 description: a project that redirects to another website
-img: Bilder/Anleitung.jpg
+img: content/img/Anleitung.jpg
 category: Lego
 ---
 
