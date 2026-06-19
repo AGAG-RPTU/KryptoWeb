@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Caesar
-description: a project that redirects to another website
+description: Vorlage für eine Caesar-Verschlüsselungsscheibe.
 img: content/img/Caesar.jpg
 category: Kryptographie
 ---

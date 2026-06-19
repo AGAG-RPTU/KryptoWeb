@@ -1,7 +1,7 @@
 ---
 layout: page
 title: EnigmaDIY
-description: a project that redirects to another website
+description: Eine Anleitung zum Bauen einer Enigma.
 img: content/img/EnigmaDIY.jpg
 category: Kryptographie
 ---

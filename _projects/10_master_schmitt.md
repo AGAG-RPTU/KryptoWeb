@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Schmitt
-description: a project that redirects to another website
+title: Kryptographie in der Schule
+description: Katrin Schmitt
 img: content/img/Schmitt1.jpg
 category: Arbeiten
 ---

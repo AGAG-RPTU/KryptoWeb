@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Vigenère
-description: a project that redirects to another website
+description: Eine Vigenère-Scheibe.
 img: content/img/Vigenere.jpg
 category: Kryptographie
 ---

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PringelsEnigma
-description: a project that redirects to another website
+description: Druckvorlage für die Papierenigma.
 img: content/img/PringelsEnigma.jpg
 category: Kryptographie
 ---

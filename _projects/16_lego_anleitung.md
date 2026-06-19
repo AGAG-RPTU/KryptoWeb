@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Bauanleitung
-description: a project that redirects to another website
+description: Eine Anleitung zum Bauen einer Lego-Enigma.
 img: content/img/Anleitung.jpg
 category: Lego
 ---

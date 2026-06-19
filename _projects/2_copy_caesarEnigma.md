@@ -1,7 +1,7 @@
 ---
 layout: page
 title: CaesarEnigma
-description: a project that redirects to another website
+description: Vorlage für eine Enigma beruhend auf der Caesar Verschlüsselungsscheibe.
 img: content/img/CaesarEnigma.jpg
 category: Kryptographie
 ---

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Python
-description: a project that redirects to another website
+description: Eine Visualisierung mittels Python.
 category: Visual
 ---
 

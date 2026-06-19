@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Java
-description: a project that redirects to another website
+description: Eine Visualisierung mittels Java.
 category: Visual
 ---
 

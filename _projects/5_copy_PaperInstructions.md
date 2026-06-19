@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PaperEnigma Instructions
-description: a project that redirects to another website
+description: Anleitung zum Bauen einer Enigma aus Papier.
 img: content/img/PaperEnigmaInstructions.jpg
 category: Kryptographie
 ---

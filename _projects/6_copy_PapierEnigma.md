@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Papier Enigma - German
-description: a project that redirects to another website
+description: Erklärung über die Verwendung der Papier-Enigma.
 img: content/img/Papier Enigma - German.jpg
 category: Kryptographie
 ---

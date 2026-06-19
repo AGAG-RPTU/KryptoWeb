@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Präsentation
-description: a project that redirects to another website
+description: Eine Präsentation zur Einführung ins RSA-Verfahren.
 img: content/img/RSA1.jpg
 category: RSA
 ---

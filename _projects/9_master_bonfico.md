@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Bonfico
-description: a project that redirects to another website
+title: Elementare Kryptographie und ihre didaktische Umsetzung für die Schule
+description: Kerstin Bonfico
 img: content/img/Bonfico1.jpg
 category: Arbeiten
 ---

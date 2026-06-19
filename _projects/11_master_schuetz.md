@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Schütz Cryptowährungen
-description: a project that redirects to another website
+title: Cryptowährungen und deren Einsatz im schulischen Kontext
+description: Marcel Schütz
 img: content/img/Schuetz1.jpg
 category: Arbeiten
 ---
