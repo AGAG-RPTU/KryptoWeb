@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Kryptographie in der Schule
-description: Katrin Schmitt
+title: Katrin Schmitt
+description: Kryptographie in der Schule
 img: content/img/Schmitt1.jpg
 category: Arbeiten
 ---

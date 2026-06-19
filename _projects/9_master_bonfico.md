@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Elementare Kryptographie und ihre didaktische Umsetzung für die Schule
-description: Kerstin Bonfico
+title: Kerstin Bonfico
+description: Elementare Kryptographie und ihre didaktische Umsetzung für die Schule
 img: content/img/Bonfico1.jpg
 category: Arbeiten
 ---

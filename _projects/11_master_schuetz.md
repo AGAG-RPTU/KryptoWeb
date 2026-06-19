@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Cryptowährungen und deren Einsatz im schulischen Kontext
-description: Marcel Schütz
+title: Marcel Schütz
+description: Cryptowährungen und deren Einsatz im schulischen Kontext
 img: content/img/Schuetz1.jpg
 category: Arbeiten
 ---
