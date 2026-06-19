@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Arbeitsblätter
-permalink: /lego/
+permalink: /arbeitsblaetter/
 description: Einige Arbeitsblätter zum Verständnis kryptographischer Verfahren.
 nav: true
 nav_order: 7
