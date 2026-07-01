@@ -6,8 +6,8 @@ img: content/img/AB1.jpg
 category: Arbeitsblätter
 ---
 
-<meta http-equiv="refresh" content="0; url={{ '/content/AB/Primzahlen.pdf' | relative_url }}">
+<meta http-equiv="refresh" content="0; url={{ '/content/Arbeitsblätter/Primzahlen.pdf' | relative_url }}">
 Falls der automatische Download nicht startet:
-<a href="{{ '/content/AB/Primzahlen.pdf' | relative_url }}" download>
+<a href="{{ '/content/Arbeitsblätter/Primzahlen.pdf' | relative_url }}" download>
     Download starten
 </a>
