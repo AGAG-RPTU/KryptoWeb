@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Geheimbotschaften
-description: Kinder-Uni der RPTU, 18. November 2026
+description: Max Horn · Kinder-Uni der RPTU, 18. November 2026
 img: content/img/Vortrag-2026-11-18-Kinderuni.jpg
 date: 2026-11-18
 ---
 
 **Geheimbotschaften – wie man Nachrichten versteckt und knackt**<br>
-Max Horn, [Kinder-Uni der RPTU](https://rptu.de/zentral/kinder-uni), Kaiserslautern, 18. November 2026,
+Vorlesung bei der [Kinder-Uni der RPTU](https://rptu.de/zentral/kinder-uni) in Kaiserslautern,
 für Kinder von 8 bis 12 Jahren
 
 Wie schickt man eine Nachricht, die niemand außer dem Empfänger lesen kann – und wie

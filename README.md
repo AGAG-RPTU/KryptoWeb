@@ -52,7 +52,8 @@ Sonst als `file` die Seite des Autors verlinken.
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
-mit `title`, `description`, `img` und `date` im Kopf. Der Text der Seite
+mit `title`, `description` (Vortragende, Anlass und Datum, etwa
+„Max Horn · Kinder-Uni der RPTU, 18. November 2026“), `img` und `date` im Kopf. Der Text der Seite
 beschreibt den Vortrag und verlinkt das Material. Die Übersicht sortiert nach
 `date`, neueste zuerst.
 
