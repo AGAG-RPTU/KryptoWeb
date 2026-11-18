@@ -3,7 +3,6 @@ layout: page
 title: Geheimbotschaften
 description: Kinder-Uni der RPTU, 18. November 2026
 img: content/img/Vortrag-2026-11-18-Kinderuni.jpg
-category: Vorträge
 date: 2026-11-18
 ---
 
@@ -22,5 +21,12 @@ Spione und Codeknacker ist die Mathematik.
 - [Folien]({{ '/content/Vortraege/Vortrag-2026-11-18-Kinderuni.pdf' | relative_url }}) (PDF, 10 MB)
 - [Agenten-Blatt]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni.pdf' | relative_url }}) mit den Aufgaben aus dem Vortrag und Rätseln für zu Hause (PDF, 2 Seiten). Die Lösungen stehen kopfüber unten auf Seite 2.
 - [LaTeX-Quelle des Agenten-Blatts]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni-LaTeX.zip' | relative_url }}) zum Anpassen (ZIP)
+- [Caesar-Scheibe]({{ '/content/Kopiervorlagen/Caesar.pdf' | relative_url }}) zum Ausschneiden und Basteln (PDF)
 
 Weitere Vorlagen zum Basteln stehen unter [Kopiervorlagen]({{ '/Kopiervorlagen/' | relative_url }}).
+
+## Bildnachweis
+
+Caesar-Büste (Folie 6): Foto von Ángel M. Felicísimo,
+[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/), zugeschnitten, via
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Retrato_de_Julio_C%C3%A9sar_(26724093101)_(cropped).jpg).

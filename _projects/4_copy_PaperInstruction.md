@@ -1,13 +1,8 @@
 ---
-layout: page
-title: PaperEnigma Instruction
-description: a project that redirects to another website
+title: "Pringles-Enigma: Anleitung"
+description: "Bauanleitung für die Enigma auf einer Chipsdose (englisch)"
 img: content/img/PaperEnigmaInstruction.jpg
 category: Kryptographie
+file: "/content/Kopiervorlagen/PaperEnigmaInstruction.pdf"
+credit: "© Franklin Heath Ltd, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · [Quelle](https://web.archive.org/web/20180126224212/http://wiki.franklinheath.co.uk/index.php/Enigma/Paper_Enigma)"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/PaperEnigmaInstruction.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/PaperEnigmaInstruction.pdf' | relative_url }}" download>
-    Download starten
-</a>

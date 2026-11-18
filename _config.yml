@@ -102,8 +102,11 @@ collections:
     defaults:
       layout: post
     output: true
-  projects:
+  projects: # cards link straight to the files, no page per item
+    output: false
+  vortraege:
     output: true
+    permalink: /Vortraege/:name/
   teachings:
     output: true
 

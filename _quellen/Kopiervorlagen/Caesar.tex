@@ -1,0 +1,80 @@
+% Bastelvorlage Caesar-Scheibe: zwei Scheiben ausschneiden, mit
+% Musterbeutelklammer durch die Mittelpunkte verbinden. Eine A4-Seite
+% pro Kind, einseitig drucken. Aussen = Klartext, innen = Geheimtext.
+% Uebersetzen mit lualatex (RPTU-Hausschrift Red Hat).
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Red Hat Text}[BoldFont={Red Hat Text SemiBold}]
+\newfontfamily\display{Red Hat Display}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\definecolor{darkblue}{HTML}{1F3B5B}
+\definecolor{textblue}{HTML}{1F2E43}
+\definecolor{orange}{HTML}{C95F25}
+
+% Ein Buchstabenring: Schnittkreis, Innenkreis, Trennstriche, A-Z.
+% #1 Aussenradius (Schnittkante), #2 Innenradius des Rings, #3 Farbe
+\newcommand{\letterring}[3]{%
+  \pgfmathsetmacro{\rmid}{(#1+#2)/2}%
+  \draw[darkblue, line width=1.4pt] (0,0) circle (#1);
+  \draw[darkblue, line width=0.9pt] (0,0) circle (#2);
+  \foreach \i in {0,...,25}{
+    \pgfmathsetmacro{\angle}{90 - (\i+0.5)*360/26}
+    \draw[darkblue, line width=0.7pt] (\angle:#2) -- (\angle:#1);
+  }
+  \foreach \i/\letter in {
+    0/A, 1/B, 2/C, 3/D, 4/E, 5/F, 6/G, 7/H, 8/I, 9/J, 10/K, 11/L, 12/M,
+    13/N, 14/O, 15/P, 16/Q, 17/R, 18/S, 19/T, 20/U, 21/V, 22/W, 23/X,
+    24/Y, 25/Z
+  }{
+    \pgfmathsetmacro{\angle}{90 - \i*360/26}
+    \node[font=\bfseries\Large, text=#3,
+          rotate={\angle-90}] at (\angle:\rmid) {\letter};
+  }
+  % Loch fuer die Musterbeutelklammer
+  \fill[textblue] (0,0) circle (0.06);
+  \draw[textblue, line width=0.5pt] (0,0) circle (0.18);
+}
+
+\begin{document}
+\begin{center}
+
+{\display\fontsize{22}{22}\selectfont\color{darkblue} CAESAR-SCHEIBE ZUM BASTELN}\par
+\vspace{4mm}
+
+% Grosse Scheibe: Klartext
+\begin{tikzpicture}[line cap=round, line join=round]
+  \letterring{5.5}{4.5}{darkblue}
+  \node[font=\bfseries\large, text=darkblue] at (0,1.2)
+    {KLARTEXT};
+  \node[text=textblue] at (0,-1.2)
+    {große Scheibe};
+\end{tikzpicture}
+
+\vspace{6mm}
+
+% Kleine Scheibe: Geheimtext, liegt oben auf
+\begin{tikzpicture}[line cap=round, line join=round]
+  \letterring{4.3}{3.3}{textblue}
+  \node[font=\bfseries\large, text=textblue] at (0,1.0)
+    {GEHEIMTEXT};
+  \node[text=textblue] at (0,-1.0)
+    {kleine Scheibe};
+\end{tikzpicture}
+
+\vspace{4mm}
+
+\begin{minipage}{0.9\textwidth}
+  \small
+  \textbf{So geht's:} Beide Scheiben ausschneiden. Kleine Scheibe auf die
+  große legen und mit einer Musterbeutelklammer durch die Mittelpunkte
+  verbinden. Zum Verschlüsseln die kleine Scheibe drehen, z.\,B. innen
+  \textbf{D} unter außen \textbf{A} = Schlüssel 3. Dann jeden
+  Buchstaben außen suchen und den Buchstaben innen aufschreiben.
+\end{minipage}
+
+\end{center}
+\end{document}

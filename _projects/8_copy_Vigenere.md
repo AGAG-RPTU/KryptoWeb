@@ -1,13 +1,8 @@
 ---
-layout: page
-title: Vigenère
-description: a project that redirects to another website
+title: "Vigenère"
+description: "Vigenère-Tabelle zum Ver- und Entschlüsseln"
 img: content/img/Vigenere.jpg
 category: Kryptographie
+file: "/content/Kopiervorlagen/Vigenere.pdf"
+credit: "Herkunft der Datei unbekannt; die Tabelle selbst (Tabula recta, 1508) ist gemeinfrei"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/Vigenere.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/Vigenere.pdf' | relative_url }}" download>
-    Download starten
-</a>

@@ -1,13 +1,8 @@
 ---
-layout: page
-title: Caesar
-description: a project that redirects to another website
+title: "Caesar-Scheibe"
+description: "Caesar-Scheibe zum Ausschneiden und Basteln"
 img: content/img/Caesar.jpg
 category: Kryptographie
+file: "/content/Kopiervorlagen/Caesar.pdf"
+credit: "© Max Horn, RPTU"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/Caesar.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/Caesar.pdf' | relative_url }}" download>
-    Download starten
-</a>

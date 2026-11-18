@@ -1,12 +1,6 @@
 ---
-layout: page
-title: Python
-description: a project that redirects to another website
+title: "Python"
+description: "Ein Bild in zwei Folien zerlegen (Python, ZIP)"
 category: Visual
+file: "/content/Visual/Python/python_crypto.zip"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Visual/Python/python_crypto.zip' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Visual/Python/python_crypto.zip' | relative_url }}" download>
-    Download starten
-</a>

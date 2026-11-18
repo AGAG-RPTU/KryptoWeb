@@ -1,0 +1,34 @@
+{% comment %}
+  Overrides the theme's card: links straight to `file` if set (else to the
+  item's page) and shows `credit` (Markdown) below, outside the link.
+{% endcomment %}
+{% if project.file %}
+  {% assign target = project.file | relative_url %}
+{% else %}
+  {% assign target = project.url | relative_url %}
+{% endif %}
+<div class="col">
+  <div class="card h-100 hoverable">
+    <a href="{{ target }}">
+      {% if project.img %}
+        {%
+          include figure.liquid
+          loading="eager"
+          path=project.img
+          sizes = "250px"
+          alt=project.title
+          class="card-img-top"
+        %}
+      {% endif %}
+      <div class="card-body">
+        <h2 class="card-title">{{ project.title }}</h2>
+        <p class="card-text">{{ project.description }}</p>
+      </div>
+    </a>
+    {% if project.credit %}
+      <div class="card-body" style="padding-top: 0; font-size: 0.8rem">
+        {{ project.credit | markdownify }}
+      </div>
+    {% endif %}
+  </div>
+</div>

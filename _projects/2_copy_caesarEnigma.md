@@ -1,13 +1,8 @@
 ---
-layout: page
-title: CaesarEnigma
-description: a project that redirects to another website
+title: "Enigma im Taschenformat"
+description: "Walzen-Scheiben einer Enigma-ähnlichen Maschine (Seite A; Anleitung und Seite B bei der Quelle)"
 img: content/img/CaesarEnigma.jpg
 category: Kryptographie
+file: "/content/Kopiervorlagen/CaesarEnigma.pdf"
+credit: "© 2009 Paul Gardner-Stephen (gardners), [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · [Quelle](https://www.instructables.com/Make-your-own-wallet-sized-Enigmatm-like-Machine/)"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/CaesarEnigma.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/CaesarEnigma.pdf' | relative_url }}" download>
-    Download starten
-</a>

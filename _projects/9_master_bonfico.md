@@ -1,13 +1,7 @@
 ---
-layout: page
-title: Bonfico
-description: a project that redirects to another website
+title: "Elementare Kryptographie und ihre didaktische Umsetzung für die Schule"
+description: "Masterarbeit von Kerstin Bonfico, 2014"
 img: content/img/Bonfico1.jpg
 category: Arbeiten
+file: "/content/Masterarbeiten/Bonfico.pdf"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Masterarbeiten/Bonfico.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Masterarbeiten/Bonfico.pdf' | relative_url }}" download>
-    Download starten
-</a>
