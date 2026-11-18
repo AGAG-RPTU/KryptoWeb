@@ -39,6 +39,8 @@ EU-US Data Privacy Framework zertifiziert. Einzelheiten stehen in der
 Wir selbst erheben keine personenbezogenen Daten, setzen keine Cookies und binden keine
 Inhalte anderer Server ein. Die Einstellung zum hellen oder dunklen Farbschema wird nur
 lokal in Ihrem Browser gespeichert.
+Bilder, die Sie in das Werkzeug zur visuellen Kryptographie laden, verarbeitet nur Ihr
+Browser; sie werden nicht übertragen.
 
 Ansonsten gilt die [Datenschutzerklärung der RPTU](https://rptu.de/datenschutz),
 insbesondere für Ihre Rechte als betroffene Person und die Kontaktdaten des

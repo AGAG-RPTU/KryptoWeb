@@ -1,0 +1,50 @@
+{% comment %}
+  Tool for visual cryptography; logic in assets/js/visuelle-krypto.js, styles in
+  assets/css/visuelle-krypto.css (the page links it). No blank lines: kramdown
+  would end the HTML block there.
+{% endcomment %}
+<div class="vk" id="vk">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<div class="vk-steuerung">
+<div>
+<fieldset>
+<legend>Motiv</legend>
+<div class="vk-chips">
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="smiley" checked><span>Smiley</span></label>
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="herz"><span>Herz</span></label>
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="stern"><span>Stern</span></label>
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="schloss"><span>Schloss</span></label>
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="text"><span>Text</span></label>
+<label class="vk-chip"><input type="radio" name="vk-motiv" value="bild"><span>Eigenes Bild</span></label>
+</div>
+</fieldset>
+<p class="vk-option" data-motiv="text" hidden><label for="vk-text">Text</label> <input type="text" id="vk-text" value="GEHEIM" maxlength="16" autocomplete="off" spellcheck="false"></p>
+<div class="vk-option" data-motiv="bild" hidden>
+<p><input type="file" id="vk-datei" class="vk-versteckt" accept="image/*"><label for="vk-datei" class="vk-knopf">Bild auswählen …</label> <span id="vk-dateiname" class="vk-klein"></span></p>
+<p class="vk-klein">Dein Bild bleibt auf deinem Gerät: Alles wird hier im Browser berechnet, nichts wird hochgeladen.</p>
+<p><label for="vk-schwelle">Grenze zwischen Schwarz und Weiß</label> <input type="range" id="vk-schwelle" min="1" max="255" value="128"></p>
+</div>
+<p><label for="vk-feinheit">Feinheit</label> <input type="range" id="vk-feinheit" min="8" max="200" value="28"> <output id="vk-groesse" for="vk-feinheit"></output></p>
+<p><label><input type="checkbox" id="vk-umkehren"> Schwarz und Weiß tauschen</label></p>
+</div>
+<figure class="vk-vorschau">
+<canvas id="vk-vorschau" aria-label="Motiv in Schwarz-Weiß"></canvas>
+<figcaption>Motiv in Schwarz-Weiß</figcaption>
+</figure>
+</div>
+<div class="vk-tisch" id="vk-tisch">
+<div class="vk-folie vk-folie-a" id="vk-folie-a" tabindex="0" role="img" aria-label="Folie A, verschiebbar mit Maus, Finger oder Pfeiltasten"><canvas></canvas><span aria-hidden="true">Folie A</span></div>
+<div class="vk-folie vk-folie-b" id="vk-folie-b" tabindex="0" role="img" aria-label="Folie B, verschiebbar mit Maus, Finger oder Pfeiltasten"><canvas></canvas><span aria-hidden="true">Folie B</span></div>
+</div>
+<p class="vk-status" id="vk-status" aria-live="polite"></p>
+<p class="vk-knoepfe">
+<button type="button" class="vk-haupt" id="vk-zusammen">Übereinanderlegen</button>
+<button type="button" id="vk-auseinander">Auseinanderlegen</button>
+<button type="button" id="vk-wuerfeln">Neu würfeln</button>
+</p>
+<p class="vk-knoepfe">
+<button type="button" id="vk-png-a">Folie A herunterladen (PNG)</button>
+<button type="button" id="vk-png-b">Folie B herunterladen (PNG)</button>
+</p>
+</div>
+<script defer src="{{ '/assets/js/visuelle-krypto.js' | relative_url | bust_file_cache }}"></script>

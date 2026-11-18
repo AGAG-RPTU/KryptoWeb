@@ -51,6 +51,12 @@ Die Karte verlinkt direkt auf `file`. Fremdes Material nur einstellen, wenn sein
 Lizenz die Weitergabe erlaubt; Urheber, Lizenz und Quelle gehören in `credit`.
 Sonst als `file` die Seite des Autors verlinken.
 
+**Visuelle Kryptographie im Browser:** Die Seite Visual (`_pages/rsa.md`) bindet
+das Werkzeug aus `_includes/visuelle_krypto.liquid` ein; Rechnung und Motive stehen
+in `assets/js/visuelle-krypto.js`, das Aussehen in `assets/css/visuelle-krypto.css`.
+Ein neues Motiv braucht eine Zeichenfunktion in `SHAPES`, einen Eintrag in
+`DEFAULT_FINENESS` und einen Knopf im Include.
+
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
 mit `title`, `description` (Vortragende, Anlass und Datum, etwa

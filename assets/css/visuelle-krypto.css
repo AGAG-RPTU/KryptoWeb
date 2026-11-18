@@ -1,0 +1,261 @@
+/* Visual cryptography on the page "Visual": diagram and tool */
+
+/* Foils and tiles stay black on white in dark mode too, like ink on film. */
+
+.vk-schema {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.vk-schema th,
+.vk-schema td {
+  padding: 0.4rem 0.6rem;
+  text-align: center;
+  vertical-align: top;
+  border-bottom: 1px solid var(--global-divider-color);
+}
+
+.vk-schema th:first-child,
+.vk-schema td:first-child {
+  text-align: left;
+}
+
+.vk-schema small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--global-text-color-light);
+}
+
+/* 2 × 2 subpixels; <i class="s"> is a black one */
+.vk-kachel {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: #fff;
+  outline: 1px solid #999;
+}
+
+.vk-kachel.vk-pixel {
+  grid-template-columns: 1fr;
+}
+
+.vk-kachel .s {
+  background: #000;
+}
+
+/* Tool */
+
+.vk {
+  margin: 1rem 0 2rem;
+}
+
+.vk p {
+  margin: 0.5rem 0;
+}
+
+.vk-steuerung {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: flex-start;
+}
+
+.vk-steuerung > div {
+  flex: 1 1 18rem;
+}
+
+.vk fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.vk legend {
+  float: none;
+  width: auto;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.vk-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.vk-chip input,
+.vk-versteckt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.vk-chip span {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.vk-chip input:checked + span {
+  border-color: var(--global-theme-color);
+  background: var(--global-theme-color);
+  color: var(--global-hover-text-color);
+}
+
+.vk-chip input:focus-visible + span {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+}
+
+.vk input[type="range"] {
+  width: 12rem;
+  max-width: 55%;
+  vertical-align: middle;
+  accent-color: var(--global-theme-color);
+}
+
+.vk input[type="text"] {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  font: inherit;
+}
+
+.vk-klein {
+  color: var(--global-text-color-light);
+  font-size: 0.85rem;
+}
+
+.vk-vorschau {
+  margin: 0;
+  color: var(--global-text-color-light);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.vk-vorschau canvas {
+  display: block;
+  margin: 0 auto 0.3rem;
+  outline: 1px solid var(--global-divider-color);
+  image-rendering: pixelated;
+}
+
+/* The stage is a light table; layout() in visuelle-krypto.js sets its height. */
+.vk-tisch {
+  position: relative;
+  margin: 1rem 0 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.vk-tisch.vk-deckung {
+  box-shadow: 0 0 0 3px var(--global-theme-color);
+}
+
+.vk-folie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px 8px 26px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 3px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.vk-folie:active {
+  cursor: grabbing;
+}
+
+.vk-folie:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+}
+
+.vk-folie canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+.vk-folie span {
+  position: absolute;
+  bottom: 4px;
+  color: #333;
+  font-size: 0.8rem;
+}
+
+/* A and B labelled on opposite sides, so they stay readable when stacked */
+.vk-folie-a {
+  background: rgba(255, 180, 0, 0.12);
+}
+
+.vk-folie-a span {
+  left: 8px;
+}
+
+.vk-folie-b {
+  background: rgba(0, 110, 255, 0.1);
+}
+
+.vk-folie-b span {
+  right: 8px;
+}
+
+/* GLIDE_MS in visuelle-krypto.js */
+.vk-tisch.vk-gleiten .vk-folie {
+  transition: transform 0.6s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vk-tisch.vk-gleiten .vk-folie {
+    transition: none;
+  }
+}
+
+.vk-status {
+  min-height: 1.5em;
+  font-weight: bold;
+}
+
+.vk-knoepfe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.vk button,
+.vk-knopf {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--global-theme-color);
+  font: inherit;
+  cursor: pointer;
+}
+
+.vk button:hover,
+.vk button.vk-haupt,
+.vk-knopf:hover {
+  background: var(--global-theme-color);
+  color: var(--global-hover-text-color);
+}
+
+.vk-versteckt:focus-visible + .vk-knopf {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+}
