@@ -1,0 +1,22 @@
+% Fußzeile der eigenen Vorlagen: Urheber, Lizenz und wo es die Datei gibt,
+% als Text und QR-Code. Zieht die Webseite um, nur \webseite und
+% \webseitetext ändern und die Vorlagen neu übersetzen.
+% Einbinden in der Präambel mit \input{../fusszeile}; erwartet die Farbe
+% textblue.
+\usepackage{qrcode}
+
+\newcommand{\webseite}{https://agag-rptu.github.io/KryptoWeb/Kopiervorlagen/}
+\newcommand{\webseitetext}{agag-rptu.github.io/KryptoWeb/Kopiervorlagen}
+
+\newcommand{\fusszeile}{%
+  \noindent
+  \begin{minipage}[c]{\dimexpr\textwidth-1.8cm\relax}
+    \scriptsize\color{textblue}
+    © 2026 Max Horn, RPTU Kaiserslautern-Landau · Lizenz CC BY-SA 4.0,
+    creativecommons.org/licenses/by-sa/4.0/deed.de\\
+    Diese und weitere Vorlagen als Datei: \textbf{\webseitetext}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{1.4cm}
+    \qrcode[height=1.4cm]{\webseite}%
+  \end{minipage}%
+}

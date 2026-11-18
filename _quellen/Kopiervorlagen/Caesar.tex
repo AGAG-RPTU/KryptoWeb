@@ -1,7 +1,8 @@
 % Bastelvorlage Caesar-Scheibe: zwei Scheiben ausschneiden, mit
-% Musterbeutelklammer durch die Mittelpunkte verbinden. Eine A4-Seite
-% pro Kind, einseitig drucken. Aussen = Klartext, innen = Geheimtext.
-% Uebersetzen mit lualatex (RPTU-Hausschrift Red Hat).
+% Musterbeutelklammer durch die Mittelpunkte verbinden. Außen = Klartext,
+% innen = Geheimtext. In der großen Scheibe steht die Bauanleitung (später
+% verdeckt), in der kleinen die Kurzanleitung zum Benutzen.
+% Übersetzen in diesem Ordner mit lualatex (RPTU-Hausschrift Red Hat).
 \documentclass[a4paper]{article}
 
 \usepackage{fontspec}
@@ -14,6 +15,8 @@
 \definecolor{darkblue}{HTML}{1F3B5B}
 \definecolor{textblue}{HTML}{1F2E43}
 \definecolor{orange}{HTML}{C95F25}
+
+\input{../fusszeile}
 
 % Ein Buchstabenring: Schnittkreis, Innenkreis, Trennstriche, A-Z.
 % #1 Aussenradius (Schnittkante), #2 Innenradius des Rings, #3 Farbe
@@ -39,53 +42,50 @@
   \draw[textblue, line width=0.5pt] (0,0) circle (0.18);
 }
 
+% Text im Inneren einer Scheibe, über oder unter dem Mittelpunkt
+\tikzset{innen/.style={text=textblue, font=\small, align=center}}
+
 \begin{document}
 \begin{center}
 
 {\display\fontsize{22}{22}\selectfont\color{darkblue} CAESAR-SCHEIBE ZUM BASTELN}\par
-\vspace{4mm}
+\vspace{9mm}
 
-% Grosse Scheibe: Klartext
+% Große Scheibe links oben, kleine rechts unten; Mittelpunkte so weit
+% auseinander, dass zwischen den Schnittkanten 1 cm Platz bleibt.
 \begin{tikzpicture}[line cap=round, line join=round]
-  \letterring{5.5}{4.5}{darkblue}
-  \node[font=\bfseries\large, text=darkblue] at (0,1.2)
-    {KLARTEXT};
-  \node[text=textblue] at (0,-1.2)
-    {große Scheibe};
-\end{tikzpicture}
+  \begin{scope}[shift={(-2.8, 0)}]
+    \letterring{6.4}{5.3}{darkblue}
+    \node[innen, anchor=south] at (0, 0.5) {%
+      \textbf{BAUANLEITUNG}\\[1mm]
+      1. Diese Seite auf dickes Papier drucken\\
+      oder auf Pappe kleben, etwa von einem\\
+      alten Karton.\\
+      2. Beide Scheiben ausschneiden.};
+    \node[innen, anchor=north] at (0, -0.5) {%
+      3. Die Mittelpunkte vorsichtig\\
+      durchstechen (Erwachsene helfen).\\
+      4. Die kleine Scheibe auf die große legen\\
+      und mit einer Musterbeutelklammer\\
+      durch die Mittelpunkte verbinden.};
+  \end{scope}
 
-\vspace{6mm}
-
-% Kleine Scheibe: Geheimtext, liegt oben auf
-\begin{tikzpicture}[line cap=round, line join=round]
-  \letterring{4.3}{3.3}{textblue}
-  \node[font=\bfseries\large, text=textblue] at (0,1.0)
-    {GEHEIMTEXT};
-  \node[text=textblue] at (0,-1.0)
-    {kleine Scheibe};
+  \begin{scope}[shift={(4.1, -10.45)}]
+    \letterring{5.1}{4.0}{textblue}
+    \node[innen, anchor=south] at (0, 0.5) {%
+      \textbf{SO GEHT'S}\\[1mm]
+      Außen steht der Klartext,\\
+      innen der Geheimtext.};
+    \node[innen, anchor=north] at (0, -0.5) {%
+      Drehen, bis innen \textbf{D} unter\\
+      außen \textbf{A} steht: Schlüssel 3.\\
+      Verschlüsseln: außen suchen,\\
+      innen ablesen.};
+  \end{scope}
 \end{tikzpicture}
 
 \end{center}
 
-% Anleitung unten auf der Seite, mit Abstand zum Schnittrand
 \vfill
-\begin{center}
-\begin{minipage}{0.9\textwidth}
-  \small
-  \textbf{So geht's:} Die Vorlage auf dickes Papier drucken oder vor dem
-  Ausschneiden auf Pappe kleben, etwa von einem alten Karton. Dann beide
-  Scheiben ausschneiden, die kleine auf die große legen und mit einer
-  Musterbeutelklammer durch die Mittelpunkte verbinden. Zum Verschlüsseln
-  die kleine Scheibe drehen, z.\,B. innen \textbf{D} unter außen
-  \textbf{A} = Schlüssel 3. Dann jeden Buchstaben außen suchen und den
-  Buchstaben innen aufschreiben.
-\end{minipage}
-\end{center}
-
-\vspace{4mm}
-\begin{center}
-  \scriptsize\color{textblue}
-  © 2026 Max Horn, RPTU Kaiserslautern-Landau · Lizenz CC BY-SA 4.0,
-  creativecommons.org/licenses/by-sa/4.0/deed.de
-\end{center}
+\fusszeile
 \end{document}

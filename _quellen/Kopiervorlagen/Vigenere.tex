@@ -1,7 +1,7 @@
 % Kopiervorlage Vigenère-Tabelle (Tabula recta): oben Klartext, links
 % Codewort-Buchstabe; jede Zeile ist das Alphabet, verschoben um ihren
 % Buchstaben. Das Beispiel (Codewort FEE) passt zum Kinder-Uni-Vortrag.
-% Übersetzen mit lualatex (RPTU-Hausschrift Red Hat).
+% Übersetzen in diesem Ordner mit lualatex (RPTU-Hausschrift Red Hat).
 \documentclass[a4paper]{article}
 
 \usepackage{fontspec}
@@ -13,15 +13,11 @@
 
 \definecolor{darkblue}{HTML}{1F3B5B}
 \definecolor{textblue}{HTML}{1F2E43}
-\definecolor{orange}{HTML}{C95F25}
-\definecolor{tint}{HTML}{E3EAF2}
+
+\input{../fusszeile}
 
 % Buchstabe Nummer #1 (0 = A)
 \newcommand{\letter}[1]{\char\numexpr 65+#1\relax}
-
-% Beispiel: Codewort-Buchstabe F (Zeile 5), Klartext G (Spalte 6) -> L
-\newcommand{\exrow}{5}
-\newcommand{\excol}{6}
 
 \begin{document}
 \begin{center}
@@ -31,10 +27,6 @@
 
 % Koordinaten in Zellen; Zelle (c, r) mit c, r = 0..25 liegt bei (c+1, r+1)
 \begin{tikzpicture}[x=0.65cm, y=-0.65cm, font=\small, text=textblue]
-  \fill[tint] (1, \exrow+1) rectangle (27, \exrow+2);
-  \fill[tint] (\excol+1, 1) rectangle (\excol+2, 27);
-  \fill[orange!30] (\excol+1, \exrow+1) rectangle (\excol+2, \exrow+2);
-
   \fill[darkblue] (1, 0) rectangle (27, 1);
   \fill[darkblue] (0, 1) rectangle (1, 27);
   \foreach \i in {2,...,26} {
@@ -51,12 +43,7 @@
   \foreach \r in {0,...,25} {
     \foreach \c in {0,...,25} {
       \pgfmathtruncatemacro{\k}{mod(\r+\c, 26)}
-      \pgfmathtruncatemacro{\isex}{and(\r == \exrow, \c == \excol)}
-      \ifnum\isex=1
-        \node[font=\small\bfseries, text=orange] at (\c+1.5, \r+1.5) {\letter{\k}};
-      \else
-        \node at (\c+1.5, \r+1.5) {\letter{\k}};
-      \fi
+      \node at (\c+1.5, \r+1.5) {\letter{\k}};
     }
   }
 
@@ -77,8 +64,7 @@
 
   \medskip
   \textbf{Beispiel:} Codewort \textbf{FEE}, Klartext \textbf{GEHEIM}.
-  Spalte G und Zeile F kreuzen sich bei
-  \textbf{\color{orange}L} (markiert). Insgesamt wird
+  Spalte G und Zeile F kreuzen sich bei \textbf{L}. Insgesamt wird
   GEHEIM zu \textbf{LILJMQ}.
 
   \medskip
@@ -90,9 +76,5 @@
 \end{center}
 
 \vfill
-\begin{center}
-  \scriptsize\color{textblue}
-  © 2026 Max Horn, RPTU Kaiserslautern-Landau · Lizenz CC BY-SA 4.0,
-  creativecommons.org/licenses/by-sa/4.0/deed.de
-\end{center}
+\fusszeile
 \end{document}

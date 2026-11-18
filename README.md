@@ -40,6 +40,7 @@ Vorschaubild (etwa 1190 × 750 Pixel) nach `content/img/`, dazu eine Karte
 title: "Caesar-Scheibe"
 description: "Caesar-Scheibe zum Ausschneiden und Basteln"
 img: content/img/Caesar.jpg
+importance: 1
 category: Kryptographie # Kryptographie, Arbeiten, Visual oder RSA
 file: "/content/Kopiervorlagen/Caesar.pdf" # auch eine externe URL
 credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.de)"
@@ -64,9 +65,14 @@ pdftoppm -f 1 -l 1 -singlefile -scale-to-x 1190 -scale-to-y -1 -jpeg datei.pdf c
 ```
 
 **LaTeX-Quellen** eigener Vorlagen liegen in `_quellen/`; Jekyll veröffentlicht
-den Ordner nicht. Übersetzen mit `lualatex`, die freien Schriften
-[Red Hat Text, Display und Mono](https://github.com/RedHatOfficial/RedHatFont)
+den Ordner nicht. Übersetzen mit `lualatex` im Ordner der Datei, die freien
+Schriften [Red Hat Text, Display und Mono](https://github.com/RedHatOfficial/RedHatFont)
 müssen installiert sein. Das PDF anschließend nach `content/` kopieren.
+Die Fußzeile mit Lizenz, Webadresse und QR-Code kommt aus
+[_quellen/fusszeile.tex](_quellen/fusszeile.tex); zieht die Seite um, dort die
+Adresse ändern und alle Vorlagen neu übersetzen.
+
+**Reihenfolge der Karten:** Feld `importance` (1 zuerst).
 
 ## Lizenz
 
