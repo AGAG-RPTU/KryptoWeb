@@ -1,0 +1,10 @@
+Agenten-Blatt der Kinder-Uni vom 18.11.2026, LaTeX-Quelle.
+
+Übersetzen mit:  lualatex Arbeitsblatt-2026-11-18-Kinderuni.tex
+
+Benötigt die freien Schriften Red Hat Text, Red Hat Display und
+Red Hat Mono: https://github.com/RedHatOfficial/RedHatFont
+
+© 2026 Max Horn, RPTU Kaiserslautern-Landau. Lizenz: CC BY-SA 4.0,
+https://creativecommons.org/licenses/by-sa/4.0/deed.de
+Ausgenommen ist das RPTU-Logo (rptu-logo.pdf).

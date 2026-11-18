@@ -1,22 +1,24 @@
 % Fußzeile der eigenen Vorlagen: Urheber, Lizenz und wo es die Datei gibt,
-% als Text und QR-Code. Zieht die Webseite um, nur \webseite und
-% \webseitetext ändern und die Vorlagen neu übersetzen.
-% Einbinden in der Präambel mit \input{../fusszeile}; erwartet die Farbe
-% textblue.
+% als Text und QR-Code. Zieht die Webseite um, nur \webseite ändern und
+% alle Vorlagen neu übersetzen (bauen.sh).
+% Einbinden in der Präambel; erwartet die Farbe textblue.
+%
+%   \fusszeile                         Seite der Kopiervorlagen
+%   \fusszeile[<Pfad>][<Beschriftung>] andere Seite, z. B.
+%   \fusszeile[Vortraege/kinderuni-2026-11-18][Dieses Blatt als Datei]
 \usepackage{qrcode}
 
-\newcommand{\webseite}{https://agag-rptu.github.io/KryptoWeb/Kopiervorlagen/}
-\newcommand{\webseitetext}{agag-rptu.github.io/KryptoWeb/Kopiervorlagen}
+\newcommand{\webseite}{agag-rptu.github.io/KryptoWeb}
 
-\newcommand{\fusszeile}{%
+\NewDocumentCommand{\fusszeile}{O{Kopiervorlagen} O{Diese und weitere Vorlagen als Datei}}{%
   \noindent
   \begin{minipage}[c]{\dimexpr\textwidth-1.8cm\relax}
     \scriptsize\color{textblue}
     © 2026 Max Horn, RPTU Kaiserslautern-Landau · Lizenz CC BY-SA 4.0,
     creativecommons.org/licenses/by-sa/4.0/deed.de\\
-    Diese und weitere Vorlagen als Datei: \textbf{\webseitetext}
+    #2: \textbf{\webseite/#1}
   \end{minipage}\hfill
   \begin{minipage}[c]{1.4cm}
-    \qrcode[height=1.4cm]{\webseite}%
+    \qrcode[height=1.4cm]{https://\webseite/#1/}%
   \end{minipage}%
 }

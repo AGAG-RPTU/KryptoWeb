@@ -14,7 +14,7 @@
 \definecolor{darkblue}{HTML}{1F3B5B}
 \definecolor{textblue}{HTML}{1F2E43}
 
-\input{../fusszeile}
+\InputIfFileExists{fusszeile}{}{\input{../fusszeile}}
 
 % Buchstabe Nummer #1 (0 = A)
 \newcommand{\letter}[1]{\char\numexpr 65+#1\relax}

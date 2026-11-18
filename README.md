@@ -65,12 +65,15 @@ pdftoppm -f 1 -l 1 -singlefile -scale-to-x 1190 -scale-to-y -1 -jpeg datei.pdf c
 ```
 
 **LaTeX-Quellen** eigener Vorlagen liegen in `_quellen/`; Jekyll veröffentlicht
-den Ordner nicht. Übersetzen mit `lualatex` im Ordner der Datei, die freien
-Schriften [Red Hat Text, Display und Mono](https://github.com/RedHatOfficial/RedHatFont)
-müssen installiert sein. Das PDF anschließend nach `content/` kopieren.
+den Ordner nicht. [_quellen/bauen.sh](_quellen/bauen.sh) übersetzt alle Quellen
+mit `lualatex` und legt `_quellen/<Rubrik>/<Name>.tex` als
+`content/<Rubrik>/<Name>.pdf` ab, dazu das ZIP mit der Quelle des
+Agenten-Blatts. Die freien Schriften
+[Red Hat Text, Display und Mono](https://github.com/RedHatOfficial/RedHatFont)
+müssen installiert sein.
 Die Fußzeile mit Lizenz, Webadresse und QR-Code kommt aus
 [_quellen/fusszeile.tex](_quellen/fusszeile.tex); zieht die Seite um, dort die
-Adresse ändern und alle Vorlagen neu übersetzen.
+Adresse ändern und `bauen.sh` laufen lassen.
 
 **Reihenfolge der Karten:** Feld `importance` (1 zuerst).
 

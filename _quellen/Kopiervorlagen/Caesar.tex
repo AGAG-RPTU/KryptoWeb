@@ -16,7 +16,7 @@
 \definecolor{textblue}{HTML}{1F2E43}
 \definecolor{orange}{HTML}{C95F25}
 
-\input{../fusszeile}
+\InputIfFileExists{fusszeile}{}{\input{../fusszeile}}
 
 % Ein Buchstabenring: Schnittkreis, Innenkreis, Trennstriche, A-Z.
 % #1 Aussenradius (Schnittkante), #2 Innenradius des Rings, #3 Farbe
