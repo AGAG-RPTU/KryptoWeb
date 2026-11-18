@@ -11,11 +11,13 @@ und Schüler und für die interessierte Öffentlichkeit einsetzen, unter anderem
 
 - [Tag der Mathematik](https://math.rptu.de/tdm/), der alle zwei Jahre in Kaiserslautern stattfindet,
 - der „Nacht, die Wissen schafft“ in Kaiserslautern,
+- der [Kinder-Uni der RPTU](https://rptu.de/zentral/kinder-uni),
 - und weiteren Veranstaltungen.
 
 Wer dort eine Enigma gebastelt oder einen Vortrag gehört hat, findet hier alles zum
 Nachlesen und Weitermachen:
 
+- [Vorträge]({{ '/Vortraege/' | relative_url }}): Folien und Arbeitsblätter zu unseren Vorträgen
 - [Kopiervorlagen]({{ '/Kopiervorlagen/' | relative_url }}): Caesar-Scheibe, Vigenère-Chiffre und mehrere Papier-Enigmas zum Ausdrucken und Basteln
 - [Masterarbeiten]({{ '/Masterarbeiten/' | relative_url }}): Abschlussarbeiten zu Themen der Kryptographie
 - [Visual]({{ '/Visual/' | relative_url }}): Programme zur visuellen Kryptographie in Java und Python

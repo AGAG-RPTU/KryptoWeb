@@ -1,0 +1,26 @@
+---
+layout: page
+title: Geheimbotschaften
+description: Kinder-Uni der RPTU, 18. November 2026
+img: content/img/Vortrag-2026-11-18-Kinderuni.jpg
+category: Vorträge
+date: 2026-11-18
+---
+
+**Geheimbotschaften – wie man Nachrichten versteckt und knackt**<br>
+Max Horn, [Kinder-Uni der RPTU](https://rptu.de/zentral/kinder-uni), Kaiserslautern, 18. November 2026,
+für Kinder von 8 bis 12 Jahren
+
+Wie schickt man eine Nachricht, die niemand außer dem Empfänger lesen kann – und wie
+knackt man eine fremde Geheimschrift ohne Schlüssel? Von Julius Caesars uralter
+Geheimschrift bis zur Verschlüsselung im Handy: Wir probieren es selbst aus,
+verschlüsseln, rätseln und knacken. Dabei zeigt sich: Der beste Werkzeugkasten für
+Spione und Codeknacker ist die Mathematik.
+
+## Material
+
+- [Folien]({{ '/content/Vortraege/Vortrag-2026-11-18-Kinderuni.pdf' | relative_url }}) (PDF, 10 MB)
+- [Agenten-Blatt]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni.pdf' | relative_url }}) mit den Aufgaben aus dem Vortrag und Rätseln für zu Hause (PDF, 2 Seiten). Die Lösungen stehen kopfüber unten auf Seite 2.
+- [LaTeX-Quelle des Agenten-Blatts]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni-LaTeX.zip' | relative_url }}) zum Anpassen (ZIP)
+
+Weitere Vorlagen zum Basteln stehen unter [Kopiervorlagen]({{ '/Kopiervorlagen/' | relative_url }}).
