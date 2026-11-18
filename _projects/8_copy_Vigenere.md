@@ -1,8 +1,8 @@
 ---
-title: "Vigenère"
+title: "Vigenère-Tabelle"
 description: "Vigenère-Tabelle zum Ver- und Entschlüsseln"
 img: content/img/Vigenere.jpg
 category: Kryptographie
 file: "/content/Kopiervorlagen/Vigenere.pdf"
-credit: "Herkunft der Datei unbekannt; die Tabelle selbst (Tabula recta, 1508) ist gemeinfrei"
+credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.de)"
 ---

@@ -23,6 +23,9 @@ Spione und Codeknacker ist die Mathematik.
 - [LaTeX-Quelle des Agenten-Blatts]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni-LaTeX.zip' | relative_url }}) zum Anpassen (ZIP)
 - [Caesar-Scheibe]({{ '/content/Kopiervorlagen/Caesar.pdf' | relative_url }}) zum Ausschneiden und Basteln (PDF)
 
+Agenten-Blatt und Caesar-Scheibe: © 2026 Max Horn, Lizenz
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.de); ausgenommen ist das RPTU-Logo.
+
 Weitere Vorlagen zum Basteln stehen unter [Kopiervorlagen]({{ '/Kopiervorlagen/' | relative_url }}).
 
 ## Bildnachweis
