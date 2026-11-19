@@ -26,10 +26,12 @@
 
   const MAX_MOTIF_PX = 200; // longer side of the motif
   const SHAPE_PX = 640; // drawing resolution of the built-in shapes
-  const TEXT_PX = 200; // font size of the text motif before scaling down
   const IMAGE_PX = 1600; // chosen images are first reduced to this size
   const THRESHOLD = 128; // luminance below which a pixel counts as black
-  const DEFAULT_FINENESS = { smiley: 28, herz: 28, stern: 28, schloss: 28, text: 16, bild: 80 };
+
+  // Fixed sizes for "grob", "mittel", "fein", at which the motifs look clean:
+  // the shorter side in pixels, for text the enlargement of the pixel font.
+  const SIZES = { form: [24, 32, 48], text: [2, 3, 4], bild: [64, 96, 144] };
 
   const PREVIEW_W = 160; // CSS px
   const PREVIEW_H = 120;
@@ -40,14 +42,69 @@
   const GLIDE_MS = 600; // matches the transition in visuelle-krypto.css
 
   const ARROWS = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+  const SHIFT_STEP = 10; // CSS px per arrow key press with Shift, else 1
 
   const MESSAGES = {
     apart: "Zieh eine Folie mit der Maus oder dem Finger auf die andere.",
-    close: "Noch nicht genau: Die Folien müssen Punkt für Punkt übereinanderliegen.",
     aligned: "Deckungsgleich – jetzt erscheint das Motiv.",
     noImage: "Wähle zuerst ein Bild aus.",
     badImage: "Dieses Bild kann der Browser nicht lesen.",
   };
+
+  // 5 × 7 pixel font, rows top to bottom, upper case only ("ß" becomes "SS").
+  // Canvas fonts differ between systems and look ragged at these sizes.
+  const FONT_ROWS = 7;
+  const FONT_SPACING = 1; // empty columns between characters
+  const FONT_MARGIN = 2; // empty font pixels around the text
+  const FONT = parseFont({
+    A: ".###. #...# #...# ##### #...# #...# #...#",
+    B: "####. #...# #...# ####. #...# #...# ####.",
+    C: ".###. #...# #.... #.... #.... #...# .###.",
+    D: "####. #...# #...# #...# #...# #...# ####.",
+    E: "##### #.... #.... ####. #.... #.... #####",
+    F: "##### #.... #.... ####. #.... #.... #....",
+    G: ".###. #...# #.... #.### #...# #...# .####",
+    H: "#...# #...# #...# ##### #...# #...# #...#",
+    I: "### .#. .#. .#. .#. .#. ###",
+    J: "..### ...#. ...#. ...#. ...#. #..#. .##..",
+    K: "#...# #..#. #.#.. ##... #.#.. #..#. #...#",
+    L: "#.... #.... #.... #.... #.... #.... #####",
+    M: "#...# ##.## #.#.# #.#.# #...# #...# #...#",
+    N: "#...# #...# ##..# #.#.# #..## #...# #...#",
+    O: ".###. #...# #...# #...# #...# #...# .###.",
+    P: "####. #...# #...# ####. #.... #.... #....",
+    Q: ".###. #...# #...# #...# #.#.# #..#. .##.#",
+    R: "####. #...# #...# ####. #.#.. #..#. #...#",
+    S: ".#### #.... #.... .###. ....# ....# ####.",
+    T: "##### ..#.. ..#.. ..#.. ..#.. ..#.. ..#..",
+    U: "#...# #...# #...# #...# #...# #...# .###.",
+    V: "#...# #...# #...# #...# #...# .#.#. ..#..",
+    W: "#...# #...# #...# #.#.# #.#.# #.#.# .#.#.",
+    X: "#...# #...# .#.#. ..#.. .#.#. #...# #...#",
+    Y: "#...# #...# .#.#. ..#.. ..#.. ..#.. ..#..",
+    Z: "##### ....# ...#. ..#.. .#... #.... #####",
+    Ä: ".#.#. ..... .###. #...# ##### #...# #...#",
+    Ö: ".#.#. ..... .###. #...# #...# #...# .###.",
+    Ü: ".#.#. ..... #...# #...# #...# #...# .###.",
+    0: ".###. #...# #..## #.#.# ##..# #...# .###.",
+    1: "..#.. .##.. ..#.. ..#.. ..#.. ..#.. .###.",
+    2: ".###. #...# ....# ...#. ..#.. .#... #####",
+    3: "##### ...#. ..#.. ...#. ....# #...# .###.",
+    4: "...#. ..##. .#.#. #..#. ##### ...#. ...#.",
+    5: "##### #.... ####. ....# ....# #...# .###.",
+    6: "..##. .#... #.... ####. #...# #...# .###.",
+    7: "##### ....# ...#. ..#.. .#... .#... .#...",
+    8: ".###. #...# #...# .###. #...# #...# .###.",
+    9: ".###. #...# #...# .#### ....# ...#. .##..",
+    " ": "... ... ... ... ... ... ...",
+    ".": ". . . . . . #",
+    ",": ".. .. .. .. .. .# #.",
+    ":": ". . # . . # .",
+    "!": "# # # # # . #",
+    "?": ".###. #...# ....# ...#. ..#.. ..... ..#..",
+    "-": ".... .... .... #### .... .... ....",
+    "+": "..... ..#.. ..#.. ##### ..#.. ..#.. .....",
+  });
 
   const $ = (id) => document.getElementById(id);
   const stage = $("vk-tisch");
@@ -58,9 +115,9 @@
   const fileInput = $("vk-datei");
   const fileName = $("vk-dateiname");
   const thresholdInput = $("vk-schwelle");
-  const finenessInput = $("vk-feinheit");
   const invertInput = $("vk-umkehren");
-  const kindInputs = root.querySelectorAll('input[name="vk-motiv"]');
+  const kindButtons = root.querySelectorAll("[data-motiv].vk-chip");
+  const levelButtons = root.querySelectorAll("[data-stufe]");
 
   const foils = ["a", "b"].map((name) => {
     const el = $("vk-folie-" + name);
@@ -68,13 +125,20 @@
   });
   const [foilA, foilB] = foils;
 
-  const state = { kind: "smiley", image: null, w: 0, h: 0, coins: null };
+  const state = { kind: "smiley", level: 0, image: null, w: 0, h: 0, coins: null };
   let geometry = null; // set by layout()
+  let active = foilB; // the foil last touched, moved by the arrow keys
   let drag = null;
   let glideTimer = 0;
 
   // ---------------------------------------------------------------------------
-  // Motifs: opaque canvases, black on white, at high resolution
+  // Motifs
+
+  function parseFont(glyphs) {
+    const font = {};
+    for (const [char, rows] of Object.entries(glyphs)) font[char] = rows.split(" ");
+    return font;
+  }
 
   function blankCanvas(w, h) {
     const c = document.createElement("canvas");
@@ -94,18 +158,19 @@
     ctx.fill();
   }
 
-  // drawn in the unit square
+  // Drawn in the unit square. Features stay at least 2 pixels wide at the
+  // smallest size in SIZES.form, or they break up.
   const SHAPES = {
     smiley(ctx) {
       fillEllipse(ctx, 0.5, 0.5, 0.45, 0.45);
       ctx.fillStyle = WHITE;
-      fillEllipse(ctx, 0.35, 0.37, 0.06, 0.09);
-      fillEllipse(ctx, 0.65, 0.37, 0.06, 0.09);
+      fillEllipse(ctx, 0.35, 0.37, 0.065, 0.1);
+      fillEllipse(ctx, 0.65, 0.37, 0.065, 0.1);
       ctx.strokeStyle = WHITE;
-      ctx.lineWidth = 0.075;
+      ctx.lineWidth = 0.1;
       ctx.lineCap = "round";
       ctx.beginPath();
-      ctx.arc(0.5, 0.5, 0.26, 0.2 * Math.PI, 0.8 * Math.PI);
+      ctx.arc(0.5, 0.5, 0.25, 0.2 * Math.PI, 0.8 * Math.PI);
       ctx.stroke();
     },
 
@@ -144,39 +209,25 @@
 
       // keyhole
       ctx.fillStyle = WHITE;
-      fillEllipse(ctx, 0.5, 0.63, 0.07, 0.07);
+      fillEllipse(ctx, 0.5, 0.63, 0.075, 0.075);
       ctx.beginPath();
-      ctx.moveTo(0.47, 0.65);
-      ctx.lineTo(0.44, 0.83);
-      ctx.lineTo(0.56, 0.83);
-      ctx.lineTo(0.53, 0.65);
+      ctx.moveTo(0.46, 0.65);
+      ctx.lineTo(0.43, 0.84);
+      ctx.lineTo(0.57, 0.84);
+      ctx.lineTo(0.54, 0.65);
       ctx.fill();
     },
   };
+
+  function sizeGroup(kind) {
+    return kind in SHAPES ? "form" : kind;
+  }
 
   function shapeCanvas(kind) {
     const c = blankCanvas(SHAPE_PX, SHAPE_PX);
     const ctx = c.getContext("2d");
     ctx.scale(SHAPE_PX, SHAPE_PX);
     SHAPES[kind](ctx);
-    return c;
-  }
-
-  // cropped to the ink, plus a margin
-  function textCanvas(text) {
-    const font = `bold ${TEXT_PX}px sans-serif`;
-    const probe = document.createElement("canvas").getContext("2d");
-    probe.font = font;
-    const m = probe.measureText(text);
-    const pad = Math.round(0.15 * TEXT_PX);
-
-    const c = blankCanvas(
-      Math.ceil(m.actualBoundingBoxLeft + m.actualBoundingBoxRight) + 2 * pad,
-      Math.ceil(m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) + 2 * pad,
-    );
-    const ctx = c.getContext("2d");
-    ctx.font = font;
-    ctx.fillText(text, pad + m.actualBoundingBoxLeft, pad + m.actualBoundingBoxAscent);
     return c;
   }
 
@@ -190,16 +241,10 @@
     return c;
   }
 
-  function sourceCanvas() {
-    if (state.kind === "text") return textCanvas(textInput.value.trim());
-    if (state.kind === "bild") return state.image;
-    return shapeCanvas(state.kind);
-  }
-
-  // The shorter side gets `fineness` pixels, the longer one at most MAX_MOTIF_PX.
-  function motifSize(aspect, fineness) {
-    let w = aspect >= 1 ? fineness * aspect : fineness;
-    let h = aspect >= 1 ? fineness : fineness / aspect;
+  // The shorter side gets `size` pixels, the longer one at most MAX_MOTIF_PX.
+  function motifSize(aspect, size) {
+    let w = aspect >= 1 ? size * aspect : size;
+    let h = aspect >= 1 ? size : size / aspect;
     const scale = Math.min(1, MAX_MOTIF_PX / Math.max(w, h));
     w = Math.max(1, Math.round(w * scale));
     h = Math.max(1, Math.round(h * scale));
@@ -207,7 +252,7 @@
   }
 
   // Returns w × h pixels, 1 = black.
-  function rasterize(source, w, h, threshold, invert) {
+  function rasterize(source, w, h, threshold) {
     // Halve step by step: a single large reduction would skip source pixels.
     let src = source;
     while (src.width >= 2 * w && src.height >= 2 * h) {
@@ -229,9 +274,51 @@
     const motif = new Uint8Array(w * h);
     for (let i = 0; i < motif.length; i++) {
       const luminance = 0.299 * rgba[4 * i] + 0.587 * rgba[4 * i + 1] + 0.114 * rgba[4 * i + 2];
-      motif[i] = (luminance < threshold) !== invert ? 1 : 0;
+      motif[i] = luminance < threshold ? 1 : 0;
     }
     return motif;
+  }
+
+  // Characters the font lacks are left out; a long text gets a smaller scale.
+  function textMotif(text, scale) {
+    const glyphs = [...text.toUpperCase()].map((c) => FONT[c]).filter(Boolean);
+    if (glyphs.length === 0) glyphs.push(FONT[" "]);
+
+    const cols =
+      glyphs.reduce((sum, g) => sum + g[0].length, 0) + FONT_SPACING * (glyphs.length - 1) + 2 * FONT_MARGIN;
+    const rows = FONT_ROWS + 2 * FONT_MARGIN;
+    scale = Math.max(1, Math.min(scale, Math.floor(MAX_MOTIF_PX / cols)));
+    const w = cols * scale;
+    const h = rows * scale;
+
+    const motif = new Uint8Array(w * h);
+    let left = FONT_MARGIN;
+    for (const glyph of glyphs) {
+      glyph.forEach((row, y) => {
+        for (let x = 0; x < row.length; x++) {
+          if (row[x] !== "#") continue;
+          const top = (FONT_MARGIN + y) * scale;
+          for (let dy = 0; dy < scale; dy++) {
+            const start = (top + dy) * w + (left + x) * scale;
+            motif.fill(1, start, start + scale);
+          }
+        }
+      });
+      left += glyph[0].length + FONT_SPACING;
+    }
+    return { motif, w, h };
+  }
+
+  // null while "own image" is chosen but no image loaded
+  function buildMotif() {
+    const size = SIZES[sizeGroup(state.kind)][state.level];
+    if (state.kind === "text") return textMotif(textInput.value.trim(), size);
+
+    const source = state.kind === "bild" ? state.image : shapeCanvas(state.kind);
+    if (!source) return null;
+    const { w, h } = motifSize(source.width / source.height, size);
+    const threshold = state.kind === "bild" ? Number(thresholdInput.value) : THRESHOLD;
+    return { motif: rasterize(source, w, h, threshold), w, h };
   }
 
   // ---------------------------------------------------------------------------
@@ -285,15 +372,16 @@
   }
 
   function rebuild(reroll) {
-    const source = sourceCanvas();
-    if (!source) {
+    const built = buildMotif();
+    if (!built) {
       say(MESSAGES.noImage);
       return;
     }
 
-    const { w, h } = motifSize(source.width / source.height, Number(finenessInput.value));
-    const threshold = state.kind === "bild" ? Number(thresholdInput.value) : THRESHOLD;
-    const motif = rasterize(source, w, h, threshold, invertInput.checked);
+    const { motif, w, h } = built;
+    if (invertInput.checked) {
+      for (let i = 0; i < motif.length; i++) motif[i] ^= 1;
+    }
 
     const resized = w !== state.w || h !== state.h;
     if (reroll || resized) state.coins = coinFlips(w * h);
@@ -341,6 +429,10 @@
     f.el.style.transform = `translate(${f.x}px, ${f.y}px)`;
   }
 
+  function other(f) {
+    return f === foilA ? foilB : foilA;
+  }
+
   function isAligned() {
     return Math.abs(foilA.x - foilB.x) < 0.01 && Math.abs(foilA.y - foilB.y) < 0.01;
   }
@@ -353,10 +445,22 @@
     if (statusLine.textContent !== message) statusLine.textContent = message;
   }
 
+  // Seen from the foil last touched; offsets are whole pixels once a foil moved.
+  function remainingDistance() {
+    const dx = Math.round(other(active).x - active.x);
+    const dy = Math.round(other(active).y - active.y);
+    const parts = [];
+    if (dx) parts.push(`${Math.abs(dx)} Pixel nach ${dx < 0 ? "links" : "rechts"}`);
+    if (dy) parts.push(`${Math.abs(dy)} Pixel nach ${dy < 0 ? "oben" : "unten"}`);
+    return `Folie ${active.name.toUpperCase()}: noch ${parts.join(" und ")}.`;
+  }
+
   function updateStatus() {
     const aligned = isAligned();
     stage.classList.toggle("vk-deckung", aligned);
-    say(aligned ? MESSAGES.aligned : overlapping() ? MESSAGES.close : MESSAGES.apart);
+    if (aligned) say(MESSAGES.aligned);
+    else if (overlapping()) say(remainingDistance());
+    else say(MESSAGES.apart);
   }
 
   // Sizes the foils to the stage and puts them back to their places, side by
@@ -424,14 +528,15 @@
   // Whole CSS pixels of offset to the other foil keep exact alignment
   // reachable by hand and both foils on the device pixel grid.
   function moveTo(f, x, y) {
-    const other = f === foilA ? foilB : foilA;
-    f.x = other.x + Math.round(clamp(x, 0, geometry.width - geometry.fw) - other.x);
-    f.y = other.y + Math.round(clamp(y, 0, geometry.height - geometry.fh) - other.y);
+    const o = other(f);
+    f.x = o.x + Math.round(clamp(x, 0, geometry.width - geometry.fw) - o.x);
+    f.y = o.y + Math.round(clamp(y, 0, geometry.height - geometry.fh) - o.y);
     place(f);
     updateStatus();
   }
 
   function raise(f) {
+    active = f;
     for (const g of foils) g.el.style.zIndex = g === f ? 2 : 1;
   }
 
@@ -465,15 +570,31 @@
     f.el.addEventListener("pointerup", end);
     f.el.addEventListener("pointercancel", end);
 
-    // one CSS pixel per key press, ten with Shift
-    f.el.addEventListener("keydown", (e) => {
+    f.el.addEventListener("focus", () => raise(f));
+  }
+
+  // Arrow keys move the foil last touched while the tool is in use, except in
+  // the text field and on the slider, which need them.
+  let toolInUse = false;
+
+  function attachKeyboard() {
+    const track = (e) => {
+      toolInUse = root.contains(e.target);
+    };
+    document.addEventListener("pointerdown", track, true);
+    document.addEventListener("focusin", track);
+
+    document.addEventListener("keydown", (e) => {
       const d = ARROWS[e.key];
-      if (!d) return;
+      if (!d || !toolInUse || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (e.target.matches('input[type="text"], input[type="range"], textarea, select')) return;
       e.preventDefault();
-      raise(f);
-      const step = e.shiftKey ? 10 : 1;
-      moveTo(f, f.x + d[0] * step, f.y + d[1] * step);
+      const step = e.shiftKey ? SHIFT_STEP : 1;
+      moveTo(active, active.x + d[0] * step, active.y + d[1] * step);
     });
+
+    // after dragging the slider, the arrow keys go back to the foils
+    thresholdInput.addEventListener("pointerup", () => thresholdInput.blur());
   }
 
   // ---------------------------------------------------------------------------
@@ -530,12 +651,23 @@
   // ---------------------------------------------------------------------------
   // Controls
 
-  function selectKind(kind) {
-    state.kind = kind;
+  function press(buttons, pressed) {
+    for (const b of buttons) b.setAttribute("aria-pressed", String(b === pressed));
+  }
+
+  function selectKind(button) {
+    state.kind = button.dataset.motiv;
+    press(kindButtons, button);
     for (const option of root.querySelectorAll(".vk-option")) {
-      option.hidden = option.dataset.motiv !== kind;
+      option.hidden = option.dataset.motiv !== state.kind;
     }
-    finenessInput.value = DEFAULT_FINENESS[kind];
+    if (state.kind === "bild" && !state.image) fileInput.click();
+    rebuild(true);
+  }
+
+  function selectLevel(button) {
+    state.level = Number(button.dataset.stufe);
+    press(levelButtons, button);
     rebuild(true);
   }
 
@@ -559,13 +691,11 @@
     reader.readAsDataURL(file);
   }
 
-  for (const input of kindInputs) {
-    input.addEventListener("change", () => selectKind(input.value));
-  }
+  for (const button of kindButtons) button.addEventListener("click", () => selectKind(button));
+  for (const button of levelButtons) button.addEventListener("click", () => selectLevel(button));
   textInput.addEventListener("input", () => rebuild(true));
   fileInput.addEventListener("change", loadImage);
   thresholdInput.addEventListener("input", () => rebuild(false));
-  finenessInput.addEventListener("input", () => rebuild(true));
   invertInput.addEventListener("change", () => rebuild(false));
 
   $("vk-zusammen").addEventListener("click", () => {
@@ -580,6 +710,7 @@
   $("vk-png-b").addEventListener("click", () => download(foilB));
 
   foils.forEach(attachDragging);
+  attachKeyboard();
 
   let lastWidth = stage.clientWidth;
   new ResizeObserver(() => {
@@ -588,9 +719,5 @@
     layout(true);
   }).observe(stage);
 
-  // A restored form may have "own image" checked, but the file is gone.
-  const checked = root.querySelector('input[name="vk-motiv"]:checked');
-  const initial = checked && checked.value !== "bild" ? checked : kindInputs[0];
-  initial.checked = true;
-  selectKind(initial.value);
+  selectKind(kindButtons[0]);
 })();

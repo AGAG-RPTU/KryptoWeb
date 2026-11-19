@@ -66,20 +66,21 @@
   flex: 1 1 18rem;
 }
 
-.vk fieldset {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
+.vk .vk-titel {
+  margin: 0 0 0.4rem;
+  font-weight: bold;
 }
 
-.vk legend {
-  float: none;
-  width: auto;
-  margin-bottom: 0.4rem;
-  padding: 0;
-  font-size: 1rem;
-  font-weight: bold;
+.vk-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  align-items: center;
+  margin: 0.8rem 0;
+}
+
+.vk .vk-zeile .vk-titel {
+  margin: 0;
 }
 
 .vk-chips {
@@ -88,7 +89,6 @@
   gap: 0.4rem;
 }
 
-.vk-chip input,
 .vk-versteckt {
   position: absolute;
   width: 1px;
@@ -96,23 +96,23 @@
   opacity: 0;
 }
 
-.vk-chip span {
-  display: inline-block;
+.vk .vk-chip {
   padding: 0.25rem 0.8rem;
-  border: 1px solid var(--global-divider-color);
+  border-color: var(--global-divider-color);
   border-radius: 999px;
-  cursor: pointer;
+  color: var(--global-text-color);
 }
 
-.vk-chip input:checked + span {
+.vk .vk-chip:hover {
+  border-color: var(--global-theme-color);
+  background: transparent;
+  color: var(--global-text-color);
+}
+
+.vk .vk-chip[aria-pressed="true"] {
   border-color: var(--global-theme-color);
   background: var(--global-theme-color);
   color: var(--global-hover-text-color);
-}
-
-.vk-chip input:focus-visible + span {
-  outline: 2px solid var(--global-theme-color);
-  outline-offset: 2px;
 }
 
 .vk input[type="range"] {
@@ -228,6 +228,17 @@
 .vk-status {
   min-height: 1.5em;
   font-weight: bold;
+}
+
+/* only with a mouse or touchpad, which suggests a keyboard */
+.vk-tastatur {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vk-tastatur {
+    display: block;
+  }
 }
 
 .vk-knoepfe {

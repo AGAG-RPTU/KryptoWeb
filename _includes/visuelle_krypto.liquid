@@ -2,29 +2,37 @@
   Tool for visual cryptography; logic in assets/js/visuelle-krypto.js, styles in
   assets/css/visuelle-krypto.css (the page links it). No blank lines: kramdown
   would end the HTML block there.
+  Buttons rather than radio buttons and sliders, so the arrow keys stay free
+  for moving the foils.
 {% endcomment %}
 <div class="vk" id="vk">
 <noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
 <div class="vk-steuerung">
 <div>
-<fieldset>
-<legend>Motiv</legend>
-<div class="vk-chips">
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="smiley" checked><span>Smiley</span></label>
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="herz"><span>Herz</span></label>
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="stern"><span>Stern</span></label>
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="schloss"><span>Schloss</span></label>
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="text"><span>Text</span></label>
-<label class="vk-chip"><input type="radio" name="vk-motiv" value="bild"><span>Eigenes Bild</span></label>
+<p id="vk-motiv-titel" class="vk-titel">Motiv</p>
+<div class="vk-chips" role="group" aria-labelledby="vk-motiv-titel">
+<button type="button" class="vk-chip" data-motiv="smiley" aria-pressed="true">Smiley</button>
+<button type="button" class="vk-chip" data-motiv="herz" aria-pressed="false">Herz</button>
+<button type="button" class="vk-chip" data-motiv="stern" aria-pressed="false">Stern</button>
+<button type="button" class="vk-chip" data-motiv="schloss" aria-pressed="false">Schloss</button>
+<button type="button" class="vk-chip" data-motiv="text" aria-pressed="false">Text</button>
+<button type="button" class="vk-chip" data-motiv="bild" aria-pressed="false">Eigenes Bild</button>
 </div>
-</fieldset>
-<p class="vk-option" data-motiv="text" hidden><label for="vk-text">Text</label> <input type="text" id="vk-text" value="GEHEIM" maxlength="16" autocomplete="off" spellcheck="false"></p>
+<p class="vk-option" data-motiv="text" hidden><label for="vk-text">Text</label> <input type="text" id="vk-text" value="GEHEIM" maxlength="12" autocomplete="off" spellcheck="false"> <span class="vk-klein">Buchstaben, Ziffern und . , : ! ? - +</span></p>
 <div class="vk-option" data-motiv="bild" hidden>
 <p><input type="file" id="vk-datei" class="vk-versteckt" accept="image/*"><label for="vk-datei" class="vk-knopf">Bild auswählen …</label> <span id="vk-dateiname" class="vk-klein"></span></p>
 <p class="vk-klein">Dein Bild bleibt auf deinem Gerät: Alles wird hier im Browser berechnet, nichts wird hochgeladen.</p>
 <p><label for="vk-schwelle">Grenze zwischen Schwarz und Weiß</label> <input type="range" id="vk-schwelle" min="1" max="255" value="128"></p>
 </div>
-<p><label for="vk-feinheit">Feinheit</label> <input type="range" id="vk-feinheit" min="8" max="200" value="28"> <output id="vk-groesse" for="vk-feinheit"></output></p>
+<div class="vk-zeile">
+<span id="vk-feinheit-titel" class="vk-titel">Feinheit</span>
+<div class="vk-chips" role="group" aria-labelledby="vk-feinheit-titel">
+<button type="button" class="vk-chip" data-stufe="0" aria-pressed="true">grob</button>
+<button type="button" class="vk-chip" data-stufe="1" aria-pressed="false">mittel</button>
+<button type="button" class="vk-chip" data-stufe="2" aria-pressed="false">fein</button>
+</div>
+<output id="vk-groesse" class="vk-klein"></output>
+</div>
 <p><label><input type="checkbox" id="vk-umkehren"> Schwarz und Weiß tauschen</label></p>
 </div>
 <figure class="vk-vorschau">
@@ -37,6 +45,7 @@
 <div class="vk-folie vk-folie-b" id="vk-folie-b" tabindex="0" role="img" aria-label="Folie B, verschiebbar mit Maus, Finger oder Pfeiltasten"><canvas></canvas><span aria-hidden="true">Folie B</span></div>
 </div>
 <p class="vk-status" id="vk-status" aria-live="polite"></p>
+<p class="vk-klein vk-tastatur">Am Computer geht es auch mit den Pfeiltasten: Sie schieben die zuletzt angefasste Folie um 1 Pixel weiter, mit gedrückter Umschalttaste um 10.</p>
 <p class="vk-knoepfe">
 <button type="button" class="vk-haupt" id="vk-zusammen">Übereinanderlegen</button>
 <button type="button" id="vk-auseinander">Auseinanderlegen</button>

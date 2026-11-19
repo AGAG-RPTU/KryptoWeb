@@ -59,8 +59,8 @@ mit großen Pixeln wirken am besten.
 
 Lade beide Folien herunter und drucke sie mit denselben Einstellungen aus, am besten auf
 Overhead-Folie, die zu deinem Drucker passt (Laser oder Tintenstrahl). Eine der beiden
-darf auch auf Papier sein. Die Kreuze in den Ecken helfen beim Ausrichten. Eine geringe
-Feinheit macht es leichter: Große Punkte bringt man schneller zur Deckung.
+darf auch auf Papier sein. Die Kreuze in den Ecken helfen beim Ausrichten. Mit der Feinheit
+„grob“ geht es leichter: Große Punkte bringt man schneller zur Deckung.
 
 ## Programme zum Herunterladen
 
