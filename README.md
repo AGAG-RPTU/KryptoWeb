@@ -37,8 +37,11 @@ GitHub Pages.
 Das Menü hat vier Punkte: Home, Vorträge, Themen (Untermenü) und Für Lehrkräfte.
 Jedes Thema ist eine Seite in `_pages/` mit `thema: <kürzel>` im Kopf, die
 [_includes/themenseite.liquid](_includes/themenseite.liquid) einbindet. Die zeigt
-alle Karten aus `_projects/` mit `category: <kürzel>` und alle Vorträge, deren
-`themen` das Kürzel enthalten. Die Kürzel: `caesar-vigenere`, `enigma`,
+eine Sprungleiste und drei Abschnitte mit Karten: „Im Browser ausprobieren“ (Seiten
+in `_pages/`, deren `themen` das Kürzel enthalten), „Material“ (Karten aus
+`_projects/` mit `category: <kürzel>`) und „Vorträge“ (deren `themen` das Kürzel
+enthalten). Leere Abschnitte fallen weg; bleibt nur einer, entfallen auch Leiste
+und Überschriften. Die Kürzel: `caesar-vigenere`, `enigma`,
 `visuelle-kryptographie`, `rsa-primzahlen`, `lehrkraefte`. Ein neues Thema braucht
 eine solche Seite und einen Eintrag unter `children` in
 [_pages/themen.md](_pages/themen.md).
@@ -80,10 +83,12 @@ Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins f�
 „grob“, „mittel“ und „fein“ (`#` = schwarz); ein neues Motiv braucht dort einen
 Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
 
-**Weitere Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema, die
-Themenseite verlinkt sie. Jedes besteht aus Seite (`_pages/`), Oberfläche
-(`_includes/`) und Programm (`assets/js/`); das gemeinsame Aussehen steht in
-`assets/css/werkzeuge.css`.
+**Weitere Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema. Jedes
+besteht aus Seite (`_pages/`), Oberfläche (`_includes/`) und Programm
+(`assets/js/`); das gemeinsame Aussehen steht in `assets/css/werkzeuge.css`. Die
+Karte auf der Themenseite kommt aus dem Kopf der Seite: `themen`, `img`, `art` und
+`importance` wie bei den Karten in `_projects/`. Die Vorschaubilder
+`content/img/Werkzeug-*.svg` sind von Hand gezeichnet.
 
 | Werkzeug | Seite | Oberfläche | Programm |
 |---|---|---|---|

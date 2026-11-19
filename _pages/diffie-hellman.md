@@ -3,6 +3,11 @@ layout: page
 title: Diffie-Hellman
 permalink: /themen/rsa-primzahlen/diffie-hellman/
 description: Wie sich Alia und Ben vor der ganzen Klasse auf einen geheimen Schlüssel einigen
+# card on the topic page, see _includes/themenseite.liquid
+themen: [rsa-primzahlen]
+img: content/img/Werkzeug-DiffieHellman.svg
+art: Interaktiv
+importance: 2
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/werkzeuge.css' | relative_url | bust_file_cache }}">

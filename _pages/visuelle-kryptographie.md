@@ -8,6 +8,8 @@ thema: visuelle-kryptographie
 
 <link rel="stylesheet" href="{{ '/assets/css/visuelle-krypto.css' | relative_url | bust_file_cache }}">
 
+{% include themenseite.liquid teil="inhalt" ausprobieren=true %}
+
 ## So funktioniert's
 
 Ein Bild aus schwarzen und weißen Pixeln wird auf zwei Folien verteilt, A und B. Dazu
@@ -44,7 +46,8 @@ Folie hat, erfährt nichts über das Bild, auch nicht mit dem schnellsten Comput
 ist der Schlüssel, Folie B die verschlüsselte Nachricht, und zum Entschlüsseln braucht
 man nur die Augen. Die Idee stammt von Moni Naor und Adi Shamir (1994).
 
-## Selbst ausprobieren
+<section id="ausprobieren" class="thema-abschnitt thema-ausprobieren" markdown="1">
+<h2 class="thema-titel"><i class="fa-solid fa-computer-mouse" aria-hidden="true"></i> Im Browser ausprobieren</h2>
 
 Wähle ein Motiv und zieh dann eine Folie mit der Maus oder dem Finger langsam auf die
 andere. Kurz bevor sie genau deckungsgleich liegen, taucht das Bild auf. Grobe Motive
@@ -59,8 +62,6 @@ Overhead-Folie, die zu deinem Drucker passt (Laser oder Tintenstrahl). Eine der 
 darf auch auf Papier sein. Die Kreuze in den Ecken helfen beim Ausrichten. Mit der Feinheit
 „grob“ geht es leichter: Große Punkte bringt man schneller zur Deckung.
 
-## Programme zum Herunterladen
+</section>
 
-Dasselbe Verfahren als Programm zum Nachvollziehen und Weiterentwickeln:
-
-{% include themenseite.liquid %}
+{% include themenseite.liquid teil="rest" ausprobieren=true %}

@@ -3,6 +3,11 @@ layout: page
 title: Rechnen im Kreis
 permalink: /themen/rsa-primzahlen/modulo/
 description: Modulo-Rechnung zum Anfassen, wie auf der Uhr
+# card on the topic page, see _includes/themenseite.liquid
+themen: [rsa-primzahlen]
+img: content/img/Werkzeug-Modulo.svg
+art: Interaktiv
+importance: 1
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/werkzeuge.css' | relative_url | bust_file_cache }}">

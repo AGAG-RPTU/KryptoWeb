@@ -3,6 +3,11 @@ layout: page
 title: Verschlüsseln und knacken
 permalink: /themen/caesar-vigenere/ausprobieren/
 description: Caesar und Vigenère im Browser, mit drehbarer Caesar-Scheibe und Codeknacker
+# card on the topic page, see _includes/themenseite.liquid
+themen: [caesar-vigenere]
+img: content/img/Werkzeug-Caesar.svg
+art: Interaktiv
+importance: 1
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/werkzeuge.css' | relative_url | bust_file_cache }}">

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476 300" width="1190" height="750" font-family="Roboto, Helvetica, Arial, sans-serif" role="img">
+<title>Diffie-Hellman: Alia und Ben einigen sich öffentlich auf den Schlüssel 7</title>
+<rect width="476" height="300" fill="#ffffff"/>
+<rect x="12" y="22" width="140" height="196" rx="10" fill="#ffffff" stroke="#00000022"/>
+<text x="82" y="46" font-size="20" fill="#000" font-weight="bold" text-anchor="middle" dominant-baseline="central">Alia</text>
+<rect x="168" y="22" width="140" height="196" rx="10" fill="#e4f2f2" stroke="#00000022"/>
+<text x="238" y="46" font-size="20" fill="#000" font-weight="bold" text-anchor="middle" dominant-baseline="central">Öffentlich</text>
+<rect x="324" y="22" width="140" height="196" rx="10" fill="#ffffff" stroke="#00000022"/>
+<text x="394" y="46" font-size="20" fill="#000" font-weight="bold" text-anchor="middle" dominant-baseline="central">Ben</text>
+<text x="82" y="92" font-size="24" fill="#c2185b" font-weight="bold" text-anchor="middle" dominant-baseline="central">a = 5</text>
+<text x="82" y="116" font-size="12" fill="#c2185b" font-weight="normal" text-anchor="middle" dominant-baseline="central">geheim</text>
+<text x="82" y="168" font-size="24" fill="#1b7f86" font-weight="bold" text-anchor="middle" dominant-baseline="central">A = 3</text>
+<text x="238" y="86" font-size="20" fill="#1b7f86" font-weight="normal" text-anchor="middle" dominant-baseline="central">p = 29</text>
+<text x="238" y="114" font-size="20" fill="#1b7f86" font-weight="normal" text-anchor="middle" dominant-baseline="central">g = 2</text>
+<text x="238" y="160" font-size="20" fill="#1b7f86" font-weight="bold" text-anchor="middle" dominant-baseline="central">A = 3</text>
+<text x="238" y="188" font-size="20" fill="#1b7f86" font-weight="bold" text-anchor="middle" dominant-baseline="central">B = 24</text>
+<text x="394" y="92" font-size="24" fill="#c2185b" font-weight="bold" text-anchor="middle" dominant-baseline="central">b = 8</text>
+<text x="394" y="116" font-size="12" fill="#c2185b" font-weight="normal" text-anchor="middle" dominant-baseline="central">geheim</text>
+<text x="394" y="168" font-size="24" fill="#1b7f86" font-weight="bold" text-anchor="middle" dominant-baseline="central">B = 24</text>
+<defs><marker id="pfeil" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#1b7f86"/></marker></defs>
+<path d="M126,168 L196,160" stroke="#1b7f86" stroke-width="2" fill="none" marker-end="url(#pfeil)"/>
+<path d="M350,168 L284,188" stroke="#1b7f86" stroke-width="2" fill="none" marker-end="url(#pfeil)"/>
+<text x="82" y="258" font-size="24" fill="#c2185b" font-weight="bold" text-anchor="middle" dominant-baseline="central">Schlüssel 7</text>
+<text x="394" y="258" font-size="24" fill="#c2185b" font-weight="bold" text-anchor="middle" dominant-baseline="central">Schlüssel 7</text>
+<text x="238" y="258" font-size="20" fill="#666" font-weight="normal" text-anchor="middle" dominant-baseline="central">Lauscher: ?</text>
+</svg>

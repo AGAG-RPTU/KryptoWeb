@@ -11,7 +11,4 @@ weiter, bei Schlüssel 3 wird aus A ein D. Die Vigenère-Verschlüsselung wechse
 Verschiebung von Buchstabe zu Buchstabe nach einem Codewort. Beides lässt sich mit
 Caesar-Scheibe und Vigenère-Tabelle von Hand ausprobieren.
 
-**Im Browser ausprobieren:** [Verschlüsseln und knacken]({{ '/themen/caesar-vigenere/ausprobieren/' | relative_url }}),
-mit drehbarer Caesar-Scheibe und Codeknacker.
-
 {% include themenseite.liquid %}
