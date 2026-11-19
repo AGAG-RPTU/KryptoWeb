@@ -230,6 +230,14 @@
   font-weight: bold;
 }
 
+/* On a phone the remaining distance takes two lines and "Deckungsgleich"
+   one; without room for two, the buttons below jump at every alignment. */
+@media (max-width: 640px) {
+  .vk-status {
+    min-height: 3em;
+  }
+}
+
 /* only with a mouse or touchpad, which suggests a keyboard */
 .vk-tastatur {
   display: none;
