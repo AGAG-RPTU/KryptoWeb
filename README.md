@@ -21,7 +21,10 @@ Die Seite liegt dann unter <http://localhost:4000/> und lädt bei jeder Änderun
 - Beim ersten Build lädt Jekyll Schriften und JavaScript-Bibliotheken nach
   `assets/libs/` (nicht im Repo), damit Besucher keine fremden Server kontaktieren.
   Die Pfade darin enthalten `baseurl`; nach einem Wechsel von `--baseurl` den
-  Ordner löschen.
+  Ordner löschen. Terser lässt den Ordner aus
+  ([_plugins/keep_libraries_unminified.rb](_plugins/keep_libraries_unminified.rb)),
+  sonst passen die Prüfsummen (`integrity`) nicht mehr und der Browser blockiert
+  die Dateien. `bin/check-sri _site` prüft das; der Deploy-Workflow ruft es auf.
 
 ## Veröffentlichen
 

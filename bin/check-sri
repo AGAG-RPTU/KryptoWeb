@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+# Checks the built site: every local script or stylesheet with an integrity
+# attribute must match its file, or browsers refuse to load it.
+#
+#   bin/check-sri [site directory] [baseurl]
+#
+# Exits with 1 and lists the mismatches if there are any.
+
+require "digest"
+
+SITE = ARGV.fetch(0, "_site")
+BASEURL = ARGV.fetch(1, "")
+DIGESTS = { "sha256" => Digest::SHA256, "sha384" => Digest::SHA384, "sha512" => Digest::SHA512 }.freeze
+
+def attribute(tag, name)
+  match = tag.match(/\s#{name}=(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i)
+  match&.captures&.compact&.first
+end
+
+# file path => integrity values found for it, and one page that uses it
+checks = Hash.new { |h, k| h[k] = {} }
+
+Dir.glob(File.join(SITE, "**", "*.html")).each do |page|
+  File.read(page, encoding: "UTF-8").scan(/<(?:script|link)\b[^>]*>/i).each do |tag|
+    integrity = attribute(tag, "integrity")
+    url = attribute(tag, "(?:src|href)")
+    next unless integrity && url
+    next if url.match?(%r{\A(?:[a-z]+:)?//}i) # other servers: nothing to compare with
+
+    path = url.split(/[?#]/).first
+    path = path.delete_prefix(BASEURL) unless BASEURL.empty?
+    checks[File.join(SITE, path)][integrity] ||= page
+  end
+end
+
+failures = checks.flat_map do |file, values|
+  values.filter_map do |integrity, page|
+    next "#{file}: missing (used by #{page})" unless File.file?(file)
+
+    content = File.binread(file)
+    matches = integrity.split.any? do |entry|
+      algorithm, hash = entry.split("-", 2)
+      DIGESTS.key?(algorithm) && DIGESTS[algorithm].base64digest(content) == hash
+    end
+    "#{file}: does not match #{integrity} (used by #{page})" unless matches
+  end
+end
+
+puts "Checked #{checks.size} files with an integrity attribute."
+exit if failures.empty?
+
+puts failures
+exit 1
