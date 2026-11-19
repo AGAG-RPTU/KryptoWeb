@@ -30,8 +30,9 @@ einer Sammlung von Verschlüsselungsverfahren zum Ausprobieren im Browser.
 
 ## Wer wir sind
 
-Die Seite wird von [Prof. Dr. Claus Fieker](https://math.rptu.de/ags/agag/personen/leitung/fieker)
-und [Prof. Dr. Max Horn](https://math.rptu.de/ags/agag/personen/leitung/prof-dr-max-horn)
+Die Seite wird von [Prof. Dr. Claus Fieker](https://math.rptu.de/ags/agag/personen/leitung/fieker),
+[Prof. Dr. Max Horn](https://math.rptu.de/ags/agag/personen/leitung/prof-dr-max-horn)
+und [Dr. Christian Eder](https://math.rptu.de/ags/agag/personen/dozentinnen-und-dozenten)
 aus der [Arbeitsgruppe Algebra, Geometrie und Computeralgebra](https://math.rptu.de/ags/agag)
 am [Fachbereich Mathematik](https://math.rptu.de) der RPTU Kaiserslautern-Landau betrieben.
 Fragen und Anregungen nehmen wir gerne per E-Mail entgegen, die Adressen stehen im

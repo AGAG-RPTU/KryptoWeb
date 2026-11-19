@@ -1,7 +1,7 @@
 # KryptoWeb
 
 Materialien zur Kryptographie für Schülerinnen, Schüler und Lehrkräfte, betrieben
-von Claus Fieker und Max Horn an der RPTU Kaiserslautern-Landau.
+von Claus Fieker, Max Horn und Christian Eder an der RPTU Kaiserslautern-Landau.
 
 Live: <https://agag-rptu.github.io/KryptoWeb/>
 
