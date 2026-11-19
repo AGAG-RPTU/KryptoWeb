@@ -75,26 +75,24 @@ Lizenz die Weitergabe erlaubt; Urheber, Lizenz und Quelle gehören in `credit`.
 Sonst als `file` die Seite des Autors verlinken. Links in `credit`, die mit `/`
 beginnen, bekommen automatisch den Pfad der Seite (`/KryptoWeb`) vorangestellt.
 
-**Visuelle Kryptographie im Browser:** Die Themenseite
-(`_pages/visuelle-kryptographie.md`) bindet
-das Werkzeug aus `_includes/visuelle_krypto.liquid` ein; Rechnung und Motive stehen
-in `assets/js/visuelle-krypto.js`, das Aussehen in `assets/css/visuelle-krypto.css`.
-Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins für
-„grob“, „mittel“ und „fein“ (`#` = schwarz); ein neues Motiv braucht dort einen
-Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
-
-**Weitere Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema. Jedes
-besteht aus Seite (`_pages/`), Oberfläche (`_includes/`) und Programm
-(`assets/js/`); das gemeinsame Aussehen steht in `assets/css/werkzeuge.css`. Die
-Karte auf der Themenseite kommt aus dem Kopf der Seite: `themen`, `img`, `art` und
-`importance` wie bei den Karten in `_projects/`. Die Vorschaubilder
-`content/img/Werkzeug-*.svg` sind von Hand gezeichnet.
+**Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema. Jedes besteht
+aus Seite (`_pages/`), Oberfläche (`_includes/`) und Programm (`assets/js/`); das
+gemeinsame Aussehen steht in `assets/css/werkzeuge.css`, bei der visuellen
+Kryptographie in `assets/css/visuelle-krypto.css`. Die Karte auf der Themenseite kommt
+aus dem Kopf der Seite: `themen`, `img`, `art` und `importance` wie bei den Karten in
+`_projects/`. Die Vorschaubilder `content/img/Werkzeug-*.svg` sind von Hand gezeichnet.
 
 | Werkzeug | Seite | Oberfläche | Programm |
 |---|---|---|---|
 | Rechnen im Kreis (Modulo) | `_pages/modulo.md` | `_includes/modulo.liquid` | `assets/js/modulo.js` |
 | Verschlüsseln und knacken (Caesar, Vigenère) | `_pages/caesar-vigenere-ausprobieren.md` | `_includes/caesar_scheibe.liquid`, `_includes/caesar_vigenere.liquid`, `_includes/codeknacker.liquid` | `assets/js/caesar-vigenere.js` |
 | Diffie-Hellman | `_pages/diffie-hellman.md` | `_includes/diffie_hellman.liquid` | `assets/js/diffie-hellman.js` |
+| Zwei Folien, ein Bild (visuelle Kryptographie) | `_pages/visuelle-kryptographie-ausprobieren.md` | `_includes/visuelle_krypto.liquid` | `assets/js/visuelle-krypto.js` |
+
+Die Motive der visuellen Kryptographie sind Pixelbilder in
+`assets/js/visuelle-krypto-motive.js`, je eins für „grob“, „mittel“ und „fein“
+(`#` = schwarz); ein neues Motiv braucht dort einen Eintrag und einen Knopf im Include.
+Die Pixelschrift für Text steht in `FONT` in `assets/js/visuelle-krypto.js`.
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`

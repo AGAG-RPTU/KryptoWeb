@@ -7,20 +7,13 @@
                    ordered by `importance`;
     #vortraege     talks whose `themen` list the topic, newest first.
   With a single section there are neither links nor headings.
-
-  Optional parameters, for a page that shows its tool itself
-  (visuelle-kryptographie.md):
-    ausprobieren=true  the page has its own section with id "ausprobieren";
-    teil="inhalt"      renders only the links, teil="rest" only the sections.
   No blank lines in the output: kramdown would end the HTML block there.
 {% endcomment %}
 {%- assign tools = site.pages | where_exp: "p", "p.themen contains page.thema" | sort: "importance" -%}
 {%- assign material = site.projects | where: "category", page.thema | sort: "importance" -%}
 {%- assign talks = site.vortraege | where_exp: "t", "t.themen contains page.thema" | sort: "date" | reverse -%}
-{%- assign has_tools = false -%}
-{%- if tools.size > 0 or include.ausprobieren -%}{%- assign has_tools = true -%}{%- endif -%}
 {%- assign sections = 0 -%}
-{%- if has_tools -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
+{%- if tools.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
 {%- if material.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
 {%- if talks.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
 {%- assign section = "" -%}
@@ -28,9 +21,9 @@
 {%- assign icon_tools = "fa-solid fa-computer-mouse" -%}
 {%- assign icon_material = "fa-solid fa-file-arrow-down" -%}
 {%- assign icon_talks = "fa-solid fa-person-chalkboard" -%}
-{%- if sections > 1 and include.teil != "rest" %}
+{%- if sections > 1 %}
 <nav class="thema-inhalt" aria-label="Auf dieser Seite">
-  {%- if has_tools %}
+  {%- if tools.size > 0 %}
   <a href="#ausprobieren" class="thema-haupt"><i class="{{ icon_tools }}" aria-hidden="true"></i> Im Browser ausprobieren</a>
   {%- endif -%}
   {%- if material.size > 0 %}
@@ -40,8 +33,7 @@
   <a href="#vortraege"><i class="{{ icon_talks }}" aria-hidden="true"></i> Vorträge</a>
   {%- endif %}
 </nav>
-{%- endif -%}
-{%- unless include.teil == "inhalt" %}
+{%- endif %}
 <div class="thema">
   {%- if tools.size > 0 %}
   <section id="ausprobieren" class="{{ section }} thema-ausprobieren">
@@ -80,4 +72,3 @@
   </section>
   {%- endif %}
 </div>
-{%- endunless %}
