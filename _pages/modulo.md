@@ -33,5 +33,7 @@ herumgekommen ist. Der Platz, auf dem er landet, ist der Rest.
 
 ## Weiter
 
+Auch Potenzieren geht im Kreis. Darauf beruht der
+[Diffie-Hellman-Schlüsseltausch]({{ '/themen/rsa-primzahlen/diffie-hellman/' | relative_url }}).
 Arbeitsblätter, Folien und Programme zum Rechnen mit Resten stehen bei
 [RSA & Primzahlen]({{ '/themen/rsa-primzahlen/' | relative_url }}).

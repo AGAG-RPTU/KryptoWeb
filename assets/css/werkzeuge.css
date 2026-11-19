@@ -437,3 +437,84 @@
   overflow-wrap: anywhere;
   font-weight: bold;
 }
+
+/* Diffie-Hellman: public in teal, secret in magenta, as on the slides */
+
+.dh {
+  --dh-offen: #1b7f86;
+  --dh-geheim: #c2185b;
+}
+
+html[data-theme="dark"] .dh {
+  --dh-offen: #4fc3c9;
+  --dh-geheim: #f06292;
+}
+
+.dh-ansage {
+  min-height: 3em;
+  font-size: 1.05rem;
+}
+
+.dh-buehne {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  gap: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .dh-buehne {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dh-spalte {
+  min-width: 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.dh-spalte h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+}
+
+.dh-oeffentlich {
+  border-color: var(--dh-offen);
+}
+
+.dh .dh-offen {
+  color: var(--dh-offen);
+}
+
+.dh .dh-geheim {
+  color: var(--dh-geheim);
+}
+
+.dh .wz-ergebnis .dh-geheim {
+  font-size: 1.5rem;
+}
+
+.dh-versuche {
+  max-height: 12rem;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.dh-neu {
+  animation: dh-auftauchen 0.5s ease;
+}
+
+@keyframes dh-auftauchen {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dh-neu {
+    animation: none;
+  }
+}

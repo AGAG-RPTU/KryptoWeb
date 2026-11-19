@@ -1,0 +1,63 @@
+{% comment %}
+  Diffie-Hellman key exchange step by step; logic in
+  assets/js/diffie-hellman.js, styles in assets/css/werkzeuge.css (the page
+  links it). No blank lines: kramdown would end the HTML block there.
+{% endcomment %}
+<div class="wz dh" id="dh">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<div class="wz-zeile">
+<button type="button" id="dh-zurueck">Zurück</button>
+<span id="dh-schritt" class="wz-titel"></span>
+<button type="button" id="dh-weiter" class="wz-haupt">Weiter</button>
+<button type="button" id="dh-alles">Alle Schritte zeigen</button>
+</div>
+<p id="dh-ansage" class="dh-ansage" aria-live="polite"></p>
+<div class="dh-buehne">
+<section class="dh-spalte" aria-labelledby="dh-alia-titel">
+<h3 id="dh-alia-titel">Alia</h3>
+<div data-schritt="2">
+<p><label>geheime Zahl <i>a</i> = <input type="number" id="dh-a" min="2" value="5"></label> <button type="button" id="dh-a-wuerfeln">würfeln</button></p>
+<p class="dh-geheim wz-klein">🔒 kennt nur Alia</p>
+</div>
+<p data-schritt="3" id="dh-alia-rechnet"></p>
+<p data-schritt="4" id="dh-alia-schluessel"></p>
+</section>
+<section class="dh-spalte dh-oeffentlich" aria-labelledby="dh-oeffentlich-titel">
+<h3 id="dh-oeffentlich-titel">Öffentlich</h3>
+<p class="wz-klein">Das hört die ganze Klasse mit.</p>
+<div data-schritt="1">
+<p><label>Primzahl <i>p</i> = <input type="text" id="dh-p" value="29" inputmode="numeric" size="14" autocomplete="off"></label></p>
+<p><label><i>g</i> = <input type="text" id="dh-g" value="2" inputmode="numeric" size="6" autocomplete="off"></label></p>
+<div class="wz-chips" role="group" aria-label="Beispiele">
+<button type="button" class="wz-chip" data-p="29" data-g="2" aria-pressed="true">29 wie im Vortrag</button>
+<button type="button" class="wz-chip" data-p="101" data-g="2" aria-pressed="false">101</button>
+<button type="button" class="wz-chip" data-p="2147483647" data-g="7" aria-pressed="false">2 147 483 647</button>
+</div>
+<p id="dh-pruefung" class="wz-klein"></p>
+</div>
+<p data-schritt="3" class="dh-offen">A = <b id="dh-A"></b> <span class="wz-klein">von Alia</span></p>
+<p data-schritt="3" class="dh-offen">B = <b id="dh-B"></b> <span class="wz-klein">von Ben</span></p>
+</section>
+<section class="dh-spalte" aria-labelledby="dh-ben-titel">
+<h3 id="dh-ben-titel">Ben</h3>
+<div data-schritt="2">
+<p><label>geheime Zahl <i>b</i> = <input type="number" id="dh-b" min="2" value="8"></label> <button type="button" id="dh-b-wuerfeln">würfeln</button></p>
+<p class="dh-geheim wz-klein">🔒 kennt nur Ben</p>
+</div>
+<p data-schritt="3" id="dh-ben-rechnet"></p>
+<p data-schritt="4" id="dh-ben-schluessel"></p>
+</section>
+</div>
+<div data-schritt="4" class="wz-kasten">
+<p class="wz-ergebnis">Gemeinsamer Schlüssel: <span id="dh-k" class="dh-geheim"></span></p>
+<p>Zweimal dieselbe Zahl – Zufall? Nein: A<sup><i>b</i></sup> = (g<sup><i>a</i></sup>)<sup><i>b</i></sup> = g<sup><i>a</i>·<i>b</i></sup> = (g<sup><i>b</i></sup>)<sup><i>a</i></sup> = B<sup><i>a</i></sup>, und das gilt auch, wenn man nach jedem Schritt nur den Rest modulo <i>p</i> behält.</p>
+</div>
+<div data-schritt="5" class="wz-kasten">
+<p class="wz-titel">Der Lauscher</p>
+<p>Er kennt <span class="dh-offen">p = <b id="dh-l-p"></b>, g = <b id="dh-l-g"></b>, A = <b id="dh-l-A"></b> und B = <b id="dh-l-B"></b></span>. Er kennt nicht <span class="dh-geheim"><i>a</i>, <i>b</i> und den Schlüssel</span>. Er kann aber alle Exponenten ausprobieren, bis g<sup><i>x</i></sup> mod p = A herauskommt.</p>
+<p class="wz-zeile"><button type="button" id="dh-lauschen">Lauscher probiert aus</button> <button type="button" id="dh-anhalten" hidden>Anhalten</button></p>
+<p id="dh-lauscher" aria-live="polite"></p>
+<ol id="dh-versuche" class="dh-versuche wz-mono"></ol>
+</div>
+</div>
+<script defer src="{{ '/assets/js/diffie-hellman.js' | relative_url | bust_file_cache }}"></script>
