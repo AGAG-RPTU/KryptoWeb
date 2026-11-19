@@ -16,6 +16,7 @@
   const STEPS = 5;
   const MIN_P = 5;
   const MAX_P = 1e12; // p − 1 is factored by trial division
+  const MIN_SECRET_DIGITS = 3; // width of the fields for a and b
   const MAX_WRITTEN_DIGITS = 15; // g^a is written out up to this length
   const MAX_TRIES_LISTED = 30;
   const TRIES_PER_CHUNK = 100000; // between two updates of the progress line
@@ -150,8 +151,13 @@
     const pKnown = Number.isSafeInteger(p) && p >= MIN_P;
     for (const range of root.querySelectorAll(".dh-bereich")) range.textContent = `2 bis ${pKnown ? fmt(p - 2) : "p − 2"}`;
     for (const key of ["a", "b"]) {
-      if (pKnown) inputs[key].max = p - 2;
-      else inputs[key].removeAttribute("max");
+      if (!pKnown) {
+        inputs[key].removeAttribute("max");
+        continue;
+      }
+      inputs[key].max = p - 2;
+      // digits of the largest secret, plus room for padding and the spin buttons
+      inputs[key].style.width = `calc(${Math.max(MIN_SECRET_DIGITS, String(p - 2).length)}ch + 2.8em)`;
     }
 
     const A = result.ok ? powMod(g, a, p) : null;
@@ -172,13 +178,14 @@
   }
 
   function showStep() {
+    // hidden steps keep their space, so the page keeps its height from step to step
     for (const part of root.querySelectorAll("[data-schritt]")) {
       const visible = Number(part.dataset.schritt) <= state.step;
-      if (visible && part.hidden) part.classList.add("dh-neu");
-      part.hidden = !visible;
+      if (visible && part.classList.contains("dh-spaeter")) part.classList.add("dh-neu");
+      part.classList.toggle("dh-spaeter", !visible);
     }
     $("dh-schritt").textContent = `Schritt ${state.step} von ${STEPS}`;
-    $("dh-ansage").textContent = NARRATION[state.step - 1];
+    $("dh-ansage-text").textContent = NARRATION[state.step - 1];
     $("dh-zurueck").disabled = state.step === 1;
     $("dh-weiter").disabled = state.step === STEPS;
   }
@@ -307,5 +314,13 @@
 
   writeInputs();
   update();
+  // every narration, invisible, in the grid cell of the current one: the line
+  // is as tall as the longest
+  for (const text of NARRATION) {
+    const sizer = document.createElement("span");
+    sizer.textContent = text;
+    sizer.setAttribute("aria-hidden", "true");
+    $("dh-ansage").append(sizer);
+  }
   showStep();
 })();

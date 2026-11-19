@@ -551,9 +551,30 @@ html[data-theme="dark"] .dh {
   --dh-geheim: #f06292;
 }
 
+/* the current narration over all the others, which keep the line as tall
+   as the longest one */
 .dh-ansage {
-  min-height: 3em;
+  display: grid;
   font-size: 1.05rem;
+}
+
+.dh-ansage > span {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.dh-ansage > .dh-jetzt {
+  visibility: visible;
+}
+
+/* a step not reached yet: invisible, but taking its space */
+.dh .dh-spaeter {
+  visibility: hidden;
+}
+
+.dh input[type="number"] {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .dh-buehne {
@@ -562,9 +583,15 @@ html[data-theme="dark"] .dh {
   gap: 0.8rem;
 }
 
+/* in one column, the public numbers of step 1 come first, not below Alia's
+   box that is still empty then */
 @media (max-width: 640px) {
   .dh-buehne {
     grid-template-columns: 1fr;
+  }
+
+  .dh-oeffentlich {
+    order: -1;
   }
 }
 
