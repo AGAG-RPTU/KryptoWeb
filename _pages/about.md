@@ -23,7 +23,7 @@ Nachlesen und Weitermachen:
   - [Enigma]({{ '/themen/enigma/' | relative_url }}): Enigmas aus Papier, auf einer Chipsdose und aus Lego
   - [Visuelle Kryptographie]({{ '/themen/visuelle-kryptographie/' | relative_url }}): zum Ausprobieren im Browser und als Programm
   - [RSA & Primzahlen]({{ '/themen/rsa-primzahlen/' | relative_url }}): Arbeitsblätter, Folien und Python-Programme
-- [Für Lehrkräfte]({{ '/lehrkraefte/' | relative_url }}): Lizenzen, LaTeX-Quellen und Masterarbeiten zur Kryptographie in der Schule
+- [Für Lehrkräfte]({{ '/lehrkraefte/' | relative_url }}): Vorträge an Ihrer Schule, Lizenzen, LaTeX-Quellen und Masterarbeiten zur Kryptographie in der Schule
 
 Noch mehr zum Ausprobieren gibt es bei [CrypTool-Online](https://www.cryptool.org/de/cto/),
 einer Sammlung von Verschlüsselungsverfahren zum Ausprobieren im Browser.
@@ -35,5 +35,7 @@ Die Seite wird von [Prof. Dr. Claus Fieker](https://math.rptu.de/ags/agag/person
 und [Dr. Christian Eder](https://math.rptu.de/ags/agag/personen/dozentinnen-und-dozenten)
 aus der [Arbeitsgruppe Algebra, Geometrie und Computeralgebra](https://math.rptu.de/ags/agag)
 am [Fachbereich Mathematik](https://math.rptu.de) der RPTU Kaiserslautern-Landau betrieben.
+Wir kommen auch mit Vorträgen an weiterführende Schulen, für die Klassen 5 bis 13
+([mehr dazu]({{ '/lehrkraefte/' | relative_url }})).
 Fragen und Anregungen nehmen wir gerne per E-Mail entgegen, die Adressen stehen im
 [Impressum]({{ '/impressum/' | relative_url }}).
