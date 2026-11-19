@@ -21,7 +21,8 @@ schnell, aber aus dem Ergebnis *a* zurückzugewinnen ist schwer.
 
 ## Schritt für Schritt
 
-Du kannst alle Zahlen ändern: Wähle eine andere Primzahl oder würfle neue Geheimzahlen.
+Du kannst alle Zahlen ändern: Wähle eine andere Primzahl, oder lass dir neue Geheimzahlen
+zufällig aussuchen.
 
 {% include diffie_hellman.liquid %}
 

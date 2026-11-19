@@ -22,7 +22,7 @@
 
   const NARRATION = [
     "Alia und Ben einigen sich vor der ganzen Klasse auf eine Primzahl p und eine Zahl g.",
-    "Jeder wählt eine geheime Zahl und verrät sie niemandem: Alia wählt a, Ben wählt b.",
+    "Jeder wählt eine geheime Zahl zwischen 2 und p − 2 und verrät sie niemandem: Alia wählt a, Ben wählt b.",
     "Alia rechnet A = gᵃ mod p, Ben rechnet B = gᵇ mod p. Beide rufen ihr Ergebnis laut in die Klasse.",
     "Alia rechnet Bᵃ mod p, Ben rechnet Aᵇ mod p. Beide kommen auf dieselbe Zahl: ihren gemeinsamen Schlüssel.",
     "Der Lauscher hat alles mitgehört. Für den Schlüssel bräuchte er a oder b. Findet er sie heraus?",
@@ -147,6 +147,13 @@
     }
 
     const { p, g, a, b } = state;
+    const pKnown = Number.isSafeInteger(p) && p >= MIN_P;
+    for (const range of root.querySelectorAll(".dh-bereich")) range.textContent = `2 bis ${pKnown ? fmt(p - 2) : "p − 2"}`;
+    for (const key of ["a", "b"]) {
+      if (pKnown) inputs[key].max = p - 2;
+      else inputs[key].removeAttribute("max");
+    }
+
     const A = result.ok ? powMod(g, a, p) : null;
     const B = result.ok ? powMod(g, b, p) : null;
     const show = (v) => (v === null ? "?" : fmt(v));
@@ -270,7 +277,7 @@
   }
 
   for (const name of ["a", "b"]) {
-    $(`dh-${name}-wuerfeln`).addEventListener("click", () => {
+    $(`dh-${name}-zufall`).addEventListener("click", () => {
       if (!(state.p >= MIN_P)) return;
       state[name] = randomSecret();
       writeInputs();
