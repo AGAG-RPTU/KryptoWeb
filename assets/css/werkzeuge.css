@@ -1,0 +1,197 @@
+/* Interactive tools: Rechnen im Kreis, Caesar & Vigenère, Diffie-Hellman */
+
+/* Shared controls */
+
+.wz {
+  margin: 1rem 0 2rem;
+}
+
+.wz p {
+  margin: 0.5rem 0;
+}
+
+.wz-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  margin: 0.8rem 0;
+}
+
+.wz .wz-titel {
+  font-weight: bold;
+}
+
+.wz-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wz button {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--global-theme-color);
+  font: inherit;
+  cursor: pointer;
+}
+
+.wz button:hover,
+.wz button.wz-haupt {
+  background: var(--global-theme-color);
+  color: var(--global-hover-text-color);
+}
+
+.wz button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.wz .wz-chip {
+  padding: 0.25rem 0.8rem;
+  border-color: var(--global-divider-color);
+  border-radius: 999px;
+  color: var(--global-text-color);
+}
+
+.wz .wz-chip:hover {
+  border-color: var(--global-theme-color);
+  background: transparent;
+  color: var(--global-text-color);
+}
+
+.wz .wz-chip[aria-pressed="true"] {
+  border-color: var(--global-theme-color);
+  background: var(--global-theme-color);
+  color: var(--global-hover-text-color);
+}
+
+.wz input[type="number"],
+.wz input[type="text"],
+.wz textarea {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  font: inherit;
+}
+
+.wz input[type="number"] {
+  width: 5.5em;
+}
+
+.wz textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.wz input[type="range"] {
+  vertical-align: middle;
+  accent-color: var(--global-theme-color);
+}
+
+.wz-mono,
+.wz textarea.wz-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.04em;
+}
+
+.wz .wz-klein {
+  color: var(--global-text-color-light);
+  font-size: 0.85rem;
+}
+
+.wz .wz-ergebnis {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.wz-kasten {
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+}
+
+.wz .wz-richtig {
+  color: #2e7d32;
+}
+
+.wz .wz-falsch {
+  color: #c8602a;
+}
+
+/* Rechnen im Kreis */
+
+.mod-kreis {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  touch-action: manipulation;
+}
+
+.mod-kreis text {
+  fill: var(--global-text-color);
+  font-family: inherit;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.mod-platz circle {
+  fill: var(--global-bg-color);
+  stroke: var(--global-divider-color);
+  stroke-width: 0.6;
+}
+
+.mod-platz {
+  cursor: pointer;
+}
+
+.mod-platz.mod-start circle {
+  fill: #1b7f86;
+  stroke: #1b7f86;
+}
+
+.mod-platz.mod-ziel circle {
+  fill: #c8602a;
+  stroke: #c8602a;
+}
+
+.mod-platz.mod-sprung circle {
+  stroke: #c8602a;
+  stroke-width: 1.2;
+}
+
+.mod-platz.mod-start text,
+.mod-platz.mod-ziel text {
+  fill: #fff;
+  font-weight: bold;
+}
+
+.mod-kreis .mod-weg {
+  fill: none;
+  stroke: var(--global-theme-color);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.8;
+}
+
+.mod-kreis .mod-anlauf {
+  fill: none;
+  stroke: #1b7f86;
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+
+.mod-kreis .mod-figur {
+  fill: var(--global-theme-color);
+}
+
+.mod-kreis .mod-mitte {
+  font-weight: bold;
+}

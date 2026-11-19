@@ -80,6 +80,15 @@ Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins f�
 „grob“, „mittel“ und „fein“ (`#` = schwarz); ein neues Motiv braucht dort einen
 Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
 
+**Weitere Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema, die
+Themenseite verlinkt sie. Jedes besteht aus Seite (`_pages/`), Oberfläche
+(`_includes/`) und Programm (`assets/js/`); das gemeinsame Aussehen steht in
+`assets/css/werkzeuge.css`.
+
+| Werkzeug | Seite | Oberfläche | Programm |
+|---|---|---|---|
+| Rechnen im Kreis (Modulo) | `_pages/modulo.md` | `_includes/modulo.liquid` | `assets/js/modulo.js` |
+
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
 mit `title`, `description` (Vortragende, Anlass und Datum, etwa

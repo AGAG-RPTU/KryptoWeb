@@ -1,0 +1,44 @@
+{% comment %}
+  "Rechnen im Kreis": logic in assets/js/modulo.js, styles in
+  assets/css/werkzeuge.css (the page links it). No blank lines: kramdown would
+  end the HTML block there.
+{% endcomment %}
+<div class="wz" id="mod">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<div class="wz-zeile">
+<span class="wz-titel" id="mod-n-titel">Plätze im Kreis</span>
+<div class="wz-chips" role="group" aria-labelledby="mod-n-titel">
+<button type="button" class="wz-chip" data-n="12" aria-pressed="true">12 wie die Uhr</button>
+<button type="button" class="wz-chip" data-n="26" aria-pressed="false">26 wie das Alphabet</button>
+</div>
+<label>N = <input type="number" id="mod-n" min="2" max="60" value="12"></label>
+</div>
+<div class="wz-zeile">
+<span class="wz-titel" id="mod-op-titel">Rechnung</span>
+<div class="wz-chips" role="group" aria-labelledby="mod-op-titel">
+<button type="button" class="wz-chip" data-op="plus" aria-pressed="true">plus</button>
+<button type="button" class="wz-chip" data-op="minus" aria-pressed="false">minus</button>
+<button type="button" class="wz-chip" data-op="mal" aria-pressed="false">mal</button>
+<button type="button" class="wz-chip" data-op="rest" aria-pressed="false">Rest</button>
+</div>
+</div>
+<div class="wz-zeile">
+<span id="mod-klammer-auf" aria-hidden="true">(</span>
+<input type="number" id="mod-a" min="-999" max="999" value="7" aria-label="erste Zahl">
+<span id="mod-zeichen" class="wz-titel">+</span>
+<input type="number" id="mod-b" min="-999" max="999" value="8" aria-label="zweite Zahl">
+<span id="mod-klammer-zu">) mod <span id="mod-n-text">12</span></span>
+<button type="button" class="wz-haupt" id="mod-los">Im Kreis gehen</button>
+</div>
+<svg class="mod-kreis" id="mod-kreis" viewBox="-115 -115 230 230" role="img" aria-labelledby="mod-rechnung"></svg>
+<p class="wz-ergebnis" id="mod-rechnung" aria-live="polite"></p>
+<p id="mod-erklaerung"></p>
+<p class="wz-klein">Tipp: Ein Klick auf einen Platz im Kreis setzt die erste Zahl.</p>
+<div class="wz-kasten">
+<p class="wz-titel">Kopfrechnen</p>
+<p><span id="mod-q-aufgabe" class="wz-mono"></span> = <input type="number" id="mod-q-antwort" aria-label="Antwort"> <button type="button" id="mod-q-pruefen">Prüfen</button> <button type="button" id="mod-q-neu">Neue Aufgabe</button></p>
+<p id="mod-q-rueckmeldung" aria-live="polite"></p>
+<p><button type="button" id="mod-q-zeigen" hidden>Im Kreis zeigen</button></p>
+</div>
+</div>
+<script defer src="{{ '/assets/js/modulo.js' | relative_url | bust_file_cache }}"></script>
