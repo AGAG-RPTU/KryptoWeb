@@ -195,3 +195,245 @@
 .mod-kreis .mod-mitte {
   font-weight: bold;
 }
+
+/* Caesar & Vigenère: disc in the colours of the paper Caesar-Scheibe, which
+   stays light in dark mode like the paper one */
+
+.cv-scheibe {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0.5rem auto;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cv-scheibe.cv-ziehen {
+  cursor: grabbing;
+}
+
+.cv-scheibe:focus-visible {
+  border-radius: 50%;
+  outline: 2px solid var(--global-theme-color);
+}
+
+.cv-scheibe text {
+  font-family: inherit;
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.cv-aussen {
+  fill: #e3e9f2;
+  stroke: #1f3a5f;
+  stroke-width: 0.6;
+}
+
+.cv-aussen-text {
+  fill: #1f3a5f;
+  font-size: 13px;
+}
+
+.cv-innen {
+  fill: #f8e6dc;
+  stroke: #c8602a;
+  stroke-width: 0.6;
+}
+
+.cv-innen-text {
+  fill: #c8602a;
+  font-size: 12px;
+}
+
+.cv-markierung {
+  fill: #f5e86e;
+  opacity: 0.7;
+}
+
+.cv-mitte {
+  fill: #fffdf6;
+  stroke: #1f3a5f;
+  stroke-width: 0.8;
+}
+
+.cv-scheibe .cv-mitte-schluessel {
+  fill: #c8602a;
+  font-size: 30px;
+}
+
+.cv-scheibe .cv-mitte-text {
+  fill: #1f3a5f;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.cv-drehen {
+  transition: transform 0.25s ease;
+}
+
+.cv-ziehen .cv-drehen {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-drehen {
+    transition: none;
+  }
+}
+
+.cv-ergebnis {
+  min-height: 1.6em;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: var(--global-code-bg-color);
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cv-karten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.3rem;
+  margin: 0.8rem 0;
+}
+
+.cv-karte {
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: bold;
+}
+
+.cv-kw {
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--team);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.cv-ein,
+.cv-aus {
+  display: grid;
+  width: 1.9rem;
+  height: 1.9rem;
+  place-items: center;
+  border: 1px solid var(--global-text-color-light);
+  border-radius: 3px;
+}
+
+.cv-aus {
+  border-color: var(--team);
+  color: var(--team);
+}
+
+.cv-plus {
+  color: var(--team);
+  font-size: 0.75rem;
+}
+
+.cv-luecke {
+  width: 0.6rem;
+}
+
+/* Code breaker */
+
+.ck-alle {
+  max-height: 15rem;
+  overflow-y: auto;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.ck-zeile {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.1rem 0.5rem;
+  white-space: nowrap;
+}
+
+.ck-zeile:nth-child(odd) {
+  background: var(--global-code-bg-color);
+}
+
+.ck-k {
+  flex: none;
+  width: 6.5rem;
+  color: var(--global-text-color-light);
+  font-family: inherit;
+}
+
+.ck-diagramm {
+  max-width: 560px;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.ck-balken,
+.ck-namen {
+  display: grid;
+  grid-template-columns: repeat(26, 1fr);
+  gap: 2px;
+}
+
+.ck-balken {
+  height: 90px;
+  align-items: end;
+}
+
+.ck-saeule {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.wz .ck-balken-wert {
+  display: block;
+  width: 100%;
+  min-height: 1px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px 2px 0 0;
+  background: var(--farbe);
+  opacity: 0.4;
+}
+
+.wz button.ck-balken-wert:hover {
+  background: var(--farbe);
+  opacity: 0.7;
+}
+
+.wz .ck-balken-wert.ck-markiert {
+  opacity: 1;
+}
+
+.ck-marke {
+  color: #c8602a;
+  font-size: 0.7rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.ck-namen span {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.ck-namen .ck-markiert {
+  font-weight: bold;
+}
+
+.ck-verteilung {
+  overflow-wrap: anywhere;
+  font-weight: bold;
+}

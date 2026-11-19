@@ -88,6 +88,7 @@ Themenseite verlinkt sie. Jedes besteht aus Seite (`_pages/`), Oberfläche
 | Werkzeug | Seite | Oberfläche | Programm |
 |---|---|---|---|
 | Rechnen im Kreis (Modulo) | `_pages/modulo.md` | `_includes/modulo.liquid` | `assets/js/modulo.js` |
+| Verschlüsseln und knacken (Caesar, Vigenère) | `_pages/caesar-vigenere-ausprobieren.md` | `_includes/caesar_vigenere.liquid`, `_includes/codeknacker.liquid` | `assets/js/caesar-vigenere.js` |
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
