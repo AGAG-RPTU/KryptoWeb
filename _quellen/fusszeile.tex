@@ -3,14 +3,14 @@
 % alle Vorlagen neu übersetzen (bauen.sh).
 % Einbinden in der Präambel; erwartet die Farbe textblue.
 %
-%   \fusszeile                         Seite der Kopiervorlagen
+%   \fusszeile                         Übersicht der Themen
 %   \fusszeile[<Pfad>][<Beschriftung>] andere Seite, z. B.
 %   \fusszeile[Vortraege/kinderuni-2026-11-18][Dieses Blatt als Datei]
 \usepackage{qrcode}
 
 \newcommand{\webseite}{agag-rptu.github.io/KryptoWeb}
 
-\NewDocumentCommand{\fusszeile}{O{Kopiervorlagen} O{Diese und weitere Vorlagen als Datei}}{%
+\NewDocumentCommand{\fusszeile}{O{themen} O{Diese und weitere Vorlagen als Datei}}{%
   \noindent
   \begin{minipage}[c]{\dimexpr\textwidth-1.8cm\relax}
     \scriptsize\color{textblue}

@@ -1,6 +1,7 @@
 {% comment %}
   Overrides the theme's card: links straight to `file` if set (else to the
-  item's page) and shows `credit` (Markdown) below, outside the link.
+  item's page), labels it with `art` and shows `credit` (Markdown) below,
+  outside the link. Links in `credit` starting with "/" get the baseurl.
 {% endcomment %}
 {% if project.file %}
   {% assign target = project.file | relative_url %}
@@ -21,13 +22,15 @@
         %}
       {% endif %}
       <div class="card-body">
-        <h2 class="card-title" style="hyphens: auto; overflow-wrap: break-word">{{ project.title }}</h2>
+        {% if project.art %}<p class="card-art">{{ project.art }}</p>{% endif %}
+        <h2 class="card-title">{{ project.title }}</h2>
         <p class="card-text">{{ project.description }}</p>
       </div>
     </a>
     {% if project.credit %}
-      <div class="card-body" style="padding-top: 0; font-size: 0.8rem">
-        {{ project.credit | markdownify }}
+      {% capture mit_baseurl %}]({{ site.baseurl }}/{% endcapture %}
+      <div class="card-body card-credit">
+        {{ project.credit | replace: "](/", mit_baseurl | markdownify }}
       </div>
     {% endif %}
   </div>

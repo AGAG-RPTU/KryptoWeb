@@ -29,19 +29,36 @@ Jeder Push auf `main` baut die Seite mit GitHub Actions
 ([.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)) und stellt sie auf
 GitHub Pages.
 
+## Aufbau
+
+Das Menü hat vier Punkte: Home, Vorträge, Themen (Untermenü) und Für Lehrkräfte.
+Jedes Thema ist eine Seite in `_pages/` mit `thema: <kürzel>` im Kopf, die
+[_includes/themenseite.liquid](_includes/themenseite.liquid) einbindet. Die zeigt
+alle Karten aus `_projects/` mit `category: <kürzel>` und alle Vorträge, deren
+`themen` das Kürzel enthalten. Die Kürzel: `caesar-vigenere`, `enigma`,
+`visuelle-kryptographie`, `rsa-primzahlen`, `lehrkraefte`. Ein neues Thema braucht
+eine solche Seite und einen Eintrag unter `children` in
+[_pages/themen.md](_pages/themen.md).
+
+Alte Adressen (`/Kopiervorlagen/`, `/RSA/` usw.) leiten über
+`_pages/weiterleitungen/` auf die neuen weiter.
+
+Eigenes CSS steht in [_sass/_kryptoweb.scss](_sass/_kryptoweb.scss);
+`assets/css/main.scss` ersetzt dafür die gleichnamige Datei des Themes.
+
 ## Inhalte ergänzen
 
-**Kopiervorlagen, Masterarbeiten, Visual, RSA:** Datei nach `content/<Rubrik>/`,
-Vorschaubild (etwa 1190 × 750 Pixel) nach `content/img/`, dazu eine Karte
-`_projects/<Nummer>_<Name>.md`:
+**Material:** Datei nach `content/<Ordner>/`, Vorschaubild (etwa 1190 × 750 Pixel)
+nach `content/img/`, dazu eine Karte `_projects/<Nummer>_<Name>.md`:
 
 ```yaml
 ---
 title: "Caesar-Scheibe"
 description: "Caesar-Scheibe zum Ausschneiden und Basteln"
 img: content/img/Caesar.jpg
-importance: 1
-category: Kryptographie # Kryptographie, Arbeiten, Visual oder RSA
+importance: 1 # Reihenfolge auf der Themenseite, 1 zuerst
+art: Bastelvorlage # Etikett: Bastelvorlage, Anleitung, Arbeitsblatt, Programm, Folien, Masterarbeit
+category: caesar-vigenere # Kürzel des Themas
 file: "/content/Kopiervorlagen/Caesar.pdf" # auch eine externe URL
 credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.de)"
 ---
@@ -49,9 +66,11 @@ credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/lice
 
 Die Karte verlinkt direkt auf `file`. Fremdes Material nur einstellen, wenn seine
 Lizenz die Weitergabe erlaubt; Urheber, Lizenz und Quelle gehören in `credit`.
-Sonst als `file` die Seite des Autors verlinken.
+Sonst als `file` die Seite des Autors verlinken. Links in `credit`, die mit `/`
+beginnen, bekommen automatisch den Pfad der Seite (`/KryptoWeb`) vorangestellt.
 
-**Visuelle Kryptographie im Browser:** Die Seite Visual (`_pages/rsa.md`) bindet
+**Visuelle Kryptographie im Browser:** Die Themenseite
+(`_pages/visuelle-kryptographie.md`) bindet
 das Werkzeug aus `_includes/visuelle_krypto.liquid` ein; Rechnung und Motive stehen
 in `assets/js/visuelle-krypto.js`, das Aussehen in `assets/css/visuelle-krypto.css`.
 Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins für
@@ -61,7 +80,8 @@ Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
 mit `title`, `description` (Vortragende, Anlass und Datum, etwa
-„Max Horn · Kinder-Uni der RPTU, 18. November 2026“), `img` und `date` im Kopf. Der Text der Seite
+„Max Horn · Kinder-Uni der RPTU, 18. November 2026“), `img`, `date` und `themen`
+(Liste von Themenkürzeln) im Kopf. Der Text der Seite
 beschreibt den Vortrag und verlinkt das Material. Die Übersicht sortiert nach
 `date`, neueste zuerst.
 
@@ -81,8 +101,6 @@ müssen installiert sein.
 Die Fußzeile mit Lizenz, Webadresse und QR-Code kommt aus
 [_quellen/fusszeile.tex](_quellen/fusszeile.tex); zieht die Seite um, dort die
 Adresse ändern und `bauen.sh` laufen lassen.
-
-**Reihenfolge der Karten:** Feld `importance` (1 zuerst).
 
 ## Lizenz
 

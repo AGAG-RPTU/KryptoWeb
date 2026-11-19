@@ -1,0 +1,43 @@
+/* Site-specific additions to the al-folio theme. */
+
+/* Phone menu, breakpoint as in the theme's _navbar.scss. The theme makes the
+   navbar 95 % opaque, so the open menu let the page show through, and it
+   positions submenus absolutely, so "Themen" covered the next entry. */
+@media (max-width: 575.98px) {
+  .navbar {
+    opacity: 1;
+
+    .dropdown-menu {
+      position: static;
+      margin: 0 0 0.5rem;
+      padding: 0 0 0 1rem;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Cards (_includes/projects.liquid) */
+.projects {
+  .card-title {
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .card-art {
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--global-theme-color);
+  }
+
+  .card-credit {
+    padding-top: 0;
+    font-size: 0.8rem;
+  }
+
+  h2:not(.card-title) {
+    margin-top: 2rem;
+  }
+}

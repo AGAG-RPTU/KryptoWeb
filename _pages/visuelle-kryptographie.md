@@ -1,12 +1,9 @@
 ---
 layout: page
-title: Visual
-permalink: /Visual/
-description: Visuelle Kryptographie – ein Bild auf zwei Folien verteilen, die nur übereinander etwas zeigen
-nav: true
-nav_order: 4
-display_categories: [Visual]
-horizontal: false
+title: Visuelle Kryptographie
+permalink: /themen/visuelle-kryptographie/
+description: Ein Bild auf zwei Folien verteilen, die nur übereinander etwas zeigen
+thema: visuelle-kryptographie
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/visuelle-krypto.css' | relative_url | bust_file_cache }}">
@@ -66,13 +63,4 @@ darf auch auf Papier sein. Die Kreuze in den Ecken helfen beim Ausrichten. Mit d
 
 Dasselbe Verfahren als Programm zum Nachvollziehen und Weiterentwickeln:
 
-<div class="projects">
-  <div class="row row-cols-1 row-cols-md-3">
-  {% for category in page.display_categories %}
-    {% assign sorted_projects = site.projects | where: "category", category | sort: "importance" %}
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  {% endfor %}
-  </div>
-</div>
+{% include themenseite.liquid %}

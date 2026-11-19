@@ -4,6 +4,7 @@ title: Geheimbotschaften
 description: Max Horn · Kinder-Uni der RPTU, 18. November 2026
 img: content/img/Vortrag-2026-11-18-Kinderuni.jpg
 date: 2026-11-18
+themen: [caesar-vigenere]
 ---
 
 **Geheimbotschaften – wie man Nachrichten versteckt und knackt**<br>

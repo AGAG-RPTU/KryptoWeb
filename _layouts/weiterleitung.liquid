@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- Old address of a page that moved; front matter `ziel` is the new one. -->
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Seite umgezogen</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="{{ page.ziel | relative_url }}">
+    <meta http-equiv="refresh" content="0; url={{ page.ziel | relative_url }}">
+  </head>
+  <body>
+    <p>Diese Seite ist umgezogen: <a href="{{ page.ziel | relative_url }}">{{ page.ziel | relative_url }}</a></p>
+  </body>
+</html>

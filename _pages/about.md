@@ -18,12 +18,15 @@ Wer dort eine Enigma gebastelt oder einen Vortrag gehört hat, findet hier alles
 Nachlesen und Weitermachen:
 
 - [Vorträge]({{ '/Vortraege/' | relative_url }}): Folien und Arbeitsblätter zu unseren Vorträgen
-- [Kopiervorlagen]({{ '/Kopiervorlagen/' | relative_url }}): Caesar-Scheibe, Vigenère-Chiffre und mehrere Papier-Enigmas zum Ausdrucken und Basteln
-- [Masterarbeiten]({{ '/Masterarbeiten/' | relative_url }}): Abschlussarbeiten zu Themen der Kryptographie
-- [Visual]({{ '/Visual/' | relative_url }}): visuelle Kryptographie zum Ausprobieren im Browser, dazu Programme in Java und Python
-- [RSA]({{ '/RSA/' | relative_url }}): Folien und Python-Code zum RSA-Verfahren
-- [Lego Enigma]({{ '/lego/' | relative_url }}): Bauanleitung für eine Enigma aus Lego
-- [Arbeitsblätter]({{ '/arbeitsblaetter/' | relative_url }}): Primzahlen, Diffie-Hellman und RSA zum Selbstrechnen
+- Themen:
+  - [Caesar & Vigenère]({{ '/themen/caesar-vigenere/' | relative_url }}): Caesar-Scheibe, Vigenère-Tabelle und Agenten-Blatt
+  - [Enigma]({{ '/themen/enigma/' | relative_url }}): Enigmas aus Papier, auf einer Chipsdose und aus Lego
+  - [Visuelle Kryptographie]({{ '/themen/visuelle-kryptographie/' | relative_url }}): zum Ausprobieren im Browser und als Programm
+  - [RSA & Primzahlen]({{ '/themen/rsa-primzahlen/' | relative_url }}): Arbeitsblätter, Folien und Python-Programme
+- [Für Lehrkräfte]({{ '/lehrkraefte/' | relative_url }}): Lizenzen, LaTeX-Quellen und Masterarbeiten zur Kryptographie in der Schule
+
+Noch mehr zum Ausprobieren gibt es bei [CrypTool-Online](https://www.cryptool.org/de/cto/),
+einer Sammlung von Verschlüsselungsverfahren zum Ausprobieren im Browser.
 
 ## Wer wir sind
 

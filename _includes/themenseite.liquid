@@ -1,0 +1,22 @@
+{% comment %}
+  Material of one topic: cards from _projects with `category == page.thema`
+  (ordered by `importance`), then the talks whose `themen` list the topic.
+{% endcomment %}
+{% assign material = site.projects | where: "category", page.thema | sort: "importance" %}
+{% assign talks = site.vortraege | where_exp: "t", "t.themen contains page.thema" | sort: "date" | reverse %}
+<div class="projects">
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for project in material %}
+      {% include projects.liquid %}
+    {% endfor %}
+  </div>
+
+  {% if talks.size > 0 %}
+    <h2>Vorträge zum Thema</h2>
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for project in talks %}
+        {% include projects.liquid %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

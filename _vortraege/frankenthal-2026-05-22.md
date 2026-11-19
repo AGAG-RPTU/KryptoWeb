@@ -4,6 +4,7 @@ title: Kryptografie
 description: Max Horn · Karolinen-Gymnasium Frankenthal, 22. Mai 2026
 img: content/img/Vortrag-2026-05-22-Frankenthal.jpg
 date: 2026-05-22
+themen: [caesar-vigenere, rsa-primzahlen]
 ---
 
 **Kryptografie – wie Mathematik beim Verstecken hilft**<br>
