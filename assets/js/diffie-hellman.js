@@ -20,18 +20,12 @@
   const MAX_WRITTEN_DIGITS = 15; // g^a is written out up to this length
   const MAX_TRIES_LISTED = 30;
   const TRIES_PER_CHUNK = 100000; // between two updates of the progress line
-
-  const NARRATION = [
-    "Alia und Ben einigen sich vor der ganzen Klasse auf eine Primzahl p und eine Zahl g.",
-    "Jeder wählt eine geheime Zahl zwischen 2 und p − 2 und verrät sie niemandem: Alia wählt a, Ben wählt b.",
-    "Alia rechnet A = gᵃ mod p, Ben rechnet B = gᵇ mod p. Beide rufen ihr Ergebnis laut in die Klasse.",
-    "Alia rechnet Bᵃ mod p, Ben rechnet Aᵇ mod p. Beide kommen auf dieselbe Zahl: ihren gemeinsamen Schlüssel.",
-    "Der Lauscher hat alles mitgehört. Für den Schlüssel bräuchte er a oder b. Findet er sie heraus?",
-  ];
+  const POWERS_SHOWN = 12; // in the explanations of "Erzeuger" and of gᵃ mod p
 
   const $ = (id) => document.getElementById(id);
   const inputs = { p: $("dh-p"), g: $("dh-g"), a: $("dh-a"), b: $("dh-b") };
   const presets = root.querySelectorAll("[data-p]");
+  const nextButtons = root.querySelectorAll("[data-weiter]");
 
   const state = { step: 1, p: 29, g: 2, a: 5, b: 8 };
   let search = 0; // timer of the eavesdropper's search
@@ -126,13 +120,64 @@
 
     const reach = order(g, p);
     if (reach === p - 1) {
-      return { ok: true, text: `${fmt(p)} ist eine Primzahl, und g = ${fmt(g)} ist ein Erzeuger: Die Potenzen von ${fmt(g)} treffen alle Zahlen von 1 bis ${fmt(p - 1)}.` };
+      return { ok: true, reach, text: `${fmt(p)} ist eine Primzahl, und g = ${fmt(g)} ist ein Erzeuger: Die Potenzen von ${fmt(g)} treffen alle Zahlen von 1 bis ${fmt(p - 1)}.` };
     }
     const better = smallestGenerator(p);
     return {
       ok: true,
+      reach,
       text: `Die Potenzen von g = ${fmt(g)} treffen nur ${fmt(reach)} der ${fmt(p - 1)} Zahlen von 1 bis ${fmt(p - 1)}. Das macht es dem Lauscher leichter; ein Erzeuger wäre zum Beispiel g = ${fmt(better)}.`,
     };
+  }
+
+  // g¹, g², … mod p up to POWERS_SHOWN, and when 1 comes back
+  function generatorExample(result) {
+    const { p, g } = state;
+    if (!result.ok) return "Gib zuerst eine Primzahl p und eine Zahl g ein.";
+    const powers = [];
+    for (let k = 1; k <= Math.min(result.reach, POWERS_SHOWN); k++) powers.push(fmt(powMod(g, k, p)));
+    const list = `${powers.join(", ")}${result.reach > POWERS_SHOWN ? ", …" : ""}`;
+    const start = `Bei p = ${fmt(p)} und g = ${fmt(g)}: ${list}`;
+    if (result.reach === p - 1) {
+      return `${start} Erst ${fmt(g)}${sup(p - 1)} ist wieder 1, und bis dahin kam jede Zahl von 1 bis ${fmt(p - 1)} genau einmal heraus.`;
+    }
+    return `${start} Schon ${fmt(g)}${sup(result.reach)} ist wieder 1: Die Potenzen treffen nur ${fmt(result.reach)} der ${fmt(p - 1)} Zahlen, g = ${fmt(g)} ist also kein Erzeuger.`;
+  }
+
+  // gᵃ mod p by multiplying with g again and again, keeping only the remainder
+  function howTo(result) {
+    const box = $("dh-wie");
+    box.replaceChildren();
+    if (!result.ok) return;
+    const { p, g, a } = state;
+    const P = BigInt(p);
+    const G = BigInt(g);
+    const intro = document.createElement("p");
+    intro.textContent = `Alia nimmt ${fmt(g)} immer wieder mal ${fmt(g)}, bis sie ${fmt(g)}${sup(a)} hat, und behält nach jedem Mal nur den Rest modulo ${fmt(p)}. So bleiben die Zahlen klein:`;
+    const list = document.createElement("ol");
+    list.className = "wz-mono";
+    let current = G % P;
+    const item = (text) => list.append(Object.assign(document.createElement("li"), { textContent: text }));
+    item(`${fmt(g)}¹ = ${fmt(current)}`);
+    for (let k = 2; k <= Math.min(a, POWERS_SHOWN); k++) {
+      const product = current * G;
+      current = product % P;
+      item(`${fmt(g)}${sup(k)}: ${fmt(product / G)} · ${fmt(g)} = ${fmt(product)}${product >= P ? ` → Rest ${fmt(current)}` : ""}`);
+    }
+    const end = document.createElement("p");
+    end.textContent =
+      a <= POWERS_SHOWN
+        ? `Also ist A = ${fmt(current)}. Ben rechnet genauso mit b.`
+        : `… und so weiter bis ${fmt(g)}${sup(a)} mod ${fmt(p)} = ${fmt(powMod(g, a, p))}: ${fmt(a - 1)}-mal malnehmen. Für große Zahlen gibt es einen viel schnelleren Weg, bei dem man immer wieder quadriert.`;
+    box.append(intro, list, end);
+  }
+
+  // Baby-Step-Giant-Step needs about 2·√p steps instead of up to p − 2
+  function betterAttacks() {
+    const { p } = state;
+    const known = Number.isSafeInteger(p) && p >= MIN_P;
+    const steps = known ? `etwa ${fmt(2 * Math.ceil(Math.sqrt(p - 1)))} Rechenschritten statt mit bis zu ${fmt(p - 2)}` : "viel weniger Rechenschritten";
+    return `Ausprobieren ist der einfachste Angriff, aber nicht der schnellste. Mit dem Verfahren „Baby-Step-Giant-Step“ käme der Lauscher hier mit ${steps} aus, und es gibt noch schnellere. Deshalb nimmt man im Internet Primzahlen mit über 600 Stellen: Dann hilft auch das beste bekannte Verfahren nicht.`;
   }
 
   function update() {
@@ -143,6 +188,9 @@
     const result = check();
     $("dh-pruefung").textContent = result.text;
     $("dh-pruefung").className = result.ok ? "wz-klein" : "wz-klein wz-falsch";
+    $("dh-erzeuger-beispiel").textContent = generatorExample(result);
+    howTo(result);
+    $("dh-besser").textContent = betterAttacks();
     for (const button of presets) {
       button.setAttribute("aria-pressed", String(Number(button.dataset.p) === state.p && Number(button.dataset.g) === state.g));
     }
@@ -177,17 +225,26 @@
     state.B = B;
   }
 
+  // Layers not reached yet keep their space, so the page has the same height
+  // in every step; so does the "Weiter" of a layer once it was used.
   function showStep() {
-    // hidden steps keep their space, so the page keeps its height from step to step
-    for (const part of root.querySelectorAll("[data-schritt]")) {
-      const visible = Number(part.dataset.schritt) <= state.step;
-      if (visible && part.classList.contains("dh-spaeter")) part.classList.add("dh-neu");
-      part.classList.toggle("dh-spaeter", !visible);
+    for (const layer of root.querySelectorAll("[data-schritt]")) {
+      const visible = Number(layer.dataset.schritt) <= state.step;
+      if (visible && layer.classList.contains("dh-spaeter")) layer.classList.add("dh-neu");
+      layer.classList.toggle("dh-spaeter", !visible);
     }
-    $("dh-schritt").textContent = `Schritt ${state.step} von ${STEPS}`;
-    $("dh-ansage-text").textContent = NARRATION[state.step - 1];
-    $("dh-zurueck").disabled = state.step === 1;
-    $("dh-weiter").disabled = state.step === STEPS;
+    for (const button of nextButtons) button.parentElement.classList.toggle("dh-spaeter", Number(button.dataset.weiter) <= state.step);
+    $("dh-alles").disabled = state.step === STEPS;
+    $("dh-von-vorn").disabled = state.step === 1;
+  }
+
+  function goTo(step) {
+    state.step = step;
+    showStep();
+    const layer = root.querySelector(`[data-schritt="${step}"]`);
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    layer.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "nearest" });
+    layer.querySelector("h3").focus({ preventScroll: true });
   }
 
   // ---------------------------------------------------------------------------
@@ -227,7 +284,7 @@
         }
         if (hit) {
           stopSearch();
-          status.textContent = `Gefunden nach ${fmt(x)} Versuchen: g${sup(x)} mod p = A. Jetzt rechnet der Lauscher B${sup(x)} mod p = ${fmt(powMod(B, x, p))} und kennt den Schlüssel. Bei kleinen Primzahlen ist das schnell gemacht – deshalb nimmt man im Internet Primzahlen mit über 600 Stellen. Dann dauert Ausprobieren länger, als das Weltall alt ist, und auch die besten bekannten Rechenverfahren schaffen es nicht.`;
+          status.textContent = `Gefunden nach ${fmt(x)} Versuchen: g${sup(x)} mod p = A. Jetzt rechnet der Lauscher B${sup(x)} mod p = ${fmt(powMod(B, x, p))} und kennt den Schlüssel. Bei kleinen Primzahlen ist das schnell gemacht.`;
           return;
         }
       }
@@ -292,17 +349,19 @@
     });
   }
 
-  $("dh-weiter").addEventListener("click", () => {
-    state.step = Math.min(STEPS, state.step + 1);
-    showStep();
-  });
-  $("dh-zurueck").addEventListener("click", () => {
-    state.step = Math.max(1, state.step - 1);
-    showStep();
-  });
+  for (const button of nextButtons) button.addEventListener("click", () => goTo(Number(button.dataset.weiter)));
   $("dh-alles").addEventListener("click", () => {
     state.step = STEPS;
     showStep();
+  });
+  $("dh-von-vorn").addEventListener("click", () => goTo(1));
+
+  // the word "Erzeuger" opens and closes its explanation
+  const term = root.querySelector(".dh-begriff");
+  term.addEventListener("click", () => {
+    const open = term.getAttribute("aria-expanded") !== "true";
+    term.setAttribute("aria-expanded", String(open));
+    $("dh-erzeuger").hidden = !open;
   });
   $("dh-lauschen").addEventListener("click", eavesdrop);
   $("dh-anhalten").addEventListener("click", () => {
@@ -312,15 +371,8 @@
 
   root.addEventListener("animationend", (e) => e.target.classList.remove("dh-neu"));
 
+  for (const heading of root.querySelectorAll(".dh-schicht h3")) heading.tabIndex = -1;
   writeInputs();
   update();
-  // every narration, invisible, in the grid cell of the current one: the line
-  // is as tall as the longest
-  for (const text of NARRATION) {
-    const sizer = document.createElement("span");
-    sizer.textContent = text;
-    sizer.setAttribute("aria-hidden", "true");
-    $("dh-ansage").append(sizer);
-  }
   showStep();
 })();

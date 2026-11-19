@@ -551,22 +551,6 @@ html[data-theme="dark"] .dh {
   --dh-geheim: #f06292;
 }
 
-/* the current narration over all the others, which keep the line as tall
-   as the longest one */
-.dh-ansage {
-  display: grid;
-  font-size: 1.05rem;
-}
-
-.dh-ansage > span {
-  grid-area: 1 / 1;
-  visibility: hidden;
-}
-
-.dh-ansage > .dh-jetzt {
-  visibility: visible;
-}
-
 /* a step not reached yet: invisible, but taking its space */
 .dh .dh-spaeter {
   visibility: hidden;
@@ -577,39 +561,109 @@ html[data-theme="dark"] .dh {
   max-width: 100%;
 }
 
-.dh-buehne {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr 1fr;
-  gap: 0.8rem;
+.dh-oben {
+  justify-content: flex-end;
 }
 
-/* in one column, the public numbers of step 1 come first, not below Alia's
-   box that is still empty then */
-@media (max-width: 640px) {
-  .dh-buehne {
-    grid-template-columns: 1fr;
-  }
-
-  .dh-oeffentlich {
-    order: -1;
-  }
+/* one layer per step, one below the other */
+.dh-schicht {
+  margin-bottom: 0.5rem;
+  scroll-margin-top: 4.5rem; /* below the fixed navbar */
+  scroll-margin-bottom: 4rem; /* above the fixed footer */
 }
 
-.dh-spalte {
+.dh-schicht h3 {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.dh-schicht h3:focus {
+  outline: none;
+}
+
+.dh-nr {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.wz .dh-begriff,
+.wz .dh-begriff:hover {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.dh-erklaerung {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  background: var(--global-code-bg-color);
+  font-size: 0.95rem;
+}
+
+.dh-erklaerung p:last-child {
+  margin-bottom: 0;
+}
+
+.dh-karte {
   min-width: 0;
-  padding: 0.6rem 0.8rem;
+  padding: 0.6rem 0.9rem;
   border: 1px solid var(--global-divider-color);
   border-radius: 8px;
   overflow-wrap: anywhere;
 }
 
-.dh-spalte h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.2rem;
+.dh-karte p:last-child {
+  margin-bottom: 0;
 }
 
 .dh-oeffentlich {
   border-color: var(--dh-offen);
+}
+
+/* Alia left, Ben right; one below the other on a phone */
+.dh-paar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .dh-paar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dh-mitte {
+  margin: 0.75rem 0;
+  text-align: center;
+}
+
+.dh-weiter {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+.dh-wie summary {
+  cursor: pointer;
 }
 
 .dh .dh-offen {

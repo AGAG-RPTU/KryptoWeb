@@ -1,34 +1,21 @@
 {% comment %}
-  Diffie-Hellman key exchange step by step; logic in
-  assets/js/diffie-hellman.js, styles in assets/css/werkzeuge.css (the page
-  links it). No blank lines: kramdown would end the HTML block there.
+  Diffie-Hellman key exchange in five layers, one below the other, each shown
+  by the "Weiter" of the layer above; logic in assets/js/diffie-hellman.js,
+  styles in assets/css/werkzeuge.css (the page links it). No blank lines:
+  kramdown would end the HTML block there.
 {% endcomment %}
 <div class="wz dh" id="dh">
 <noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
-<div class="wz-zeile">
-<button type="button" id="dh-zurueck">Zurück</button>
-<span id="dh-schritt" class="wz-titel"></span>
-<button type="button" id="dh-weiter" class="wz-haupt">Weiter</button>
-<button type="button" id="dh-alles">Alle Schritte zeigen</button>
+<p class="wz-zeile dh-oben"><button type="button" id="dh-alles">Alle Schritte zeigen</button> <button type="button" id="dh-von-vorn">Von vorn</button></p>
+<section class="dh-schicht" data-schritt="1" aria-labelledby="dh-s1">
+<h3 id="dh-s1"><span class="dh-nr" aria-hidden="true">1</span><span>Alia und Ben einigen sich vor der ganzen Klasse auf eine Primzahl <i>p</i> und einen <button type="button" class="dh-begriff" aria-expanded="false" aria-controls="dh-erzeuger">Erzeuger</button> <i>g</i>.</span></h3>
+<div id="dh-erzeuger" class="dh-erklaerung" hidden>
+<p>Ein Erzeuger ist eine Zahl <i>g</i>, deren Potenzen g¹, g², g³, … modulo <i>p</i> alle Zahlen von 1 bis <i>p</i> − 1 treffen, bevor sie sich wiederholen. Je mehr Zahlen herauskommen können, desto mehr muss ein Lauscher ausprobieren.</p>
+<p id="dh-erzeuger-beispiel"></p>
 </div>
-<p id="dh-ansage" class="dh-ansage"><span id="dh-ansage-text" class="dh-jetzt" aria-live="polite"></span></p>
-<div class="dh-buehne">
-<section class="dh-spalte" aria-labelledby="dh-alia-titel">
-<h3 id="dh-alia-titel">Alia</h3>
-<div data-schritt="2">
-<p><label>geheime Zahl <i>a</i> = <input type="number" id="dh-a" min="2" max="27" value="5"></label> <button type="button" id="dh-a-zufall">Zufallszahl</button></p>
-<p class="wz-klein">erlaubt: <span class="dh-bereich">2 bis 27</span></p>
-<p class="dh-geheim wz-klein">🔒 kennt nur Alia</p>
-</div>
-<p data-schritt="3" id="dh-alia-rechnet"></p>
-<p data-schritt="4" id="dh-alia-schluessel"></p>
-</section>
-<section class="dh-spalte dh-oeffentlich" aria-labelledby="dh-oeffentlich-titel">
-<h3 id="dh-oeffentlich-titel">Öffentlich</h3>
-<p class="wz-klein">Das hört die ganze Klasse mit.</p>
-<div data-schritt="1">
-<p><label>Primzahl <i>p</i> = <input type="text" id="dh-p" value="29" inputmode="numeric" size="14" autocomplete="off"></label></p>
-<p><label><i>g</i> = <input type="text" id="dh-g" value="2" inputmode="numeric" size="6" autocomplete="off"></label></p>
+<div class="dh-karte dh-oeffentlich">
+<p class="wz-titel dh-offen">Öffentlich <span class="wz-klein">– das hört die ganze Klasse mit</span></p>
+<p class="wz-zeile"><label>Primzahl <i>p</i> = <input type="text" id="dh-p" value="29" inputmode="numeric" size="14" autocomplete="off"></label> <label>Erzeuger <i>g</i> = <input type="text" id="dh-g" value="2" inputmode="numeric" size="6" autocomplete="off"></label></p>
 <div class="wz-chips" role="group" aria-label="Beispiele">
 <button type="button" class="wz-chip" data-p="29" data-g="2" aria-pressed="true">29 wie im Vortrag</button>
 <button type="button" class="wz-chip" data-p="101" data-g="2" aria-pressed="false">101</button>
@@ -36,30 +23,57 @@
 </div>
 <p id="dh-pruefung" class="wz-klein"></p>
 </div>
-<p data-schritt="3" class="dh-offen">A = <b id="dh-A"></b> <span class="wz-klein">von Alia</span></p>
-<p data-schritt="3" class="dh-offen">B = <b id="dh-B"></b> <span class="wz-klein">von Ben</span></p>
+<p class="dh-weiter"><button type="button" class="wz-haupt" data-weiter="2">Weiter</button></p>
 </section>
-<section class="dh-spalte" aria-labelledby="dh-ben-titel">
-<h3 id="dh-ben-titel">Ben</h3>
-<div data-schritt="2">
+<section class="dh-schicht" data-schritt="2" aria-labelledby="dh-s2">
+<h3 id="dh-s2"><span class="dh-nr" aria-hidden="true">2</span><span>Jeder wählt eine geheime Zahl und verrät sie niemandem: Alia wählt <i>a</i>, Ben wählt <i>b</i>.</span></h3>
+<div class="dh-paar">
+<div class="dh-karte">
+<p class="wz-titel">Alia</p>
+<p><label>geheime Zahl <i>a</i> = <input type="number" id="dh-a" min="2" max="27" value="5"></label> <button type="button" id="dh-a-zufall">Zufallszahl</button></p>
+<p class="wz-klein">erlaubt: <span class="dh-bereich">2 bis 27</span></p>
+<p class="dh-geheim wz-klein">🔒 kennt nur Alia</p>
+</div>
+<div class="dh-karte">
+<p class="wz-titel">Ben</p>
 <p><label>geheime Zahl <i>b</i> = <input type="number" id="dh-b" min="2" max="27" value="8"></label> <button type="button" id="dh-b-zufall">Zufallszahl</button></p>
 <p class="wz-klein">erlaubt: <span class="dh-bereich">2 bis 27</span></p>
 <p class="dh-geheim wz-klein">🔒 kennt nur Ben</p>
 </div>
-<p data-schritt="3" id="dh-ben-rechnet"></p>
-<p data-schritt="4" id="dh-ben-schluessel"></p>
-</section>
 </div>
-<div data-schritt="4" class="wz-kasten">
-<p class="wz-ergebnis">Gemeinsamer Schlüssel: <span id="dh-k" class="dh-geheim"></span></p>
+<p class="dh-weiter"><button type="button" class="wz-haupt" data-weiter="3">Weiter</button></p>
+</section>
+<section class="dh-schicht" data-schritt="3" aria-labelledby="dh-s3">
+<h3 id="dh-s3"><span class="dh-nr" aria-hidden="true">3</span><span>Alia rechnet A = gᵃ mod p, Ben rechnet B = gᵇ mod p. Beide rufen ihr Ergebnis laut in die Klasse.</span></h3>
+<div class="dh-paar">
+<div class="dh-karte"><p class="wz-titel">Alia</p><p id="dh-alia-rechnet"></p></div>
+<div class="dh-karte"><p class="wz-titel">Ben</p><p id="dh-ben-rechnet"></p></div>
+</div>
+<p class="dh-mitte dh-offen">Jetzt hört die ganze Klasse: A = <b id="dh-A"></b> und B = <b id="dh-B"></b>.</p>
+<details class="dh-wie"><summary>Wie rechnet man das aus?</summary><div id="dh-wie"></div></details>
+<p class="dh-weiter"><button type="button" class="wz-haupt" data-weiter="4">Weiter</button></p>
+</section>
+<section class="dh-schicht" data-schritt="4" aria-labelledby="dh-s4">
+<h3 id="dh-s4"><span class="dh-nr" aria-hidden="true">4</span><span>Alia rechnet Bᵃ mod p, Ben rechnet Aᵇ mod p.</span></h3>
+<div class="dh-paar">
+<div class="dh-karte"><p class="wz-titel">Alia</p><p id="dh-alia-schluessel"></p></div>
+<div class="dh-karte"><p class="wz-titel">Ben</p><p id="dh-ben-schluessel"></p></div>
+</div>
+<div class="wz-kasten">
+<p class="wz-ergebnis dh-mitte">Gemeinsamer Schlüssel: <span id="dh-k" class="dh-geheim"></span></p>
 <p>Zweimal dieselbe Zahl – Zufall? Nein: A<sup><i>b</i></sup> = (g<sup><i>a</i></sup>)<sup><i>b</i></sup> = g<sup><i>a</i>·<i>b</i></sup> = (g<sup><i>b</i></sup>)<sup><i>a</i></sup> = B<sup><i>a</i></sup>, und das gilt auch, wenn man nach jedem Schritt nur den Rest modulo <i>p</i> behält.</p>
 </div>
-<div data-schritt="5" class="wz-kasten">
-<p class="wz-titel">Der Lauscher</p>
+<p class="dh-weiter"><button type="button" class="wz-haupt" data-weiter="5">Weiter</button></p>
+</section>
+<section class="dh-schicht" data-schritt="5" aria-labelledby="dh-s5">
+<h3 id="dh-s5"><span class="dh-nr" aria-hidden="true">5</span><span>Der Lauscher hat alles mitgehört. Für den Schlüssel bräuchte er <i>a</i> oder <i>b</i>. Findet er sie heraus?</span></h3>
+<div class="dh-karte">
 <p>Er kennt <span class="dh-offen">p = <b id="dh-l-p"></b>, g = <b id="dh-l-g"></b>, A = <b id="dh-l-A"></b> und B = <b id="dh-l-B"></b></span>. Er kennt nicht <span class="dh-geheim"><i>a</i>, <i>b</i> und den Schlüssel</span>. Er kann aber alle Exponenten ausprobieren, bis g<sup><i>x</i></sup> mod p = A herauskommt.</p>
 <p class="wz-zeile"><button type="button" id="dh-lauschen">Lauscher probiert aus</button> <button type="button" id="dh-anhalten" hidden>Anhalten</button></p>
 <p id="dh-lauscher" aria-live="polite"></p>
 <ol id="dh-versuche" class="dh-versuche wz-mono"></ol>
+<p id="dh-besser"></p>
 </div>
+</section>
 </div>
 <script defer src="{{ '/assets/js/diffie-hellman.js' | relative_url | bust_file_cache }}"></script>
