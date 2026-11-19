@@ -94,6 +94,13 @@ beschreibt den Vortrag und verlinkt das Material. Die Übersicht sortiert nach
 pdftoppm -f 1 -l 1 -singlefile -scale-to-x 1190 -scale-to-y -1 -jpeg datei.pdf content/img/Name
 ```
 
+**Große PDFs** vor dem Einchecken verkleinern; das Skript rechnet Bilder auf
+300 dpi herunter und ersetzt die Datei nur, wenn ihr Text gleich bleibt:
+
+```bash
+python3 _quellen/pdf_verkleinern.py content/<Ordner>/<Datei>.pdf
+```
+
 **LaTeX-Quellen** eigener Vorlagen liegen in `_quellen/`; Jekyll veröffentlicht
 den Ordner nicht. [_quellen/bauen.sh](_quellen/bauen.sh) übersetzt alle Quellen
 mit `lualatex` und legt `_quellen/<Rubrik>/<Name>.tex` als

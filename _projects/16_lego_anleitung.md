@@ -1,6 +1,6 @@
 ---
 title: "Lego-Enigma"
-description: "Anleitung zum Bau einer Enigma aus Lego (PDF, 81 MB)"
+description: "Anleitung zum Bau einer Enigma aus Lego (PDF, 0,7 MB)"
 img: content/img/Anleitung.jpg
 importance: 4
 art: Anleitung

@@ -19,7 +19,7 @@ Spione und Codeknacker ist die Mathematik.
 
 ## Material
 
-- [Folien]({{ '/content/Vortraege/Vortrag-2026-11-18-Kinderuni.pdf' | relative_url }}) (PDF, 10 MB)
+- [Folien]({{ '/content/Vortraege/Vortrag-2026-11-18-Kinderuni.pdf' | relative_url }}) (PDF, 1,8 MB)
 - [Agenten-Blatt]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni.pdf' | relative_url }}) mit den Aufgaben aus dem Vortrag und Rätseln für zu Hause (PDF, 2 Seiten). Die Lösungen stehen kopfüber unten auf Seite 2.
 - [LaTeX-Quelle des Agenten-Blatts]({{ '/content/Vortraege/Arbeitsblatt-2026-11-18-Kinderuni-LaTeX.zip' | relative_url }}) zum Anpassen (ZIP)
 - [Caesar-Scheibe]({{ '/content/Kopiervorlagen/Caesar.pdf' | relative_url }}) zum Ausschneiden und Basteln (PDF)

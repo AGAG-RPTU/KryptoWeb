@@ -17,7 +17,7 @@ Personen über einen öffentlichen Kanal auf einen gemeinsamen geheimen Schlüss
 
 ## Material
 
-- [Folien]({{ '/content/Vortraege/Vortrag-2026-05-22-Frankenthal.pdf' | relative_url }}) (PDF, 12 MB)
+- [Folien]({{ '/content/Vortraege/Vortrag-2026-05-22-Frankenthal.pdf' | relative_url }}) (PDF, 2,5 MB)
 
 ## Bildnachweis
 
