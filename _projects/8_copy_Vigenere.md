@@ -1,13 +1,9 @@
 ---
-layout: page
-title: Vigenère
-description: Eine Vigenère-Scheibe.
+title: "Vigenère-Tabelle"
+description: "Vigenère-Tabelle zum Ver- und Entschlüsseln"
 img: content/img/Vigenere.jpg
+importance: 2
 category: Kryptographie
+file: "/content/Kopiervorlagen/Vigenere.pdf"
+credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.de)"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/Vigenere.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/Vigenere.pdf' | relative_url }}" download>
-    Download starten
-</a>

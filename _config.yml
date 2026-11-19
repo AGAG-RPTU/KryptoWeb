@@ -9,19 +9,18 @@ last_name: RPTU
 contact_note: >
   You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Materialien zur Kryptographie vom Tag der Mathematik und anderen Veranstaltungen der RPTU Kaiserslautern-Landau.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: Kryptographie, Verschlüsselung, Enigma, RSA, Tag der Mathematik, RPTU
 lang: de # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://crypto.github.io[:14300] # the base hostname & protocol for your site
+url: https://agag-rptu.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
-impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
+impressum_path: /impressum/ # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 
 # -----------------------------------------------------------------------------
@@ -103,8 +102,11 @@ collections:
     defaults:
       layout: post
     output: true
-  projects:
+  projects: # cards link straight to the files, no page per item
+    output: false
+  vortraege:
     output: true
+    permalink: /Vortraege/:name/
   teachings:
     output: true
 
@@ -264,7 +266,7 @@ enable_math: true # enables math typesetting (uses MathJax)
 enable_tooltips: false # enables automatic tooltip links generated for each section titles on pages and posts
 enable_darkmode: true # enables switching between light/dark modes
 enable_project_categories: true # enables categorization of projects into multiple categories
-enable_medium_zoom: true # enables image zoom feature (as on medium.com)
+enable_medium_zoom: false # loads medium-zoom from a CDN; enables image zoom feature (as on medium.com)
 enable_progressbar: true # enables a horizontal progress bar linked to the vertical scroll position
 enable_video_embedding: false # enables video embedding for bibtex entries. If false, the button opens the video link in a new window.
 
@@ -276,7 +278,7 @@ enable_video_embedding: false # enables video embedding for bibtex entries. If f
 # The integrity hash is used to ensure that the library is not tampered with.
 # Integrity hashes not provided by the libraries were generated using https://www.srihash.org/
 third_party_libraries:
-  download: false # if true, download the versions of the libraries specified below and use the downloaded files
+  download: true # serve fonts and libraries ourselves instead of loading them from CDNs; if true, download the versions of the libraries specified below and use the downloaded files
   bootstrap-table:
     integrity:
       css: "sha256-uRX+PiRTR4ysKFRCykT8HLuRCub26LgXJZym3Yeom1c="
@@ -288,8 +290,11 @@ third_party_libraries:
   fontawesome:
     integrity:
       css: "sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c="
+    local:
+      fonts: "../webfonts/" # all.min.css loads its fonts from ../webfonts/
     url:
       css: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{version}}/css/all.min.css"
+      fonts: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{version}}/webfonts/"
     version: "7.2.0"
   academicons:
     integrity:

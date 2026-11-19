@@ -1,13 +1,8 @@
 ---
-layout: page
-title: Marcel Schütz
-description: Cryptowährungen und deren Einsatz im schulischen Kontext
+title: "Cryptowährungen und deren Einsatz im schulischen Kontext"
+description: "Masterarbeit von Marcel Schütz, 2019"
 img: content/img/Schuetz1.jpg
+importance: 3
 category: Arbeiten
+file: "/content/Masterarbeiten/Schuetz_CryptoWaehrungen.pdf"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Masterarbeiten/Schuetz_CryptoWaehrungen.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Masterarbeiten/Schuetz_CryptoWaehrungen.pdf' | relative_url }}" download>
-    Download starten
-</a>

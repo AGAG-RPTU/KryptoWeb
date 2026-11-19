@@ -1,0 +1,91 @@
+% Bastelvorlage Caesar-Scheibe: zwei Scheiben ausschneiden, mit
+% Musterbeutelklammer durch die Mittelpunkte verbinden. Außen = Klartext,
+% innen = Geheimtext. In der großen Scheibe steht die Bauanleitung (später
+% verdeckt), in der kleinen die Kurzanleitung zum Benutzen.
+% Übersetzen in diesem Ordner mit lualatex (RPTU-Hausschrift Red Hat).
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Red Hat Text}[BoldFont={Red Hat Text SemiBold}]
+\newfontfamily\display{Red Hat Display}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\definecolor{darkblue}{HTML}{1F3B5B}
+\definecolor{textblue}{HTML}{1F2E43}
+\definecolor{orange}{HTML}{C95F25}
+
+\InputIfFileExists{fusszeile}{}{\input{../fusszeile}}
+
+% Ein Buchstabenring: Schnittkreis, Innenkreis, Trennstriche, A-Z.
+% #1 Aussenradius (Schnittkante), #2 Innenradius des Rings, #3 Farbe
+\newcommand{\letterring}[3]{%
+  \pgfmathsetmacro{\rmid}{(#1+#2)/2}%
+  \draw[darkblue, line width=1.4pt] (0,0) circle (#1);
+  \draw[darkblue, line width=0.9pt] (0,0) circle (#2);
+  \foreach \i in {0,...,25}{
+    \pgfmathsetmacro{\angle}{90 - (\i+0.5)*360/26}
+    \draw[darkblue, line width=0.7pt] (\angle:#2) -- (\angle:#1);
+  }
+  \foreach \i/\letter in {
+    0/A, 1/B, 2/C, 3/D, 4/E, 5/F, 6/G, 7/H, 8/I, 9/J, 10/K, 11/L, 12/M,
+    13/N, 14/O, 15/P, 16/Q, 17/R, 18/S, 19/T, 20/U, 21/V, 22/W, 23/X,
+    24/Y, 25/Z
+  }{
+    \pgfmathsetmacro{\angle}{90 - \i*360/26}
+    \node[font=\bfseries\Large, text=#3,
+          rotate={\angle-90}] at (\angle:\rmid) {\letter};
+  }
+  % Loch fuer die Musterbeutelklammer
+  \fill[textblue] (0,0) circle (0.06);
+  \draw[textblue, line width=0.5pt] (0,0) circle (0.18);
+}
+
+% Text im Inneren einer Scheibe, über oder unter dem Mittelpunkt
+\tikzset{innen/.style={text=textblue, font=\small, align=center}}
+
+\begin{document}
+\begin{center}
+
+{\display\fontsize{22}{22}\selectfont\color{darkblue} CAESAR-SCHEIBE ZUM BASTELN}\par
+\vspace{9mm}
+
+% Große Scheibe links oben, kleine rechts unten; Mittelpunkte so weit
+% auseinander, dass zwischen den Schnittkanten 1 cm Platz bleibt.
+\begin{tikzpicture}[line cap=round, line join=round]
+  \begin{scope}[shift={(-2.8, 0)}]
+    \letterring{6.4}{5.3}{darkblue}
+    \node[innen, anchor=south] at (0, 0.5) {%
+      \textbf{BAUANLEITUNG}\\[1mm]
+      1. Diese Seite auf dickes Papier drucken\\
+      oder auf Pappe kleben, etwa von einem\\
+      alten Karton.\\
+      2. Beide Scheiben ausschneiden.};
+    \node[innen, anchor=north] at (0, -0.5) {%
+      3. Die Mittelpunkte vorsichtig\\
+      durchstechen (Erwachsene helfen).\\
+      4. Die kleine Scheibe auf die große legen\\
+      und mit einer Musterbeutelklammer\\
+      durch die Mittelpunkte verbinden.};
+  \end{scope}
+
+  \begin{scope}[shift={(4.1, -10.45)}]
+    \letterring{5.1}{4.0}{textblue}
+    \node[innen, anchor=south] at (0, 0.5) {%
+      \textbf{SO GEHT'S}\\[1mm]
+      Außen steht der Klartext,\\
+      innen der Geheimtext.};
+    \node[innen, anchor=north] at (0, -0.5) {%
+      Drehen, bis innen \textbf{D} unter\\
+      außen \textbf{A} steht: Schlüssel 3.\\
+      Verschlüsseln: außen suchen,\\
+      innen ablesen.};
+  \end{scope}
+\end{tikzpicture}
+
+\end{center}
+
+\vfill
+\fusszeile
+\end{document}

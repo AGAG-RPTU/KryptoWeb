@@ -1,13 +1,8 @@
 ---
-layout: page
-title: Papier Enigma - German
-description: Erklärung über die Verwendung der Papier-Enigma.
-img: content/img/Papier Enigma - German.jpg
+title: "Papier-Enigma von Mike Koss"
+description: "Enigma zum Ausdrucken mit Anleitung (englisch) und deutscher Fassung, auf der Seite des Autors"
+importance: 6
 category: Kryptographie
+file: "https://mckoss.com/posts/paper-enigma/"
+credit: "© Mike Koss, alle Rechte vorbehalten"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/Papier Enigma - German.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/Papier Enigma - German.pdf' | relative_url }}" download>
-    Download starten
-</a>

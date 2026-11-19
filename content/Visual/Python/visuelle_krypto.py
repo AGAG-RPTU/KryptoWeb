@@ -1,6 +1,47 @@
 from random import randint
 
 
+def lies_pbm(datei):
+    """Liest ein PBM-Bild als Text (P1) oder binär (P4); 1 = schwarz.
+
+    Gibt Breite, Höhe und die Pixel zeilenweise als Liste zurück.
+    """
+    with open(datei, "rb") as f:
+        daten = f.read()
+
+    # Kopf: Kennung, Breite, Höhe; dazwischen Leerraum oder #-Kommentare
+    teile = []
+    pos = 0
+    while len(teile) < 3:
+        if daten[pos:pos+1].isspace():
+            pos += 1
+            continue
+        if daten[pos:pos+1] == b"#":
+            pos = daten.index(b"\n", pos)
+            continue
+        start = pos
+        while not daten[pos:pos+1].isspace():
+            pos += 1
+        teile.append(daten[start:pos])
+    kennung, breite, hoehe = teile[0], int(teile[1]), int(teile[2])
+    pos += 1  # genau ein Leerzeichen trennt Kopf und Pixel
+
+    if kennung == b"P1":
+        pixel = [int(z) for z in daten[pos:].decode("ascii") if z in "01"]
+    elif kennung == b"P4":
+        # jede Bildzeile beginnt mit einem neuen Byte, 8 Pixel pro Byte
+        bytes_pro_zeile = (breite + 7) // 8
+        pixel = []
+        for h in range(hoehe):
+            zeile = daten[pos + h*bytes_pro_zeile : pos + (h+1)*bytes_pro_zeile]
+            for b in range(breite):
+                pixel.append((zeile[b // 8] >> (7 - b % 8)) & 1)
+    else:
+        raise SystemExit(datei + " ist keine PBM-Datei")
+
+    return breite, hoehe, pixel
+
+
 print(" *** Visuelle Krypptographie ***")
 print(" ")
 print("Dieses Programm erzeugt aus einem schwarz-weißen PBM-Bild zwei Folien zum Übereinanderlegen")
@@ -15,41 +56,11 @@ f2=input("Dateiname der Folie 2 angeben. Diese wird im gleichen Verzeichnis gesp
 f2=f2+".pbm"
 
 #Listen erzeugen
-Liste = []
-Daten=[]
 Liste1=[]
 Liste2=[]
 
 #Bilddatei einlesen
-fobj = open(datei,"r")
-c=0
-for line in fobj:
-    c=c+1
-    if c==1:
-        line1=line
-    if c==2:
-        line2=line
-        for i in line:
-            Daten.append(i)    
-    if c>=2:
-        for i in line:
-            if i=="1" or i=="0":
-                Liste.append(int(i))
-fobj.close()
-
-#Höhe und Breite auslesen
-bstr=""
-hstr=""
-nr=1
-for zeichen in Daten:
-    if zeichen == " ":
-        nr=2
-    if nr == 1:    
-        bstr=bstr+zeichen
-    if nr == 2 and zeichen!="\n" and zeichen!=" ":    
-        hstr=hstr+zeichen
-breite=int(bstr)
-hoehe=int(hstr)
+breite, hoehe, Liste = lies_pbm(datei)
 
 print(" ")
 print ("Das Originalbild hat folgende Daten:")
@@ -110,7 +121,7 @@ line2=str(breite*2)+" "+str(hoehe*2)+"\n"
 
 #Schreiben Folie 1
 file = open(f1,"w") 
-file.write(line1) 
+file.write("P1\n") 
 file.write(line2)
 for i in Liste1:
     file.write(str(i)) 
@@ -118,7 +129,7 @@ file.close()
 
 #Schreiben Folie 2
 file = open(f2,"w") 
-file.write(line1) 
+file.write("P1\n") 
 file.write(line2)
 for i in Liste2:
     file.write(str(i)) 

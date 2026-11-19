@@ -9,6 +9,8 @@ display_categories: [Kryptographie]
 horizontal: false
 ---
 
+Unter jeder Vorlage stehen Urheber und Lizenz. Vorlagen, die wir nicht selbst weitergeben dürfen, verlinken auf die Seite des Autors.
+
 <!-- pages/projects.md -->
 <div class="projects">
 {% if site.enable_project_categories and page.display_categories %}
@@ -18,7 +20,7 @@ horizontal: false
     <h2 class="category">{{ category }}</h2>
   </a>
   {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: category %}
+  {% assign sorted_projects = categorized_projects | sort: "importance" %}
   <!-- Generate cards for each project -->
   {% if page.horizontal %}
   <div class="container">

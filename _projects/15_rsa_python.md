@@ -1,12 +1,7 @@
 ---
-layout: page
-title: Python
-description: Eine Visualisierung des RSA-Verfahrens mittels Python.
+title: "Python"
+description: "RSA zum Ausprobieren (Python)"
+importance: 2
 category: RSA
+file: "/content/RSA/RSA.py"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/RSA/RSA.py' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/RSA/RSA.py' | relative_url }}" download>
-    Download starten
-</a>

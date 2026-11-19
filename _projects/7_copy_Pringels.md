@@ -1,13 +1,9 @@
 ---
-layout: page
-title: PringelsEnigma
-description: Druckvorlage für die Papierenigma.
+title: "Pringles-Enigma"
+description: "Walzen einer Enigma zum Aufkleben auf eine Chipsdose (englisch)"
 img: content/img/PringelsEnigma.jpg
+importance: 4
 category: Kryptographie
+file: "/content/Kopiervorlagen/PringelsEnigma.pdf"
+credit: "© 2012 Franklin Heath Ltd, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) · [Quelle](https://franklinheath.co.uk/wp-content/uploads/2012/05/pringlesenigma3a4.pdf)"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Kopiervorlagen/PringelsEnigma.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Kopiervorlagen/PringelsEnigma.pdf' | relative_url }}" download>
-    Download starten
-</a>
