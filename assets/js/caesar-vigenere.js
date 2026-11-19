@@ -308,19 +308,24 @@
     const teamButtons = breaker.querySelectorAll("[data-teams]");
     const state = { teams: 1, chosen: [] }; // chosen: cipher letter taken as E, per team
 
-    // bar chart; marked: index of the highlighted bar, onPick: makes bars buttons
-    function chart(values, { color, marked, label, onPick }) {
+    // bar chart; marked: index of the highlighted bar, onPick: makes bars buttons,
+    // format: the value as shown on hover
+    function chart(values, { color, marked, label, onPick, format }) {
+      const EDGE = 2; // columns at each end whose labels align with the chart edge
       const box = el("div", { class: "ck-diagramm" });
       const bars = el("div", { class: "ck-balken" });
       const names = el("div", { class: "ck-namen", "aria-hidden": "true" });
       const top = Math.max(...values, 1e-9);
       values.forEach((v, i) => {
-        const column = el("div", { class: "ck-saeule" });
+        const side = i < EDGE ? " ck-links" : i >= N - EDGE ? " ck-rechts" : "";
+        const column = el("div", { class: `ck-saeule${side}`, style: `--hoehe: ${(100 * v) / top}%` });
+        const value = `${ALPHABET[i]}: ${format(v)}`;
         if (i === marked && label) column.append(el("span", { class: "ck-marke" }, label));
+        column.append(el("span", { class: "ck-anzahl", "aria-hidden": "true" }, value));
         const bar = el(onPick ? "button" : "span", {
           class: "ck-balken-wert",
-          style: `height: ${(100 * v) / top}%; --farbe: ${color}`,
-          "aria-label": `${ALPHABET[i]}: ${v}`,
+          style: `--farbe: ${color}`,
+          "aria-label": value,
         });
         if (onPick) {
           bar.type = "button";
@@ -397,6 +402,7 @@
             color,
             marked: asE,
             label: "= E?",
+            format: (c) => `${c}-mal`,
             onPick: (x) => {
               state.chosen[t] = x;
               update();
@@ -438,9 +444,14 @@
       });
     }
 
-    $("ck-deutsch").replaceWith(
-      Object.assign(chart(GERMAN, { color: "#1f3a5f", marked: E, label: "E" }), { id: "ck-deutsch" }),
-    );
+    const german = chart(GERMAN, {
+      color: "#1f3a5f",
+      marked: E,
+      label: "E",
+      format: (p) => `${p.toLocaleString("de-DE")} %`,
+    });
+    german.id = "ck-deutsch";
+    $("ck-deutsch").replaceWith(german);
     setBreakerText(EXAMPLES[0]);
   }
 

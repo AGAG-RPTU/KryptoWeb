@@ -384,22 +384,24 @@
   gap: 2px;
 }
 
+/* Labels hang above the bars, out of the flow, so they take no height from
+   them; the padding leaves room for a label above the tallest bar. */
 .ck-balken {
+  box-sizing: content-box;
   height: 90px;
-  align-items: end;
+  padding-top: 1.1rem;
 }
 
 .ck-saeule {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  position: relative;
 }
 
 .wz .ck-balken-wert {
   display: block;
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: var(--hoehe);
   min-height: 1px;
   padding: 0;
   border: 0;
@@ -417,11 +419,47 @@
   opacity: 1;
 }
 
-.ck-marke {
-  color: #c8602a;
+.ck-marke,
+.ck-anzahl {
+  position: absolute;
+  bottom: calc(var(--hoehe) + 2px);
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 0.7rem;
   font-weight: bold;
+  line-height: 1.3;
   white-space: nowrap;
+  pointer-events: none;
+}
+
+/* at the ends of the chart, labels must not stick out of it */
+.ck-links :is(.ck-marke, .ck-anzahl) {
+  left: 0;
+  transform: none;
+}
+
+.ck-rechts :is(.ck-marke, .ck-anzahl) {
+  right: 0;
+  left: auto;
+  transform: none;
+}
+
+.ck-marke {
+  color: #c8602a;
+}
+
+.ck-anzahl {
+  display: none;
+  z-index: 1;
+  padding: 0 0.3rem;
+  border-radius: 3px;
+  background: var(--global-text-color);
+  color: var(--global-bg-color);
+}
+
+.ck-saeule:hover .ck-anzahl,
+.ck-saeule:focus-within .ck-anzahl {
+  display: block;
 }
 
 .ck-namen span {
