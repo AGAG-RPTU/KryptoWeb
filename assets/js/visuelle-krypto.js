@@ -37,7 +37,6 @@
 
   const STAGE_MARGIN = 12; // CSS px around the foils
   const FOIL_GAP = 16; // CSS px between the foils when apart
-  const SNAP_PX = 6; // a dragged foil snaps into alignment within this distance
   const GLIDE_MS = 600; // matches the transition in visuelle-krypto.css
 
   const ARROWS = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
@@ -421,16 +420,13 @@
     return Math.min(Math.max(v, lo), hi);
   }
 
-  function moveTo(f, x, y, snap) {
+  // No snapping: the motif fading in during the last subpixel is the point.
+  // Whole CSS pixels of offset to the other foil keep exact alignment
+  // reachable by hand and both foils on the device pixel grid.
+  function moveTo(f, x, y) {
     const other = f === foilA ? foilB : foilA;
-    x = clamp(x, 0, geometry.width - geometry.fw);
-    y = clamp(y, 0, geometry.height - geometry.fh);
-    if (Math.abs(x - other.x) <= snap && Math.abs(y - other.y) <= snap) {
-      x = other.x;
-      y = other.y;
-    }
-    f.x = x;
-    f.y = y;
+    f.x = other.x + Math.round(clamp(x, 0, geometry.width - geometry.fw) - other.x);
+    f.y = other.y + Math.round(clamp(y, 0, geometry.height - geometry.fh) - other.y);
     place(f);
     updateStatus();
   }
@@ -460,7 +456,7 @@
 
     f.el.addEventListener("pointermove", (e) => {
       if (!drag || drag.pointer !== e.pointerId) return;
-      moveTo(f, e.clientX + drag.dx, e.clientY + drag.dy, Math.max(SNAP_PX, 1.5 * geometry.scale));
+      moveTo(f, e.clientX + drag.dx, e.clientY + drag.dy);
     });
 
     const end = (e) => {
@@ -469,14 +465,14 @@
     f.el.addEventListener("pointerup", end);
     f.el.addEventListener("pointercancel", end);
 
-    // one subpixel per key press, ten with Shift; snapping only within half a step
+    // one CSS pixel per key press, ten with Shift
     f.el.addEventListener("keydown", (e) => {
       const d = ARROWS[e.key];
       if (!d) return;
       e.preventDefault();
       raise(f);
-      const step = geometry.scale * (e.shiftKey ? 10 : 1);
-      moveTo(f, f.x + d[0] * step, f.y + d[1] * step, geometry.scale / 2);
+      const step = e.shiftKey ? 10 : 1;
+      moveTo(f, f.x + d[0] * step, f.y + d[1] * step);
     });
   }
 

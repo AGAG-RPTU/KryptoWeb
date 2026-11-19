@@ -49,9 +49,9 @@ man nur die Augen. Die Idee stammt von Moni Naor und Adi Shamir (1994).
 
 ## Selbst ausprobieren
 
-Wähle ein Motiv und zieh dann eine Folie mit der Maus oder dem Finger auf die andere.
-Erst wenn sie genau deckungsgleich liegen, erscheint das Bild. Grobe Motive mit großen
-Pixeln wirken am besten.
+Wähle ein Motiv und zieh dann eine Folie mit der Maus oder dem Finger langsam auf die
+andere. Kurz bevor sie genau deckungsgleich liegen, taucht das Bild auf. Grobe Motive
+mit großen Pixeln wirken am besten.
 
 {% include visuelle_krypto.liquid %}
 
