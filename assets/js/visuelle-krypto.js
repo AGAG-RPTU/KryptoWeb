@@ -25,13 +25,14 @@
   const WHITE = "#fff";
 
   const MAX_MOTIF_PX = 200; // longer side of the motif
-  const SHAPE_PX = 640; // drawing resolution of the built-in shapes
   const IMAGE_PX = 1600; // chosen images are first reduced to this size
-  const THRESHOLD = 128; // luminance below which a pixel counts as black
 
-  // Fixed sizes for "grob", "mittel", "fein", at which the motifs look clean:
-  // the shorter side in pixels, for text the enlargement of the pixel font.
-  const SIZES = { form: [24, 32, 48], text: [2, 3, 4], bild: [64, 96, 144] };
+  // Fixed sizes for "grob", "mittel", "fein": for text the enlargement of the
+  // pixel font, for an own image the shorter side in pixels. The shapes have a
+  // picture per size in visuelle-krypto-motive.js.
+  const SIZES = { text: [2, 3, 4], bild: [64, 96, 144] };
+  const ART = window.visuelleKryptoMotive;
+  const ART_MARGIN = 1 / 12; // white border around a shape, relative to its size
 
   const PREVIEW_W = 160; // CSS px
   const PREVIEW_H = 120;
@@ -152,83 +153,20 @@
     return c;
   }
 
-  function fillEllipse(ctx, x, y, rx, ry) {
-    ctx.beginPath();
-    ctx.ellipse(x, y, rx, ry, 0, 0, 2 * Math.PI);
-    ctx.fill();
-  }
+  // white border included, so the shape is framed by noise on the foils
+  function artMotif(art) {
+    const rows = art.trim().split("\n").map((row) => row.trim());
+    const pad = Math.round(ART_MARGIN * Math.max(rows[0].length, rows.length));
+    const w = rows[0].length + 2 * pad;
+    const h = rows.length + 2 * pad;
 
-  // Drawn in the unit square. Features stay at least 2 pixels wide at the
-  // smallest size in SIZES.form, or they break up.
-  const SHAPES = {
-    smiley(ctx) {
-      fillEllipse(ctx, 0.5, 0.5, 0.45, 0.45);
-      ctx.fillStyle = WHITE;
-      fillEllipse(ctx, 0.35, 0.37, 0.065, 0.1);
-      fillEllipse(ctx, 0.65, 0.37, 0.065, 0.1);
-      ctx.strokeStyle = WHITE;
-      ctx.lineWidth = 0.1;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.arc(0.5, 0.5, 0.25, 0.2 * Math.PI, 0.8 * Math.PI);
-      ctx.stroke();
-    },
-
-    herz(ctx) {
-      ctx.beginPath();
-      ctx.moveTo(0.5, 0.9);
-      ctx.bezierCurveTo(0.12, 0.64, 0.02, 0.44, 0.1, 0.26);
-      ctx.bezierCurveTo(0.2, 0.06, 0.45, 0.08, 0.5, 0.28);
-      ctx.bezierCurveTo(0.55, 0.08, 0.8, 0.06, 0.9, 0.26);
-      ctx.bezierCurveTo(0.98, 0.44, 0.88, 0.64, 0.5, 0.9);
-      ctx.fill();
-    },
-
-    stern(ctx) {
-      ctx.beginPath();
-      for (let i = 0; i < 10; i++) {
-        const r = i % 2 ? 0.2 : 0.48;
-        const angle = -Math.PI / 2 + (i * Math.PI) / 5;
-        ctx.lineTo(0.5 + r * Math.cos(angle), 0.54 + r * Math.sin(angle));
+    const motif = new Uint8Array(w * h);
+    rows.forEach((row, y) => {
+      for (let x = 0; x < row.length; x++) {
+        if (row[x] === "#") motif[(y + pad) * w + x + pad] = 1;
       }
-      ctx.closePath();
-      ctx.fill();
-    },
-
-    schloss(ctx) {
-      ctx.lineWidth = 0.1;
-      ctx.beginPath();
-      ctx.moveTo(0.3, 0.5);
-      ctx.lineTo(0.3, 0.32);
-      ctx.arc(0.5, 0.32, 0.2, Math.PI, 2 * Math.PI);
-      ctx.lineTo(0.7, 0.5);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.roundRect(0.17, 0.45, 0.66, 0.5, 0.07);
-      ctx.fill();
-
-      // keyhole
-      ctx.fillStyle = WHITE;
-      fillEllipse(ctx, 0.5, 0.63, 0.075, 0.075);
-      ctx.beginPath();
-      ctx.moveTo(0.46, 0.65);
-      ctx.lineTo(0.43, 0.84);
-      ctx.lineTo(0.57, 0.84);
-      ctx.lineTo(0.54, 0.65);
-      ctx.fill();
-    },
-  };
-
-  function sizeGroup(kind) {
-    return kind in SHAPES ? "form" : kind;
-  }
-
-  function shapeCanvas(kind) {
-    const c = blankCanvas(SHAPE_PX, SHAPE_PX);
-    const ctx = c.getContext("2d");
-    ctx.scale(SHAPE_PX, SHAPE_PX);
-    SHAPES[kind](ctx);
-    return c;
+    });
+    return { motif, w, h };
   }
 
   // transparent areas become white
@@ -311,14 +249,12 @@
 
   // null while "own image" is chosen but no image loaded
   function buildMotif() {
-    const size = SIZES[sizeGroup(state.kind)][state.level];
-    if (state.kind === "text") return textMotif(textInput.value.trim(), size);
+    if (state.kind in ART) return artMotif(ART[state.kind][state.level]);
+    if (state.kind === "text") return textMotif(textInput.value.trim(), SIZES.text[state.level]);
+    if (!state.image) return null;
 
-    const source = state.kind === "bild" ? state.image : shapeCanvas(state.kind);
-    if (!source) return null;
-    const { w, h } = motifSize(source.width / source.height, size);
-    const threshold = state.kind === "bild" ? Number(thresholdInput.value) : THRESHOLD;
-    return { motif: rasterize(source, w, h, threshold), w, h };
+    const { w, h } = motifSize(state.image.width / state.image.height, SIZES.bild[state.level]);
+    return { motif: rasterize(state.image, w, h, Number(thresholdInput.value)), w, h };
   }
 
   // ---------------------------------------------------------------------------

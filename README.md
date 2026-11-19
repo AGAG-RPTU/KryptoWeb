@@ -54,8 +54,9 @@ Sonst als `file` die Seite des Autors verlinken.
 **Visuelle Kryptographie im Browser:** Die Seite Visual (`_pages/rsa.md`) bindet
 das Werkzeug aus `_includes/visuelle_krypto.liquid` ein; Rechnung und Motive stehen
 in `assets/js/visuelle-krypto.js`, das Aussehen in `assets/css/visuelle-krypto.css`.
-Ein neues Motiv braucht eine Zeichenfunktion in `SHAPES` und einen Knopf im
-Include; die festen Größen stehen in `SIZES`, die Pixelschrift für Text in `FONT`.
+Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins für
+„grob“, „mittel“ und „fein“ (`#` = schwarz); ein neues Motiv braucht dort einen
+Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`
