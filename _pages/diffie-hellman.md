@@ -21,9 +21,7 @@ schnell, aber aus dem Ergebnis *a* zurückzugewinnen ist schwer.
 
 ## Schritt für Schritt
 
-Die Zahlen am Anfang sind die aus dem
-[Vortrag in Frankenthal]({{ '/Vortraege/frankenthal-2026-05-22/' | relative_url }}).
-Du kannst alle ändern: Wähle eine andere Primzahl oder würfle neue Geheimzahlen.
+Du kannst alle Zahlen ändern: Wähle eine andere Primzahl oder würfle neue Geheimzahlen.
 
 {% include diffie_hellman.liquid %}
 
