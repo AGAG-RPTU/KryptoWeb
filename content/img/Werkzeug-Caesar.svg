@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476 300" width="1190" height="750" font-family="Roboto, Helvetica, Arial, sans-serif" role="img">
+<title>Caesar-Scheibe mit Schlüssel 3: aus HALLO wird KDOOR</title>
+<rect width="476" height="300" fill="#ffffff"/>
+<g transform="translate(150 150) scale(1.3)">
+<path d="M-12.05,-99.27 A100,100 0 0 1 12.05,-99.27 L9.4,-77.43 A78,78 0 0 0 -9.4,-77.43 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M12.05,-99.27 A100,100 0 0 1 35.46,-93.5 L27.66,-72.93 A78,78 0 0 0 9.4,-77.43 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M35.46,-93.5 A100,100 0 0 1 56.81,-82.3 L44.31,-64.19 A78,78 0 0 0 27.66,-72.93 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M56.81,-82.3 A100,100 0 0 1 74.85,-66.31 L58.38,-51.72 A78,78 0 0 0 44.31,-64.19 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M74.85,-66.31 A100,100 0 0 1 88.55,-46.47 L69.07,-36.25 A78,78 0 0 0 58.38,-51.72 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M88.55,-46.47 A100,100 0 0 1 97.09,-23.93 L75.73,-18.67 A78,78 0 0 0 69.07,-36.25 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M97.09,-23.93 A100,100 0 0 1 100,-0 L78,-0 A78,78 0 0 0 75.73,-18.67 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M100,-0 A100,100 0 0 1 97.09,23.93 L75.73,18.67 A78,78 0 0 0 78,-0 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M97.09,23.93 A100,100 0 0 1 88.55,46.47 L69.07,36.25 A78,78 0 0 0 75.73,18.67 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M88.55,46.47 A100,100 0 0 1 74.85,66.31 L58.38,51.72 A78,78 0 0 0 69.07,36.25 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M74.85,66.31 A100,100 0 0 1 56.81,82.3 L44.31,64.19 A78,78 0 0 0 58.38,51.72 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M56.81,82.3 A100,100 0 0 1 35.46,93.5 L27.66,72.93 A78,78 0 0 0 44.31,64.19 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M35.46,93.5 A100,100 0 0 1 12.05,99.27 L9.4,77.43 A78,78 0 0 0 27.66,72.93 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M12.05,99.27 A100,100 0 0 1 -12.05,99.27 L-9.4,77.43 A78,78 0 0 0 9.4,77.43 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-12.05,99.27 A100,100 0 0 1 -35.46,93.5 L-27.66,72.93 A78,78 0 0 0 -9.4,77.43 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-35.46,93.5 A100,100 0 0 1 -56.81,82.3 L-44.31,64.19 A78,78 0 0 0 -27.66,72.93 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-56.81,82.3 A100,100 0 0 1 -74.85,66.31 L-58.38,51.72 A78,78 0 0 0 -44.31,64.19 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-74.85,66.31 A100,100 0 0 1 -88.55,46.47 L-69.07,36.25 A78,78 0 0 0 -58.38,51.72 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-88.55,46.47 A100,100 0 0 1 -97.09,23.93 L-75.73,18.67 A78,78 0 0 0 -69.07,36.25 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-97.09,23.93 A100,100 0 0 1 -100,0 L-78,0 A78,78 0 0 0 -75.73,18.67 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-100,0 A100,100 0 0 1 -97.09,-23.93 L-75.73,-18.67 A78,78 0 0 0 -78,0 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-97.09,-23.93 A100,100 0 0 1 -88.55,-46.47 L-69.07,-36.25 A78,78 0 0 0 -75.73,-18.67 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-88.55,-46.47 A100,100 0 0 1 -74.85,-66.31 L-58.38,-51.72 A78,78 0 0 0 -69.07,-36.25 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-74.85,-66.31 A100,100 0 0 1 -56.81,-82.3 L-44.31,-64.19 A78,78 0 0 0 -58.38,-51.72 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-56.81,-82.3 A100,100 0 0 1 -35.46,-93.5 L-27.66,-72.93 A78,78 0 0 0 -44.31,-64.19 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<path d="M-35.46,-93.5 A100,100 0 0 1 -12.05,-99.27 L-9.4,-77.43 A78,78 0 0 0 -27.66,-72.93 Z" fill="#e3e9f2" stroke="#1f3a5f" stroke-width="0.6"/>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(0)">A</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(13.85)">B</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(27.69)">C</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(41.54)">D</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(55.38)">E</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(69.23)">F</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(83.08)">G</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(96.92)">H</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(110.77)">I</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(124.62)">J</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(138.46)">K</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(152.31)">L</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(166.15)">M</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(180)">N</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(193.85)">O</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(207.69)">P</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(221.54)">Q</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(235.38)">R</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(249.23)">S</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(263.08)">T</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(276.92)">U</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(290.77)">V</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(304.62)">W</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(318.46)">X</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(332.31)">Y</text>
+<text x="0" y="-89" font-size="13" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(346.15)">Z</text>
+<path d="M-58.38,-51.72 A78,78 0 0 1 -44.31,-64.19 L-31.81,-46.09 A56,56 0 0 0 -41.92,-37.13 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-44.31,-64.19 A78,78 0 0 1 -27.66,-72.93 L-19.86,-52.36 A56,56 0 0 0 -31.81,-46.09 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-27.66,-72.93 A78,78 0 0 1 -9.4,-77.43 L-6.75,-55.59 A56,56 0 0 0 -19.86,-52.36 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-9.4,-77.43 A78,78 0 0 1 9.4,-77.43 L6.75,-55.59 A56,56 0 0 0 -6.75,-55.59 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M9.4,-77.43 A78,78 0 0 1 27.66,-72.93 L19.86,-52.36 A56,56 0 0 0 6.75,-55.59 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M27.66,-72.93 A78,78 0 0 1 44.31,-64.19 L31.81,-46.09 A56,56 0 0 0 19.86,-52.36 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M44.31,-64.19 A78,78 0 0 1 58.38,-51.72 L41.92,-37.13 A56,56 0 0 0 31.81,-46.09 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M58.38,-51.72 A78,78 0 0 1 69.07,-36.25 L49.59,-26.02 A56,56 0 0 0 41.92,-37.13 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M69.07,-36.25 A78,78 0 0 1 75.73,-18.67 L54.37,-13.4 A56,56 0 0 0 49.59,-26.02 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M75.73,-18.67 A78,78 0 0 1 78,-0 L56,-0 A56,56 0 0 0 54.37,-13.4 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M78,-0 A78,78 0 0 1 75.73,18.67 L54.37,13.4 A56,56 0 0 0 56,-0 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M75.73,18.67 A78,78 0 0 1 69.07,36.25 L49.59,26.02 A56,56 0 0 0 54.37,13.4 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M69.07,36.25 A78,78 0 0 1 58.38,51.72 L41.92,37.13 A56,56 0 0 0 49.59,26.02 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M58.38,51.72 A78,78 0 0 1 44.31,64.19 L31.81,46.09 A56,56 0 0 0 41.92,37.13 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M44.31,64.19 A78,78 0 0 1 27.66,72.93 L19.86,52.36 A56,56 0 0 0 31.81,46.09 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M27.66,72.93 A78,78 0 0 1 9.4,77.43 L6.75,55.59 A56,56 0 0 0 19.86,52.36 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M9.4,77.43 A78,78 0 0 1 -9.4,77.43 L-6.75,55.59 A56,56 0 0 0 6.75,55.59 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-9.4,77.43 A78,78 0 0 1 -27.66,72.93 L-19.86,52.36 A56,56 0 0 0 -6.75,55.59 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-27.66,72.93 A78,78 0 0 1 -44.31,64.19 L-31.81,46.09 A56,56 0 0 0 -19.86,52.36 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-44.31,64.19 A78,78 0 0 1 -58.38,51.72 L-41.92,37.13 A56,56 0 0 0 -31.81,46.09 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-58.38,51.72 A78,78 0 0 1 -69.07,36.25 L-49.59,26.02 A56,56 0 0 0 -41.92,37.13 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-69.07,36.25 A78,78 0 0 1 -75.73,18.67 L-54.37,13.4 A56,56 0 0 0 -49.59,26.02 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-75.73,18.67 A78,78 0 0 1 -78,0 L-56,0 A56,56 0 0 0 -54.37,13.4 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-78,0 A78,78 0 0 1 -75.73,-18.67 L-54.37,-13.4 A56,56 0 0 0 -56,0 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-75.73,-18.67 A78,78 0 0 1 -69.07,-36.25 L-49.59,-26.02 A56,56 0 0 0 -54.37,-13.4 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<path d="M-69.07,-36.25 A78,78 0 0 1 -58.38,-51.72 L-41.92,-37.13 A56,56 0 0 0 -49.59,-26.02 Z" fill="#f8e6dc" stroke="#c8602a" stroke-width="0.6"/>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(-41.54)">A</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(-27.69)">B</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(-13.85)">C</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(0)">D</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(13.85)">E</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(27.69)">F</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(41.54)">G</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(55.38)">H</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(69.23)">I</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(83.08)">J</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(96.92)">K</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(110.77)">L</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(124.62)">M</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(138.46)">N</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(152.31)">O</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(166.15)">P</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(180)">Q</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(193.85)">R</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(207.69)">S</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(221.54)">T</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(235.38)">U</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(249.23)">V</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(263.08)">W</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(276.92)">X</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(290.77)">Y</text>
+<text x="0" y="-67" font-size="12" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(304.62)">Z</text>
+<path d="M-12.05,-99.27 A100,100 0 0 1 12.05,-99.27 L6.75,-55.59 A56,56 0 0 0 -6.75,-55.59 Z" fill="#f5e86e" opacity="0.6"/>
+<circle r="56" fill="#fffdf6" stroke="#1f3a5f" stroke-width="0.8"/>
+<text x="0" y="-6" font-size="30" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central">3</text>
+<text x="0" y="20" font-size="10" fill="#1f3a5f" font-weight="normal" text-anchor="middle" dominant-baseline="central">Schlüssel</text>
+</g>
+<text x="375" y="100" font-size="32" fill="#1f3a5f" font-weight="bold" text-anchor="middle" dominant-baseline="central" font-family="'Roboto Mono', Menlo, Consolas, monospace">HALLO</text>
+<text x="375" y="150" font-size="30" fill="#555" font-weight="normal" text-anchor="middle" dominant-baseline="central">↓</text>
+<text x="375" y="200" font-size="32" fill="#c8602a" font-weight="bold" text-anchor="middle" dominant-baseline="central" font-family="'Roboto Mono', Menlo, Consolas, monospace">KDOOR</text>
+</svg>

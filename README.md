@@ -37,8 +37,11 @@ GitHub Pages.
 Das Menü hat vier Punkte: Home, Vorträge, Themen (Untermenü) und Für Lehrkräfte.
 Jedes Thema ist eine Seite in `_pages/` mit `thema: <kürzel>` im Kopf, die
 [_includes/themenseite.liquid](_includes/themenseite.liquid) einbindet. Die zeigt
-alle Karten aus `_projects/` mit `category: <kürzel>` und alle Vorträge, deren
-`themen` das Kürzel enthalten. Die Kürzel: `caesar-vigenere`, `enigma`,
+eine Sprungleiste und drei Abschnitte mit Karten: „Im Browser ausprobieren“ (Seiten
+in `_pages/`, deren `themen` das Kürzel enthalten), „Material“ (Karten aus
+`_projects/` mit `category: <kürzel>`) und „Vorträge“ (deren `themen` das Kürzel
+enthalten). Leere Abschnitte fallen weg; bleibt nur einer, entfallen auch Leiste
+und Überschriften. Die Kürzel: `caesar-vigenere`, `enigma`,
 `visuelle-kryptographie`, `rsa-primzahlen`, `lehrkraefte`. Ein neues Thema braucht
 eine solche Seite und einen Eintrag unter `children` in
 [_pages/themen.md](_pages/themen.md).
@@ -72,13 +75,24 @@ Lizenz die Weitergabe erlaubt; Urheber, Lizenz und Quelle gehören in `credit`.
 Sonst als `file` die Seite des Autors verlinken. Links in `credit`, die mit `/`
 beginnen, bekommen automatisch den Pfad der Seite (`/KryptoWeb`) vorangestellt.
 
-**Visuelle Kryptographie im Browser:** Die Themenseite
-(`_pages/visuelle-kryptographie.md`) bindet
-das Werkzeug aus `_includes/visuelle_krypto.liquid` ein; Rechnung und Motive stehen
-in `assets/js/visuelle-krypto.js`, das Aussehen in `assets/css/visuelle-krypto.css`.
-Die Motive sind Pixelbilder in `assets/js/visuelle-krypto-motive.js`, je eins für
-„grob“, „mittel“ und „fein“ (`#` = schwarz); ein neues Motiv braucht dort einen
-Eintrag und einen Knopf im Include. Die Pixelschrift für Text steht in `FONT`.
+**Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema. Jedes besteht
+aus Seite (`_pages/`), Oberfläche (`_includes/`) und Programm (`assets/js/`); das
+gemeinsame Aussehen steht in `assets/css/werkzeuge.css`, bei der visuellen
+Kryptographie in `assets/css/visuelle-krypto.css`. Die Karte auf der Themenseite kommt
+aus dem Kopf der Seite: `themen`, `img`, `art` und `importance` wie bei den Karten in
+`_projects/`. Die Vorschaubilder `content/img/Werkzeug-*.svg` sind von Hand gezeichnet.
+
+| Werkzeug | Seite | Oberfläche | Programm |
+|---|---|---|---|
+| Rechnen im Kreis (Modulo) | `_pages/modulo.md` | `_includes/modulo.liquid` | `assets/js/modulo.js` |
+| Verschlüsseln und knacken (Caesar, Vigenère) | `_pages/caesar-vigenere-ausprobieren.md` | `_includes/caesar_scheibe.liquid`, `_includes/caesar_vigenere.liquid`, `_includes/codeknacker.liquid` | `assets/js/caesar-vigenere.js` |
+| Diffie-Hellman | `_pages/diffie-hellman.md` | `_includes/diffie_hellman.liquid` | `assets/js/diffie-hellman.js` |
+| Zwei Folien, ein Bild (visuelle Kryptographie) | `_pages/visuelle-kryptographie-ausprobieren.md` | `_includes/visuelle_krypto.liquid` | `assets/js/visuelle-krypto.js` |
+
+Die Motive der visuellen Kryptographie sind Pixelbilder in
+`assets/js/visuelle-krypto-motive.js`, je eins für „grob“, „mittel“ und „fein“
+(`#` = schwarz); ein neues Motiv braucht dort einen Eintrag und einen Knopf im Include.
+Die Pixelschrift für Text steht in `FONT` in `assets/js/visuelle-krypto.js`.
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt
 `Vortrag-JJJJ-MM-TT-Anlass.pdf`, dazu eine Seite `_vortraege/<anlass>-JJJJ-MM-TT.md`

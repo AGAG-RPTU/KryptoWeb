@@ -1,0 +1,21 @@
+{% comment %}
+  The turnable Caesar disc on its own; logic in assets/js/caesar-vigenere.js
+  (loaded by codeknacker.liquid), styles in assets/css/werkzeuge.css. No
+  blank lines: kramdown would end the HTML block.
+{% endcomment %}
+<div class="wz cs" id="cs">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<svg id="cs-scheibe" class="cv-scheibe" viewBox="-104 -104 208 208" tabindex="0" role="slider" aria-label="Caesar-Scheibe: außen Klartext, innen Geheimtext" aria-valuemin="0" aria-valuemax="25" aria-valuenow="3"></svg>
+<div class="cs-seite">
+<div class="wz-zeile">
+<span class="wz-titel" id="cs-schluessel-titel">Schlüssel</span>
+<button type="button" id="cs-minus" aria-label="Schlüssel um 1 kleiner">−</button>
+<input type="number" id="cs-schluessel" min="0" max="25" value="3" aria-labelledby="cs-schluessel-titel">
+<button type="button" id="cs-plus" aria-label="Schlüssel um 1 größer">+</button>
+</div>
+<p id="cs-lesen" aria-live="polite"></p>
+<p><label for="cs-wort" class="wz-titel">Probier ein Wort:</label><br><input type="text" id="cs-wort" class="wz-mono" value="HALLO" maxlength="20" size="12" autocomplete="off" spellcheck="false"> → <b id="cs-geheim" class="wz-mono"></b></p>
+<p class="wz-klein">Dreh die innere Scheibe mit der Maus oder dem Finger.</p>
+<p class="wz-klein cs-tastatur">Am Computer geht es auch mit den Pfeiltasten, wenn du die Scheibe angeklickt hast.</p>
+</div>
+</div>

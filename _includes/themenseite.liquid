@@ -1,22 +1,74 @@
 {% comment %}
-  Material of one topic: cards from _projects with `category == page.thema`
-  (ordered by `importance`), then the talks whose `themen` list the topic.
+  Body of a topic page (page.thema): a row of links to the sections, then
+  the sections, each one only if it has entries:
+    #ausprobieren  pages whose `themen` list the topic (the browser tools),
+                   ordered by `importance`;
+    #material      cards from _projects with `category == page.thema`,
+                   ordered by `importance`;
+    #vortraege     talks whose `themen` list the topic, newest first.
+  With a single section there are neither links nor headings.
+  No blank lines in the output: kramdown would end the HTML block there.
 {% endcomment %}
-{% assign material = site.projects | where: "category", page.thema | sort: "importance" %}
-{% assign talks = site.vortraege | where_exp: "t", "t.themen contains page.thema" | sort: "date" | reverse %}
-<div class="projects">
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in material %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-
-  {% if talks.size > 0 %}
-    <h2>Vorträge zum Thema</h2>
-    <div class="row row-cols-1 row-cols-md-3">
-      {% for project in talks %}
+{%- assign tools = site.pages | where_exp: "p", "p.themen contains page.thema" | sort: "importance" -%}
+{%- assign material = site.projects | where: "category", page.thema | sort: "importance" -%}
+{%- assign talks = site.vortraege | where_exp: "t", "t.themen contains page.thema" | sort: "date" | reverse -%}
+{%- assign sections = 0 -%}
+{%- if tools.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
+{%- if material.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
+{%- if talks.size > 0 -%}{%- assign sections = sections | plus: 1 -%}{%- endif -%}
+{%- assign section = "" -%}
+{%- if sections > 1 -%}{%- assign section = "thema-abschnitt" -%}{%- endif -%}
+{%- assign icon_tools = "fa-solid fa-computer-mouse" -%}
+{%- assign icon_material = "fa-solid fa-file-arrow-down" -%}
+{%- assign icon_talks = "fa-solid fa-person-chalkboard" -%}
+{%- if sections > 1 %}
+<nav class="thema-inhalt" aria-label="Auf dieser Seite">
+  {%- if tools.size > 0 %}
+  <a href="#ausprobieren" class="thema-haupt"><i class="{{ icon_tools }}" aria-hidden="true"></i> Im Browser ausprobieren</a>
+  {%- endif -%}
+  {%- if material.size > 0 %}
+  <a href="#material"><i class="{{ icon_material }}" aria-hidden="true"></i> Material</a>
+  {%- endif -%}
+  {%- if talks.size > 0 %}
+  <a href="#vortraege"><i class="{{ icon_talks }}" aria-hidden="true"></i> Vorträge</a>
+  {%- endif %}
+</nav>
+{%- endif %}
+<div class="thema">
+  {%- if tools.size > 0 %}
+  <section id="ausprobieren" class="{{ section }} thema-ausprobieren">
+    {%- if sections > 1 %}
+    <h2 class="thema-titel"><i class="{{ icon_tools }}" aria-hidden="true"></i> Im Browser ausprobieren</h2>
+    {%- endif %}
+    <div class="projects row row-cols-1 row-cols-md-3">
+      {%- for project in tools %}
         {% include projects.liquid %}
-      {% endfor %}
+      {%- endfor %}
     </div>
-  {% endif %}
+  </section>
+  {%- endif -%}
+  {%- if material.size > 0 %}
+  <section id="material" class="{{ section }}">
+    {%- if sections > 1 %}
+    <h2 class="thema-titel"><i class="{{ icon_material }}" aria-hidden="true"></i> Material</h2>
+    {%- endif %}
+    <div class="projects row row-cols-1 row-cols-md-3">
+      {%- for project in material %}
+        {% include projects.liquid %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif -%}
+  {%- if talks.size > 0 %}
+  <section id="vortraege" class="{{ section }}">
+    {%- if sections > 1 %}
+    <h2 class="thema-titel"><i class="{{ icon_talks }}" aria-hidden="true"></i> Vorträge</h2>
+    {%- endif %}
+    <div class="projects row row-cols-1 row-cols-md-3">
+      {%- for project in talks %}
+        {% include projects.liquid %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
 </div>

@@ -1,0 +1,47 @@
+{% comment %}
+  Encrypt and decrypt with Caesar or a code word, input and result side by
+  side; logic in assets/js/caesar-vigenere.js (loaded by codeknacker.liquid),
+  styles in assets/css/werkzeuge.css. No blank lines: kramdown would end the
+  HTML block.
+{% endcomment %}
+<div class="wz" id="cv">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<div class="wz-zeile">
+<div class="wz-chips" role="group" aria-label="Verfahren">
+<button type="button" class="wz-chip" data-art="caesar" aria-pressed="true">Caesar</button>
+<button type="button" class="wz-chip" data-art="vigenere" aria-pressed="false">Vigenère mit Codewort</button>
+</div>
+<div class="wz-chips" role="group" aria-label="Richtung">
+<button type="button" class="wz-chip" data-richtung="1" aria-pressed="true">verschlüsseln</button>
+<button type="button" class="wz-chip" data-richtung="-1" aria-pressed="false">entschlüsseln</button>
+</div>
+</div>
+<div class="cv-teil" data-fuer="caesar">
+<div class="wz-zeile">
+<span class="wz-titel" id="cv-schluessel-titel">Schlüssel</span>
+<button type="button" id="cv-minus" aria-label="Schlüssel um 1 kleiner">−</button>
+<input type="number" id="cv-schluessel" min="0" max="25" value="3" aria-labelledby="cv-schluessel-titel">
+<button type="button" id="cv-plus" aria-label="Schlüssel um 1 größer">+</button>
+</div>
+</div>
+<div class="cv-teil" data-fuer="vigenere" hidden>
+<p><label for="cv-codewort" class="wz-titel">Codewort</label> <input type="text" id="cv-codewort" value="FEE" maxlength="20" autocomplete="off" spellcheck="false"> <span class="wz-klein">A = Schlüssel 0, B = 1, …, Z = 25</span></p>
+</div>
+<div class="cv-texte">
+<div>
+<label for="cv-text" id="cv-text-titel" class="wz-titel">Klartext</label>
+<textarea id="cv-text" class="wz-mono" rows="4" spellcheck="false" autocomplete="off">HALLO</textarea>
+</div>
+<div>
+<span class="wz-titel" id="cv-ergebnis-titel">Geheimtext</span>
+<div id="cv-ergebnis" class="wz-mono cv-ergebnis" aria-live="polite" aria-labelledby="cv-ergebnis-titel"></div>
+</div>
+</div>
+<p class="wz-zeile"><button type="button" id="cv-kopieren">Kopieren</button> <button type="button" id="cv-knacken">Zum Knacken übernehmen</button></p>
+<p class="wz-klein">Umlaute werden zu AE, OE und UE, ß wird zu SS. Leerzeichen, Ziffern und Satzzeichen bleiben, wie sie sind.</p>
+<div class="cv-teil" data-fuer="vigenere" hidden>
+<p class="wz-titel">So wird gerechnet</p>
+<p class="wz-klein">Jede Karte zeigt oben den Codewort-Buchstaben, darunter den Buchstaben aus dem Text, die Verschiebung und das Ergebnis.</p>
+<div id="cv-karten" class="cv-karten" aria-hidden="true"></div>
+</div>
+</div>

@@ -36,8 +36,70 @@
     padding-top: 0;
     font-size: 0.8rem;
   }
+}
 
-  h2:not(.card-title) {
-    margin-top: 2rem;
+/* Topic pages (_includes/themenseite.liquid): links to the sections, and
+   the sections, the browser tools on a tinted panel so they stand out
+   between the large material cards. */
+.thema-inhalt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--global-theme-color);
+    border-radius: 999px;
+    color: var(--global-theme-color);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    background: color-mix(in srgb, var(--global-theme-color) 12%, transparent);
+  }
+
+  a.thema-haupt {
+    background: var(--global-theme-color);
+    color: #fff;
+  }
+
+  a.thema-haupt:hover,
+  a.thema-haupt:focus-visible {
+    background: color-mix(in srgb, var(--global-theme-color) 85%, #000);
+  }
+}
+
+.thema-abschnitt {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--global-divider-color);
+  scroll-margin-top: 4.5rem; // below the fixed navbar
+}
+
+.thema-ausprobieren {
+  padding: 1.5rem 1.5rem 0.5rem;
+  border-top: 0;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--global-theme-color) 8%, transparent);
+
+  @media (max-width: 575.98px) {
+    padding: 1rem 1rem 0.25rem;
+  }
+}
+
+.thema-titel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+
+  i {
+    color: var(--global-theme-color);
   }
 }

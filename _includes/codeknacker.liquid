@@ -1,0 +1,42 @@
+{% comment %}
+  Break a cipher text: all 25 Caesar shifts, letter counts, and the team
+  trick for a code word; logic in assets/js/caesar-vigenere.js, styles in
+  assets/css/werkzeuge.css. No blank lines: kramdown would end the HTML block.
+{% endcomment %}
+<div class="wz" id="ck">
+<noscript><p>Für das Werkzeug muss JavaScript eingeschaltet sein.</p></noscript>
+<p><label for="ck-text" class="wz-titel">Abgefangener Geheimtext</label></p>
+<textarea id="ck-text" class="wz-mono" rows="4" spellcheck="false" autocomplete="off"></textarea>
+<div class="wz-zeile">
+<span class="wz-klein" id="ck-beispiele-titel">Beispiele:</span>
+<div class="wz-chips" role="group" aria-labelledby="ck-beispiele-titel">
+<button type="button" class="wz-chip" data-beispiel="0" aria-pressed="false">Agenten-Blatt, Aufgabe 3</button>
+<button type="button" class="wz-chip" data-beispiel="1" aria-pressed="false">Langer Text</button>
+<button type="button" class="wz-chip" data-beispiel="2" aria-pressed="false">Langer Text mit Codewort</button>
+</div>
+</div>
+<h3>Trick 1: Alle Schlüssel ausprobieren</h3>
+<p>Es gibt nur 25 Verschiebungen. Eine davon macht den Text lesbar – wenn er mit Caesar verschlüsselt ist.</p>
+<div id="ck-alle" class="ck-alle wz-mono"></div>
+<h3>Trick 2: Buchstaben zählen</h3>
+<p>In deutschen Texten ist etwa jeder sechste Buchstabe ein E. Der häufigste Buchstabe im Geheimtext ist also vermutlich das verkleidete E, und sein Abstand zum E ist der Schlüssel.</p>
+<p class="wz-klein" id="ck-deutsch-titel">So oft kommen die Buchstaben in deutschen Texten vor:</p>
+<div id="ck-deutsch" class="ck-diagramm" aria-labelledby="ck-deutsch-titel"></div>
+<p>Bei einem Codewort wechselt die Verschiebung von Buchstabe zu Buchstabe. Dann teilt man den Text in so viele Teams auf, wie das Codewort Buchstaben hat. Bei drei Teams bekommt Team 1 die Buchstaben 1, 4, 7, …, Team 2 die Buchstaben 2, 5, 8, … und Team 3 den Rest. In jedem Team klappt der E-Trick wieder. Wie lang das Codewort ist, weiß der Lauscher nicht. Probier es aus: Bei der richtigen Zahl wird der Text lesbar. Erwischt der Trick in einem Team den falschen Turm, tippe auf einen anderen.</p>
+<div class="wz-zeile">
+<span class="wz-titel" id="ck-teams-titel">Teams</span>
+<div class="wz-chips" role="group" aria-labelledby="ck-teams-titel">
+<button type="button" class="wz-chip" data-teams="1" aria-pressed="true">1</button>
+<button type="button" class="wz-chip" data-teams="2" aria-pressed="false">2</button>
+<button type="button" class="wz-chip" data-teams="3" aria-pressed="false">3</button>
+<button type="button" class="wz-chip" data-teams="4" aria-pressed="false">4</button>
+<button type="button" class="wz-chip" data-teams="5" aria-pressed="false">5</button>
+<button type="button" class="wz-chip" data-teams="6" aria-pressed="false">6</button>
+</div>
+</div>
+<p id="ck-verteilung" class="wz-mono ck-verteilung" aria-hidden="true"></p>
+<div id="ck-teams"></div>
+<p class="wz-ergebnis" id="ck-codewort"></p>
+<p id="ck-klartext" class="wz-mono cv-ergebnis" aria-live="polite"></p>
+</div>
+<script defer src="{{ '/assets/js/caesar-vigenere.js' | relative_url | bust_file_cache }}"></script>
