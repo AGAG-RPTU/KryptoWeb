@@ -1,8 +1,8 @@
 /*
- * Caesar & Vigenère (/themen/caesar-vigenere/ausprobieren/): encrypt and
- * decrypt with a turnable Caesar disc or a code word, and break a cipher text
- * as in the Kinder-Uni talk: try all 25 shifts, count letters, and split a
- * code-word cipher into teams, each of which is a plain Caesar cipher.
+ * Caesar & Vigenère (/themen/caesar-vigenere/ausprobieren/): a turnable
+ * Caesar disc, encryption with a shift or a code word, and breaking a cipher
+ * text as in the Kinder-Uni talk: try all 25 shifts, count letters, and split
+ * a code-word cipher into teams, each of which is a plain Caesar cipher.
  *
  * Letters count from A = 0 to Z = 25; a shift by k turns x into (x + k) mod 26.
  */
@@ -80,33 +80,26 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Encrypt and decrypt
+  // Caesar disc
 
-  const cv = $("cv");
-  const breaker = $("ck");
-  const cvState = { art: "caesar", sign: 1, key: 3 };
-  let setBreakerText = null; // set below when the code breaker is on the page
-
-  function setupCipher() {
+  function setupDisc() {
     const SVG_NS = "http://www.w3.org/2000/svg";
     const STEP = 360 / N;
     const R_OUTER = 100;
     const R_MIDDLE = 78;
     const R_INNER = 56;
+    const READ_LETTERS = 3; // pairs spelt out below the key
 
-    const textInput = $("cv-text");
-    const keyInput = $("cv-schluessel");
-    const wordInput = $("cv-codewort");
-    const disc = $("cv-scheibe");
-    const result = $("cv-ergebnis");
-    const artButtons = cv.querySelectorAll("[data-art]");
-    const signButtons = cv.querySelectorAll("[data-richtung]");
+    const disc = $("cs-scheibe");
+    const keyInput = $("cs-schluessel");
+    const wordInput = $("cs-wort");
+    let key = 3;
 
-    // ---- disc, after the paper disc of the Kopiervorlagen
+    // ---- drawing, after the paper disc of the Kopiervorlagen
 
     function svg(name, attributes, parent) {
       const node = document.createElementNS(SVG_NS, name);
-      for (const [key, val] of Object.entries(attributes)) node.setAttribute(key, val);
+      for (const [k, v] of Object.entries(attributes)) node.setAttribute(k, v);
       parent.append(node);
       return node;
     }
@@ -156,8 +149,99 @@
       for (const g of [turning, turningLetters]) g.style.transform = `rotate(${degrees}deg)`;
     }
 
-    // ---- drawing the code word as cards: code letter, input, shift, output
+    function update() {
+      keyInput.value = key;
+      keyText.textContent = key;
+      disc.setAttribute("aria-valuenow", key);
+      const pairs = [...ALPHABET.slice(0, READ_LETTERS)].map((c, x) => `aus ${c} wird ${ALPHABET[mod(x + key, N)]}`);
+      $("cs-lesen").textContent = `Außen steht der Klartext, innen der Geheimtext: ${pairs.join(", ")}, … und aus Z wird ${ALPHABET[mod(N - 1 + key, N)]}.`;
+      $("cs-geheim").textContent = shift(normalize(wordInput.value), [key], 1);
+    }
 
+    // turns the disc the short way round to the key
+    function setKey(next) {
+      key = mod(next, N);
+      const delta = mod(-key * STEP - rotation + 180, 360) - 180;
+      turn(rotation + delta);
+      update();
+    }
+
+    // ---- dragging the inner disc
+
+    let drag = null;
+    const pointerAngle = (e) => {
+      const box = disc.getBoundingClientRect();
+      const x = e.clientX - (box.left + box.width / 2);
+      const y = e.clientY - (box.top + box.height / 2);
+      return (Math.atan2(x, -y) * 180) / Math.PI;
+    };
+
+    disc.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      disc.focus({ preventScroll: true });
+      disc.setPointerCapture(e.pointerId);
+      disc.classList.add("cv-ziehen");
+      drag = { pointer: e.pointerId, angle: pointerAngle(e) };
+    });
+    disc.addEventListener("pointermove", (e) => {
+      if (!drag || drag.pointer !== e.pointerId) return;
+      const delta = mod(pointerAngle(e) - drag.angle + 180, 360) - 180;
+      drag.angle += delta;
+      turn(rotation + delta);
+      const near = mod(Math.round(-rotation / STEP), N);
+      if (near !== key) {
+        key = near;
+        update();
+      }
+    });
+    const release = (e) => {
+      if (!drag || drag.pointer !== e.pointerId) return;
+      drag = null;
+      disc.classList.remove("cv-ziehen");
+      turn(-Math.round(-rotation / STEP) * STEP);
+    };
+    disc.addEventListener("pointerup", release);
+    disc.addEventListener("pointercancel", release);
+
+    disc.addEventListener("keydown", (e) => {
+      const step = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      setKey(key + step);
+    });
+
+    // ---- controls
+
+    $("cs-minus").addEventListener("click", () => setKey(key - 1));
+    $("cs-plus").addEventListener("click", () => setKey(key + 1));
+    keyInput.addEventListener("input", () => {
+      const v = Number.parseInt(keyInput.value, 10);
+      if (Number.isFinite(v)) setKey(v);
+    });
+    wordInput.addEventListener("input", update);
+
+    setKey(key);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Encrypt and decrypt
+
+  const cs = $("cs");
+  const cv = $("cv");
+  const breaker = $("ck");
+  const cvState = { art: "caesar", sign: 1, key: 3 };
+  let setBreakerText = null; // set below when the code breaker is on the page
+
+  function setupCipher() {
+    const textInput = $("cv-text");
+    const keyInput = $("cv-schluessel");
+    const wordInput = $("cv-codewort");
+    const result = $("cv-ergebnis");
+    const artButtons = cv.querySelectorAll("[data-art]");
+    const signButtons = cv.querySelectorAll("[data-richtung]");
+
+    // the code word as cards: code letter, input, shift, output
     function cards(text, keys) {
       const box = $("cv-karten");
       box.replaceChildren();
@@ -187,10 +271,7 @@
       const caesar = cvState.art === "caesar";
       const keys = caesar ? [cvState.key] : keysOf(wordInput.value);
       result.textContent = shift(text, keys, cvState.sign);
-
       keyInput.value = cvState.key;
-      keyText.textContent = `${cvState.sign > 0 ? "+" : "−"}${cvState.key}`;
-      disc.setAttribute("aria-valuenow", cvState.key);
       if (!caesar) cards(text, keys);
 
       const encrypt = cvState.sign > 0;
@@ -201,62 +282,10 @@
       for (const b of signButtons) b.setAttribute("aria-pressed", String(Number(b.dataset.richtung) === cvState.sign));
     }
 
-    // turns the disc the short way round to the key
     function setKey(key) {
-      const next = mod(key, N);
-      const target = -next * STEP;
-      const current = rotation;
-      const delta = mod(target - current + 180, 360) - 180;
-      turn(current + delta);
-      cvState.key = next;
+      cvState.key = mod(key, N);
       update();
     }
-
-    // ---- dragging the inner disc
-
-    let drag = null;
-    const pointerAngle = (e) => {
-      const box = disc.getBoundingClientRect();
-      const x = e.clientX - (box.left + box.width / 2);
-      const y = e.clientY - (box.top + box.height / 2);
-      return (Math.atan2(x, -y) * 180) / Math.PI;
-    };
-
-    disc.addEventListener("pointerdown", (e) => {
-      if (e.button !== 0) return;
-      e.preventDefault();
-      disc.setPointerCapture(e.pointerId);
-      disc.classList.add("cv-ziehen");
-      drag = { pointer: e.pointerId, angle: pointerAngle(e), rotation };
-    });
-    disc.addEventListener("pointermove", (e) => {
-      if (!drag || drag.pointer !== e.pointerId) return;
-      const delta = mod(pointerAngle(e) - drag.angle + 180, 360) - 180;
-      drag.angle += delta;
-      turn(rotation + delta);
-      const key = mod(Math.round(-rotation / STEP), N);
-      if (key !== cvState.key) {
-        cvState.key = key;
-        update();
-      }
-    });
-    const release = (e) => {
-      if (!drag || drag.pointer !== e.pointerId) return;
-      drag = null;
-      disc.classList.remove("cv-ziehen");
-      turn(-Math.round(-rotation / STEP) * STEP);
-    };
-    disc.addEventListener("pointerup", release);
-    disc.addEventListener("pointercancel", release);
-
-    disc.addEventListener("keydown", (e) => {
-      const step = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key];
-      if (!step) return;
-      e.preventDefault();
-      setKey(cvState.key + step);
-    });
-
-    // ---- controls
 
     $("cv-minus").addEventListener("click", () => setKey(cvState.key - 1));
     $("cv-plus").addEventListener("click", () => setKey(cvState.key + 1));
@@ -296,7 +325,7 @@
       breaker.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    setKey(cvState.key);
+    update();
   }
 
   // ---------------------------------------------------------------------------
@@ -457,4 +486,5 @@
 
   if (breaker) setupBreaker();
   if (cv) setupCipher();
+  if (cs) setupDisc();
 })();

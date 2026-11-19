@@ -12,16 +12,21 @@ importance: 1
 
 <link rel="stylesheet" href="{{ '/assets/css/werkzeuge.css' | relative_url | bust_file_cache }}">
 
-## Verschlüsseln
+## Die Caesar-Scheibe
 
 Bei Caesar rutscht jeder Buchstabe um dieselbe Zahl von Plätzen weiter, und nach Z geht
 es wieder bei A los. Auf der Caesar-Scheibe steht außen der Klartext und innen der
 Geheimtext. Dreh die innere Scheibe, bis unter dem A der Buchstabe für deinen Schlüssel
 steht: Bei Schlüssel 3 ist das D, und aus HALLO wird KDOOR.
 
-Beim Vigenère-Verfahren gibt ein Codewort die Schlüssel vor, für jeden Buchstaben einen:
-A steht für 0, B für 1, …, Z für 25. Ist der Text länger als das Codewort, wird das
-Codewort wiederholt. Mit dem Codewort FEE wird aus GEHEIM der Geheimtext LILJMQ.
+{% include caesar_scheibe.liquid %}
+
+## Verschlüsseln und entschlüsseln
+
+Hier rechnet der Computer für dich. Beim Vigenère-Verfahren gibt ein Codewort die
+Schlüssel vor, für jeden Buchstaben einen: A steht für 0, B für 1, …, Z für 25. Ist der
+Text länger als das Codewort, wird das Codewort wiederholt. Mit dem Codewort FEE wird aus
+GEHEIM der Geheimtext LILJMQ.
 
 {% include caesar_vigenere.liquid %}
 

@@ -93,7 +93,7 @@ Karte auf der Themenseite kommt aus dem Kopf der Seite: `themen`, `img`, `art` u
 | Werkzeug | Seite | Oberfläche | Programm |
 |---|---|---|---|
 | Rechnen im Kreis (Modulo) | `_pages/modulo.md` | `_includes/modulo.liquid` | `assets/js/modulo.js` |
-| Verschlüsseln und knacken (Caesar, Vigenère) | `_pages/caesar-vigenere-ausprobieren.md` | `_includes/caesar_vigenere.liquid`, `_includes/codeknacker.liquid` | `assets/js/caesar-vigenere.js` |
+| Verschlüsseln und knacken (Caesar, Vigenère) | `_pages/caesar-vigenere-ausprobieren.md` | `_includes/caesar_scheibe.liquid`, `_includes/caesar_vigenere.liquid`, `_includes/codeknacker.liquid` | `assets/js/caesar-vigenere.js` |
 | Diffie-Hellman | `_pages/diffie-hellman.md` | `_includes/diffie_hellman.liquid` | `assets/js/diffie-hellman.js` |
 
 **Vorträge:** Dateien nach `content/Vortraege/`, benannt

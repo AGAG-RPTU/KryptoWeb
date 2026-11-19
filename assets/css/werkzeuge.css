@@ -284,6 +284,35 @@
   }
 }
 
+/* the disc beside its controls, below them on a phone */
+.cs {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+}
+
+.cs .cv-scheibe {
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .cs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* only with a mouse or touchpad, which suggests a keyboard */
+.cs-tastatur {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cs-tastatur {
+    display: block;
+  }
+}
+
 .cv-ergebnis {
   min-height: 1.6em;
   padding: 0.4rem 0.6rem;
@@ -292,6 +321,40 @@
   font-size: 1.1rem;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* input and result side by side and equally tall, stacked on a phone */
+.cv-texte {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.cv-texte > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cv-texte textarea,
+.cv-texte .cv-ergebnis {
+  flex: 1;
+  min-height: 6.5em;
+}
+
+.cv-texte .cv-ergebnis {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  font-size: inherit;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 640px) {
+  .cv-texte {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .cv-karten {
