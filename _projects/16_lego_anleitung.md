@@ -1,13 +1,9 @@
 ---
-layout: page
-title: Bauanleitung
-description: Eine Anleitung zum Bauen einer Lego-Enigma.
+title: "Bauanleitung"
+description: "Anleitung zum Bau einer Enigma aus Lego (PDF, 81 MB)"
 img: content/img/Anleitung.jpg
+importance: 1
 category: Lego
+file: "/content/Lego/LegoEnigma.pdf"
+credit: "Moritz Groh, RPTU; Design nach Tommy Hofmann und [twzoom](https://www.instructables.com/Poly-Alphabetic-Cipher-Machine/)"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Lego/LegoEnigma.pdf' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Lego/LegoEnigma.pdf' | relative_url }}" download>
-    Download starten
-</a>

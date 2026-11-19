@@ -1,12 +1,8 @@
 ---
-layout: page
-title: Primzahlen mit Python
-description: Eine Pythondatei für die Bearbeitung des 1. AB.
+title: "Primzahlen mit Python"
+description: "Hilfsfunktionen für Arbeitsblatt 1 (Python)"
+importance: 2
 category: Arbeitsblätter
+file: "/content/Arbeitsblätter/primzahlen.py"
+credit: "AG Algebra, Geometrie und Computeralgebra, RPTU"
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/content/Arbeitsblätter/primzahlen.py' | relative_url }}">
-Falls der automatische Download nicht startet:
-<a href="{{ '/content/Arbeitsblätter/primzahlen.py' | relative_url }}" download>
-    Download starten
-</a>

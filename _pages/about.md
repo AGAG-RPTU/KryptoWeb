@@ -22,6 +22,8 @@ Nachlesen und Weitermachen:
 - [Masterarbeiten]({{ '/Masterarbeiten/' | relative_url }}): Abschlussarbeiten zu Themen der Kryptographie
 - [Visual]({{ '/Visual/' | relative_url }}): Programme zur visuellen Kryptographie in Java und Python
 - [RSA]({{ '/RSA/' | relative_url }}): Folien und Python-Code zum RSA-Verfahren
+- [Lego Enigma]({{ '/lego/' | relative_url }}): Bauanleitung für eine Enigma aus Lego
+- [Arbeitsblätter]({{ '/arbeitsblaetter/' | relative_url }}): Primzahlen, Diffie-Hellman und RSA zum Selbstrechnen
 
 ## Wer wir sind
 
