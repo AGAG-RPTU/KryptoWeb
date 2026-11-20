@@ -1,0 +1,32 @@
+#!/bin/sh
+# Baut die Seite und kopiert sie auf den Webserver crypto.math.rptu.de.
+#
+#   bin/veroeffentlichen [--trotzdem]
+#
+# Braucht `ssh crypto-www` ohne Passwort (siehe README). Veröffentlicht nur einen
+# Stand von main ohne ungespeicherte Änderungen; --trotzdem überspringt das, etwa
+# für einen Test.
+set -eu
+cd "$(dirname "$0")/.."
+
+ZIEL=crypto-www:/srv/www/crypto/htdocs/
+
+if [ "${1:-}" != --trotzdem ]; then
+    if [ "$(git branch --show-current)" != main ] || ! git diff --quiet HEAD; then
+        echo "Nicht auf main oder mit ungespeicherten Änderungen;" \
+             "mit --trotzdem dennoch veröffentlichen." >&2
+        exit 1
+    fi
+fi
+
+site=$(mktemp -d)
+trap 'rm -rf "$site"' EXIT
+
+# ohne UTF-8 als Standard bricht Jekyll an Umlauten ab
+RUBYOPT="-EUTF-8${RUBYOPT:+ $RUBYOPT}" JEKYLL_ENV=production \
+    bundle exec jekyll build -d "$site"
+bin/check-sri "$site"
+
+# Apache liest über die Gruppe crypto, die neue Verzeichnisse erben (setgid).
+rsync -rlptz --delete --chmod=D2750,F644 "$site/" "$ZIEL"
+echo "Veröffentlicht: https://crypto.math.rptu.de/"

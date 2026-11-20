@@ -29,16 +29,15 @@ Anschrift wie oben.
 
 ## Datenschutz
 
-Diese Seite wird über [GitHub Pages](https://docs.github.com/de/pages/getting-started-with-github-pages/about-github-pages#data-collection)
-ausgeliefert, einen Dienst der GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco,
-CA 94107, USA. Beim Aufruf einer Seite speichert GitHub die IP-Adresse des Besuchers zu
-Sicherheitszwecken, unabhängig davon, ob er bei GitHub angemeldet ist. Rechtsgrundlage ist
-Art. 6 Abs. 1 lit. e DSGVO (Öffentlichkeitsarbeit der Hochschule); GitHub ist nach dem
-EU-US Data Privacy Framework zertifiziert. Einzelheiten stehen in der
-[Datenschutzerklärung von GitHub](https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement).
+Diese Seite liegt auf einem Webserver des Fachbereichs Mathematik der RPTU. Bei jedem
+Aufruf protokolliert der Server die IP-Adresse des Besuchers, Datum und Uhrzeit, die
+aufgerufene Adresse, den Statuscode, die übertragene Datenmenge, die verweisende Seite und
+die Kennung des Browsers. Das dient dem sicheren Betrieb und der Fehlersuche;
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. e DSGVO (Öffentlichkeitsarbeit der Hochschule).
+Die Protokolle werden nach XX Tagen gelöscht.
 
-Wir selbst erheben keine personenbezogenen Daten, setzen keine Cookies und binden keine
-Inhalte anderer Server ein. Die Einstellung zum hellen oder dunklen Farbschema wird nur
+Darüber hinaus erheben wir keine personenbezogenen Daten, setzen keine Cookies und binden
+keine Inhalte anderer Server ein. Die Einstellung zum hellen oder dunklen Farbschema wird nur
 lokal in Ihrem Browser gespeichert.
 Bilder, die Sie in das Werkzeug zur visuellen Kryptographie laden, verarbeitet nur Ihr
 Browser; sie werden nicht übertragen.

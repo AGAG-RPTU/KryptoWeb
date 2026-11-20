@@ -11,13 +11,12 @@ contact_note: >
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Materialien zur Kryptographie vom Tag der Mathematik und anderen Veranstaltungen der RPTU Kaiserslautern-Landau.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+  Erstellt mit <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> und <a href="https://github.com/alshedivat/al-folio">al-folio</a>.
 keywords: Kryptographie, Verschlüsselung, Enigma, RSA, Tag der Mathematik, RPTU
 lang: de # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://agag-rptu.github.io # the base hostname & protocol for your site
+url: https://crypto.math.rptu.de # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: /impressum/ # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -132,6 +131,8 @@ include: ["_pages"]
 exclude:
   - al-folio-upgrade-report.md
   - bin/
+  - Dockerfile
+  - requirements.txt
   - CONTRIBUTING.md
   - CUSTOMIZE.md
   - docs/

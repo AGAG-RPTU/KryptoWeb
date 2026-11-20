@@ -3,7 +3,7 @@
 Materialien zur Kryptographie für Schülerinnen, Schüler und Lehrkräfte, betrieben
 von Claus Fieker, Max Horn und Christian Eder an der RPTU Kaiserslautern-Landau.
 
-Live: <https://agag-rptu.github.io/KryptoWeb/>
+Live: <https://crypto.math.rptu.de/>
 
 ## Lokal ansehen
 
@@ -28,9 +28,31 @@ Die Seite liegt dann unter <http://localhost:4000/> und lädt bei jeder Änderun
 
 ## Veröffentlichen
 
-Jeder Push auf `main` baut die Seite mit GitHub Actions
-([.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)) und stellt sie auf
-GitHub Pages.
+Die Seite liegt auf dem Webserver `crypto.math.rptu.de` des Fachbereichs. Auf `main`,
+ohne ungespeicherte Änderungen:
+
+```bash
+bin/veroeffentlichen
+```
+
+Das Skript baut die Seite und kopiert sie mit `rsync` nach
+`/srv/www/crypto/htdocs`. Dafür muss `ssh crypto-www` ohne Passwort gehen; der
+Server nimmt nur Schlüssel an, die die IT eingetragen hat, und nur aus dem
+Uni-Netz. Eintrag in `~/.ssh/config`:
+
+```
+Host crypto-www
+    HostName crypto.math.rptu.de
+    User crypto-www
+    ProxyJump skylla   # nur nötig, wenn der eigene Rechner keinen direkten Zugang hat
+```
+
+Die alte Adresse <https://agag-rptu.github.io/KryptoWeb/> leitet weiter: Jeder Push
+auf `main` baut die Seite mit GitHub Actions
+([.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)), ersetzt jede
+HTML-Seite durch eine Weiterleitung auf dieselbe Seite unter `crypto.math.rptu.de`
+([bin/weiterleitung-github](bin/weiterleitung-github)) und stellt das auf GitHub
+Pages. So funktionieren alte Links und QR-Codes auf gedruckten Blättern weiter.
 
 ## Aufbau
 
@@ -73,7 +95,7 @@ credit: "© 2026 Max Horn, RPTU, [CC BY-SA 4.0](https://creativecommons.org/lice
 Die Karte verlinkt direkt auf `file`. Fremdes Material nur einstellen, wenn seine
 Lizenz die Weitergabe erlaubt; Urheber, Lizenz und Quelle gehören in `credit`.
 Sonst als `file` die Seite des Autors verlinken. Links in `credit`, die mit `/`
-beginnen, bekommen automatisch den Pfad der Seite (`/KryptoWeb`) vorangestellt.
+beginnen, bekommen automatisch `baseurl` vorangestellt.
 
 **Werkzeuge im Browser** haben je eine eigene Seite unter ihrem Thema. Jedes besteht
 aus Seite (`_pages/`), Oberfläche (`_includes/`) und Programm (`assets/js/`); das

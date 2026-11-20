@@ -44,11 +44,14 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
       - name: Check Subresource Integrity
-        run: bin/check-sri _site "${{ steps.pages.outputs.base_path }}"
+        run: bin/check-sri _site
+      - name: Redirect to crypto.math.rptu.de
+        # the site lives on crypto.math.rptu.de; GitHub Pages only forwards old links
+        run: bin/weiterleitung-github _site "${{ steps.pages.outputs.base_path }}"
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v5

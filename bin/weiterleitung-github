@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+"""Macht aus dem Build eine Weiterleitung für die alte Adresse auf GitHub Pages.
+
+    bin/weiterleitung-github <Build-Verzeichnis> <Pfad der alten Seite, z. B. /KryptoWeb>
+
+Jede HTML-Seite leitet auf dieselbe Seite unter crypto.math.rptu.de weiter, damit
+alte Links und die QR-Codes auf gedruckten Blättern weiter funktionieren. 404.html
+leitet jeden unbekannten Pfad ebenso weiter. Andere Dateien (PDFs usw.) bleiben, damit
+direkte Links darauf nicht brechen.
+"""
+
+import html
+import json
+import os
+import sys
+import urllib.parse
+
+NEU = "https://crypto.math.rptu.de"
+
+SEITE = """<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Umgezogen nach crypto.math.rptu.de</title>
+<link rel="canonical" href="{ziel}">
+<meta http-equiv="refresh" content="0; url={ziel}">
+<script>location.replace({ziel_js})</script>
+</head>
+<body><p>Diese Seite ist umgezogen: <a href="{ziel}">{ziel}</a></p></body>
+</html>
+"""
+
+
+def schreibe(datei, ziel, ziel_js):
+    with open(datei, "w", encoding="utf-8") as f:
+        f.write(SEITE.format(ziel=html.escape(ziel), ziel_js=ziel_js))
+
+
+site, alt = sys.argv[1], sys.argv[2].rstrip("/")
+anzahl = 0
+
+for ordner, _, dateien in os.walk(site):
+    for name in dateien:
+        if not name.endswith(".html"):
+            continue
+        datei = os.path.join(ordner, name)
+        pfad = "/" + os.path.relpath(datei, site)
+
+        if pfad == "/404.html":
+            # unbekannte Pfade: alten Präfix abschneiden, Rest übernehmen
+            ziel_js = (f"{json.dumps(NEU)} + location.pathname.replace("
+                       f"new RegExp('^' + {json.dumps(alt)}), '')"
+                       " + location.search + location.hash")
+            schreibe(datei, NEU + "/", ziel_js)
+            anzahl += 1
+            continue
+
+        if name == "index.html":
+            pfad = pfad[: -len("index.html")]
+        ziel = NEU + urllib.parse.quote(pfad)
+        schreibe(datei, ziel, json.dumps(ziel) + " + location.search + location.hash")
+        anzahl += 1
+
+print(f"{anzahl} Seiten leiten auf {NEU} weiter")
