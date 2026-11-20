@@ -29,7 +29,8 @@ Aufruf protokolliert der Server die IP-Adresse des Besuchers, Datum und Uhrzeit,
 aufgerufene Adresse, den Statuscode, die übertragene Datenmenge, die verweisende Seite und
 die Kennung des Browsers. Das dient dem sicheren Betrieb und der Fehlersuche;
 Rechtsgrundlage ist Art. 6 Abs. 1 lit. e DSGVO (Öffentlichkeitsarbeit der Hochschule).
-Die Protokolle werden nach XX Tagen gelöscht.
+Die Protokolle werden nach drei Tagen gelöscht, ihre Kopien in der Datensicherung mit
+deren regulärem Ablauf.
 
 Darüber hinaus erheben wir keine personenbezogenen Daten, setzen keine Cookies und binden
 keine Inhalte anderer Server ein. Die Einstellung zum hellen oder dunklen Farbschema wird nur
