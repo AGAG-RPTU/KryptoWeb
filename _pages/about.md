@@ -37,5 +37,5 @@ aus der [Arbeitsgruppe Algebra, Geometrie und Computeralgebra](https://math.rptu
 am [Fachbereich Mathematik](https://math.rptu.de) der RPTU Kaiserslautern-Landau betrieben.
 Wir kommen auch mit Vorträgen an weiterführende Schulen, für die Klassen 5 bis 13
 ([mehr dazu]({{ '/lehrkraefte/' | relative_url }})).
-Fragen und Anregungen nehmen wir gerne per E-Mail entgegen, die Adressen stehen im
+Fragen und Anregungen nehmen wir gerne per E-Mail entgegen, die Adresse steht im
 [Impressum]({{ '/impressum/' | relative_url }}).

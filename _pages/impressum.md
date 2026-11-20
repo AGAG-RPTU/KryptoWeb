@@ -19,13 +19,8 @@ Aufsichtsbehörde und Umsatzsteuer-Identifikationsnummer stehen im
 
 ## Verantwortlich für den Inhalt
 
-Verantwortlich nach § 18 Abs. 2 MStV:
-
-- Prof. Dr. Claus Fieker, Raum 48-414, Telefon +49 631 205 2392, E-Mail: <claus.fieker@rptu.de>
-- Prof. Dr. Max Horn, Raum 48-430, Telefon +49 631 205 2730, E-Mail: <mhorn@rptu.de>
-- Dr. Christian Eder, Raum 48-424, Telefon +49 631 205 4972, E-Mail: <ederc@rptu.de>
-
-Anschrift wie oben.
+Verantwortlich nach § 18 Abs. 2 MStV: Prof. Dr. Max Horn, Raum 48-430,
+Telefon +49 631 205 2730, E-Mail: <mhorn@rptu.de>, Anschrift wie oben.
 
 ## Datenschutz
 
