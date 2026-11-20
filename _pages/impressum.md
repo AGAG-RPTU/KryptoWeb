@@ -1,8 +1,7 @@
 ---
 layout: page
-title: Impressum
+title: "Impressum & Datenschutz"
 permalink: /impressum/
-description: Impressum und Hinweise zum Datenschutz
 nav: false
 ---
 
