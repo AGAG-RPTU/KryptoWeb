@@ -47,12 +47,14 @@ Host crypto-www
     ProxyJump skylla   # nur nötig, wenn der eigene Rechner keinen direkten Zugang hat
 ```
 
-Die alte Adresse <https://agag-rptu.github.io/KryptoWeb/> leitet weiter: Jeder Push
-auf `main` baut die Seite mit GitHub Actions
-([.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)), ersetzt jede
-HTML-Seite durch eine Weiterleitung auf dieselbe Seite unter `crypto.math.rptu.de`
-([bin/weiterleitung-github](bin/weiterleitung-github)) und stellt das auf GitHub
-Pages. So funktionieren alte Links und QR-Codes auf gedruckten Blättern weiter.
+Ein Push baut die Seite nur zur Probe mit GitHub Actions
+([.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)); veröffentlicht wird
+sie damit nicht.
+
+Die alte Adresse <https://agag-rptu.github.io/KryptoWeb/> leitet weiter: GitHub Pages
+liefert den Branch `gh-pages` aus, der nur eine Seite enthält. Sie schickt jeden alten
+Pfad auf denselben Pfad unter `crypto.math.rptu.de`, damit alte Links und QR-Codes auf
+gedruckten Blättern funktionieren.
 
 ## Aufbau
 
